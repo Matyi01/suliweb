@@ -1,0 +1,18 @@
+fieldset{
+    background-color: lightgreen;
+    box-shadow: 2px 2px 10px;
+    width: 800px;
+}
+legend{
+    background-color: lightgreen;
+    color: green;
+    border: 2px solid green;
+    box-shadow: 2px 2px 10px;
+}
+#nev{
+    background-color: greenyellow;
+}
+#gomb{
+    background-color: greenyellow;
+    border: 2px solid green;
+}

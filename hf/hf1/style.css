@@ -1,0 +1,46 @@
+body{
+    background-color: lightgrey;
+}
+#celtabla{
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+/*    background-image: repeating-radial-gradient(red 10%, white 10%, white 20%, red 20%, red 30%)*/
+    background-image: repeating-radial-gradient(red 0%, red 10%, white 10%, white 20%, black 20%, black 30%, white 30%, white 40%, black 40%, black 50%, white 50%, white 60%, black 60%, black 70%, white 70%, white 80%, black 80%, black 90%, white 90%, white 100%);
+}
+#diagram1{
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+    background-image: conic-gradient(red 0deg, red 21.18deg, yellow 21.18deg);
+}
+#diagram2{
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+    background-image: conic-gradient(red 0deg, red 14.4deg, yellow 14.4deg, yellow 230.4deg, blue 230.4deg, blue 331.2deg, green 331.2deg);
+}
+.infolany{
+    color: red;
+}
+.infofiu{
+    color: yellow;
+}
+.eulany{
+    color: blue;
+}
+.eufiu{
+    color: green;
+}
+.rotate {
+    animation: rotation 1s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Form</title>
+</head>
+<body>
+    <form action="">
+        <fieldset>
+            <legend>Belépési adatok</legend>
+            <label for="nev">Belépési név</label><br>
+            <input type="text" name="nev" placeholder="Próba Jóska" id="nev"><br>
+            <label for="email">E-mail</label><br>
+            <input type="email" name="email" placeholder="nincs@om.hu"><br>
+            <label for="jelszo">Jelszó</label><br>
+            <input type="password" name="jelszo" placeholder="123456"><br>
+        </fieldset>
+        <fieldset>
+            <legend>Személyes adatok</legend>
+            <label for="szulinap">Születési dátum</label>
+            <input type="date" name="szulinap" placeholder="éééé. hh. nn."><br>
+            <label for="nem">Nem</label><br>
+            <input type="radio" value="ferfi" name="nem">
+            <label for="ferfi">Férfi</label>
+            <input type="radio" value="no" name="nem">
+            <label for="no">Nő</label>
+            <input type="radio" value="egyeb" name="nem">
+            <label for="egyeb">Egyéb</label><br>
+            <label for="szulhely">Születési hely</label>
+            <select name="szulhely">
+                <option value="nagyatad">Nagyatád</option>
+                <option value="labod">Lábod</option>
+                <option value="berzence">Berzence</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <legend>Egyéb</legend>
+            <label>Allergia</label><br>
+
+            <input type="checkbox" name="allergia1" value="Mogyoró">
+            <label for="allergia1">Mogyoró</label>
+            <input type="checkbox" name="allergia2" value="Tejcukor">
+            <label for="allergia2">Tejcukor</label>
+            <input type="checkbox" name="allergia3" value="Glutén">
+            <label for="allergia3">Glutén</label>
+            <input type="checkbox" name="allergia4" value="Bullshit">
+            <label for="allergia4">Bullshit</label>
+            <input type="checkbox" name="allergia5" value="Ezüst">
+            <label for="allergia5">Ezüst</label>
+        </fieldset>
+        <fieldset>
+            <legend>Gombok</legend>
+            <input type="reset" value="Törlés" id="gomb">
+            <input type="submit" value="Mentés" id="gomb">
+        </fieldset>
+    </form>
+</body>
+</html>
