@@ -1,0 +1,18 @@
+div{
+    margin-top: 20px;
+    text-align: center;
+    background-color: aqua;
+    border: 5px solid blue;
+    text-shadow: 2px 2px;
+    box-shadow: 2px 2px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: darkblue;
+    transform: rotate(10deg);
+}
+:hover div{
+    transition: 2s;
+    background-color: orangered;
+    transform: rotate(-10deg);
+    color: yellow;
+    border: 2px solid yellow;
+}
