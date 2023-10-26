@@ -1,5 +1,6 @@
 div{
     width: 100px;
+    height: 40px;
     margin-top: 20px;
     text-align: center;
     background-color: aqua;
@@ -9,9 +10,9 @@ div{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: darkblue;
     transform: rotate(10deg);
-}
-:hover div{
     transition: 2s;
+}
+div:hover{
     background-color: orangered;
     transform: rotate(-10deg);
     color: yellow;
