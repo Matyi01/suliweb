@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="info">Ide jön valami</div>
+        <div class="info">Ide jön valami1</div>
+        <div class="info">Ide jön valami12</div>
+        <div class="info">Ide jön valami13</div>
+        <div class="info">Ide jön valami14</div>
+        <div class="info">Ide jön valami15</div>
+        <div class="info">Ide jön valami16</div>
+        <p class="info">Ide jön valami10</p>
+
+        <script>
+            let elem=document.getElementById("info");
+            console.log(elem)
+            elem.innerHTML="nap vege";
+
+            elem=document.getElementsByTagName("div");
+            console.log(elem);
+            elem[3].innerHTML+="Valami";
+            
+            elem=document.getElementsByClassName("info");
+            console.log(elem);
+
+            elem = document.getElementById("info");
+            console.log(elem.style.color);
+            elem.style.color = "red";
+            elem.style.fontSize = "50px";
+        </script>
+    </body>
+</html>
