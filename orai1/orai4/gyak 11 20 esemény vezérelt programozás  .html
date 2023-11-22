@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function katt(elem)
+        {
+            let gombok=document.getElementsByTagName("button")
+            console.log(gombok);
+            for(let i=0;i<gombok.length;i++)
+            {
+                gombok[i].style.backgroundColor="";
+                gombok[i].style.color="";
+                gombok[i].style.border="";
+                gombok[i].style.width="";
+                gombok[i].style.height="";
+                gombok[i].style.fontSize="";
+
+            }
+
+            //let elem=document.getElementById("katiGomb")
+            
+            //elem.innerHTML="Kattints ide!";
+            console.log("kattintas volt!");
+
+            elem.style.backgroundColor="red";
+            elem.style.color="white";
+            elem.style.border="2px solid black";
+            elem.style.width="200px";
+            elem.style.height="150px";
+            elem.style.fontSize="35px";
+        }
+    </script>
+    <button onclick="katt(this)" id="katiGomb">Kattints ide, he!</button>
+    <button onclick="katt(this)" id="janiGomb">Másik gomb</button>
+    <button onclick="katt(this)">Gomb1!</button>
+    <button onclick="katt(this)">Gomb2!</button>
+    <button onclick="katt(this)">Gomb3!</button>
+    <button onclick="katt(this)">Gomb4!</button>
+    <button onclick="katt(this)">Gomb5!</button>
+    <button onclick="katt(this)">Gomb6!</button>
+    <button onclick="katt(this)">Gomb7!</button>
+    <button onclick="katt(this)">Gomb8!</button>
+    <button onclick="katt(this)">Gomb9!</button>
+    <button onclick="katt(this)">Gomb10!</button>
+</body>
+</html>
