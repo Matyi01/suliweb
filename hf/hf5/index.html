@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label>szám: <input type="text" id="szam"></label>
+        <input type="submit" onclick="kattint(); return false;">
+    </form>
+    <form>
+        <label>másik űrlap: <input type="text" id="szam2"></label>
+    </form>
+    <script>
+        function kattint()
+        {
+            let szam = document.getElementById("szam").value;
+            document.getElementById("szam2").value = szam;
+        }
+    </script>
+</body>
+</html>
