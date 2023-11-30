@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function gombnyomas()
+        {
+            let szoveg = document.getElementById("szoveg");
+            let cim1 = document.getElementsByTagName("h1");
+            cim1[0].innerHTML = szoveg.value;
+            //document.getElementByTagName("h1").innerHTML = szoveg.value;
+        }
+    </script>
+    <h1></h1>
+    <form>
+        <input type="text" id="szoveg" onkeypress="gombnyomas()">
+    </form>
+</body>
+</html>
