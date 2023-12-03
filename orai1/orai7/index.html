@@ -5,9 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
         input[type = button]{
             width: 50px;
             height: 50px;
+            font-size: larger;
+        }
+        #kijelzo{
+            width: 215px;
+            height: 25px;
+            border: 2.5px solid black;
+            background-color:olivedrab;
+            margin: 15px;
+            font-weight: bold;
+            font-size: larger;
+        }
+        #szamologep{
+            width: 250px;
+            height: 400px;
+            margin: auto;
+            border: 5px solid black;
+            border-radius: 25px;
+            background-color:darkgrey;
+        }
+        h1{
+            width: 200px;
+            margin-left: 25px;
+            margin-right: 25px;
+            text-align: center;
+        }
+        #gombok{
+            margin-left: 45px;
+            margin-right: 45px;
         }
     </style>
 </head>
@@ -53,24 +85,26 @@
     <form>
         <input type="text" id="szoveg" onkeypress="gombnyomas()">
     </form>
-    <h1>Számológép</h1>
-    <div id="kijelzo">0</div>
-    <form>
-        <input type="button" id="7" value="7" onclick="nyomas('7')">
-        <input type="button" id="8" value="8" onclick="nyomas('8')">
-        <input type="button" id="9" value="9" onclick="nyomas('9')"><br>
-        <input type="button" id="4" value="4" onclick="nyomas('4')">
-        <input type="button" id="5" value="5" onclick="nyomas('5')">
-        <input type="button" id="6" value="6" onclick="nyomas('6')"><br>
-        <input type="button" id="1" value="1" onclick="nyomas('1')">
-        <input type="button" id="2" value="2" onclick="nyomas('2')">
-        <input type="button" id="3" value="3" onclick="nyomas('3')"><br>
-        <input type="button" id="0" value="0" onclick="nyomas('0')">
-        <input type="button" id="C" value="C" onclick="nyomas('C')"><br>
-        <input type="button" id="+" value="+" onclick="muvelet('+')">
-        <input type="button" id="-" value="-" onclick="muvelet('-')">
-        <input type="button" id="*" value="*" onclick="muvelet('*')">
-        <input type="button" id="/" value="/" onclick="muvelet('/')">
-    </form>
+    <div id="szamologep">
+        <h1>Számológép</h1>
+        <div id="kijelzo">0</div>
+        <form id="gombok">
+            <input type="button" id="7" value="7" onclick="nyomas('7')">
+            <input type="button" id="8" value="8" onclick="nyomas('8')">
+            <input type="button" id="9" value="9" onclick="nyomas('9')"><br>
+            <input type="button" id="4" value="4" onclick="nyomas('4')">
+            <input type="button" id="5" value="5" onclick="nyomas('5')">
+            <input type="button" id="6" value="6" onclick="nyomas('6')"><br>
+            <input type="button" id="1" value="1" onclick="nyomas('1')">
+            <input type="button" id="2" value="2" onclick="nyomas('2')">
+            <input type="button" id="3" value="3" onclick="nyomas('3')"><br>
+            <input type="button" id="0" value="0" onclick="nyomas('0')">
+            <input type="button" id="C" value="C" onclick="nyomas('C')">
+            <input type="button" id="+" value="+" onclick="muvelet('+')"><br>
+            <input type="button" id="-" value="-" onclick="muvelet('-')">
+            <input type="button" id="*" value="*" onclick="muvelet('*')">
+            <input type="button" id="/" value="/" onclick="muvelet('/')">
+        </form>
+    </div>
 </body>
 </html>
