@@ -10,9 +10,11 @@
             
         }
         input[type = button]{
-            width: 50px;
-            height: 50px;
+            width: 51.67px;
+            height: 62px;
             font-size: larger;
+            margin-bottom: 5px;
+            border-radius: 5px;
         }
         #kijelzo{
             width: 215px;
@@ -25,7 +27,7 @@
         }
         #szamologep{
             width: 250px;
-            height: 400px;
+            height: 410px;
             margin: auto;
             border: 5px solid black;
             border-radius: 25px;
@@ -38,8 +40,8 @@
             text-align: center;
         }
         #gombok{
-            margin-left: 45px;
-            margin-right: 45px;
+            margin-left: 15px;
+            margin-right: 15px;
         }
     </style>
 </head>
@@ -62,23 +64,44 @@
             }
             else
             {
-                if (k.innerHTML === "0")
+                if (k.innerHTML === "0" || beforemuvelet === "=")
                 {
                     k.innerHTML = "";
                 }
                 k.innerHTML += ertek;
             }
         }
+
         let before = 0;
         let beforemuvelet = "+";
         function muvelet(jel)
         {
             if (beforemuvelet === "+")
             {
-                before += parseInt(document.getElementById("kijelzo"));
+                before += parseInt(document.getElementById("kijelzo").innerHTML);
                 beforemuvelet = jel;
             }
-            
+            else if (beforemuvelet === "-")
+            {
+                before -= parseInt(document.getElementById("kijelzo").innerHTML);
+                beforemuvelet = jel;
+            }
+            else if (beforemuvelet === "*")
+            {
+                before *= parseInt(document.getElementById("kijelzo").innerHTML);
+                beforemuvelet = jel;
+            }
+            else if (beforemuvelet === "/")
+            {
+                before /= parseInt(document.getElementById("kijelzo").innerHTML);
+                beforemuvelet = jel;
+            }
+            document.getElementById("kijelzo").innerHTML = 0;
+            console.log(jel, before)
+
+            if (jel === "="){
+                document.getElementById("kijelzo").innerHTML = before;
+            }
         }
     </script>
     <h1></h1>
@@ -91,18 +114,19 @@
         <form id="gombok">
             <input type="button" id="7" value="7" onclick="nyomas('7')">
             <input type="button" id="8" value="8" onclick="nyomas('8')">
-            <input type="button" id="9" value="9" onclick="nyomas('9')"><br>
+            <input type="button" id="9" value="9" onclick="nyomas('9')">
+            <input type="button" id="+" value="+" onclick="muvelet('+')"><br>
             <input type="button" id="4" value="4" onclick="nyomas('4')">
             <input type="button" id="5" value="5" onclick="nyomas('5')">
-            <input type="button" id="6" value="6" onclick="nyomas('6')"><br>
+            <input type="button" id="6" value="6" onclick="nyomas('6')">
+            <input type="button" id="-" value="-" onclick="muvelet('-')"><br>
             <input type="button" id="1" value="1" onclick="nyomas('1')">
             <input type="button" id="2" value="2" onclick="nyomas('2')">
-            <input type="button" id="3" value="3" onclick="nyomas('3')"><br>
+            <input type="button" id="3" value="3" onclick="nyomas('3')">
+            <input type="button" id="*" value="*" onclick="muvelet('*')"><br>
             <input type="button" id="0" value="0" onclick="nyomas('0')">
             <input type="button" id="C" value="C" onclick="nyomas('C')">
-            <input type="button" id="+" value="+" onclick="muvelet('+')"><br>
-            <input type="button" id="-" value="-" onclick="muvelet('-')">
-            <input type="button" id="*" value="*" onclick="muvelet('*')">
+            <input type="button" id="=" value="=" onclick="muvelet('=')">
             <input type="button" id="/" value="/" onclick="muvelet('/')">
         </form>
     </div>
