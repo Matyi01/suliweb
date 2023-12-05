@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Utasítások</title>
+ <meta charset="UTF-8">
+<script>
+ function displayDate() {
+  alert("Hello...\n\nMost a böngésző értelmezi a JavaScript kódot.");
+  var d=new Date();
+  document.getElementById("demo").innerHTML=d.toLocaleDateString() + " " + d.toLocaleTimeString();
+ }
+</script>
+
+</head>
+<body>
+
+<h1>Dátum és idő</h1>
+<p id="demo">Ebbe a bekezdésbe kerül a dátum és idő, ha a gombra kattintasz</p>
+
+<button type="button" onclick="displayDate()">Idő kiírás</button>
+
+</body>
+</html> 

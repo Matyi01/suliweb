@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<!-- http://www.w3schools.com/js/tryit.asp?filename=tryjs_prompt -->
+<head>
+ <title>Változók</title>
+ <meta charset="UTF-8">
+
+</head>
+<body>
+
+<h1>Kérek öt egész értéket!</h1>
+
+<form>
+    <input type="text" id="szam1" placeholder="pl.: 123"><br>
+    <input type="text" id="szam2"><br>
+    <input type="text" id="szam3"><br>
+    <input type="text" id="szam4"><br>
+    <input type="text" id="szam5"><br>
+    <input type="button" onclick="myFunction()" value="Adatbeolvasás">
+</form>
+
+<p id="demo"></p>
+
+<script>
+    function myFunction() {
+       let szam1 = parseInt(document.getElementById("szam1").value);
+       let szam2 = parseInt(document.getElementById("szam2").value);
+       let szam3 = parseInt(document.getElementById("szam3").value);
+       let szam4 = parseInt(document.getElementById("szam4").value);
+       let szam5 = parseInt(document.getElementById("szam5").value);
+       let szamok = [szam1, szam2, szam3, szam4, szam5];
+       let osszeg = 0;
+       let szorzat = 1;
+       for (let i = 0; i < szamok.length; i++){
+            osszeg += szamok[i];
+            szorzat *= szamok[i];
+       }
+
+        document.getElementById("demo").innerHTML = "Összegük: " + osszeg + ", szorzatuk: " + szorzat;
+    }
+</script>
+</body>
+</html>
