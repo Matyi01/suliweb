@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Ctrl + x</title>
+ <meta charset="UTF-8">
+</head>
+<body>
+ <h1>Hány lap fér rá egy 40cm x 50cm- es lapra?</h1>
+<form>
+    <input type="number" id="szam1">cm x <input type="number" id="szam2">cm<br>
+    <div id="demo1"></div><br>
+    <input type="number" id="szam3">cm x <input type="number" id="szam4">cm<br>
+    <div id="demo2"></div><br>
+    <input type="button" onclick="myFunction()" value="Küldés">
+</form>
+ <script>
+    function myFunction()
+    {
+        let oldal1 = 40;
+        let oldal2 = 50;
+        let szam1 = document.getElementById("szam1").value;
+        let szam2 = document.getElementById("szam2").value;
+        let szam3 = document.getElementById("szam3").value;
+        let szam4 = document.getElementById("szam4").value;
+        document.getElementById("demo1").innerHTML = Math.floor(oldal1 / szam1) * Math.floor(oldal2 / szam2)+" db vagy "+Math.floor(oldal1 / szam2) * Math.floor(oldal2 / szam1)+" db";
+        document.getElementById("demo2").innerHTML = Math.floor(oldal1 / szam3) * Math.floor(oldal2 / szam4)+" db vagy "+Math.floor(oldal1 / szam4) * Math.floor(oldal2 / szam3)+" db";
+    }
+</script>
+</body>
+</html>
