@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Eldöntöm két szóról hogy egymás anagrammái-e</h1>
+    <label for="szo1">Kérek két szót:</label><br>
+    <input type="text" id="szo1"><br>
+    <input type="text" id="szo2"><br>
+    <input type="button" value="Küldés" onclick="anagramma()">
+    <div id="demo"></div>
+
+    <script>
+        function anagramma()
+        {
+            let szo1 = document.getElementById("szo1").value;
+            let szo2 = document.getElementById("szo2").value;
+            if (szo1.split("").sort().join() === szo2.split("").sort().join())
+            {
+                document.getElementById("demo").innerHTML = "Ez a két szó egymás anagrammája."
+            }
+            else
+            {
+                document.getElementById("demo").innerHTML = "Ez a két szó nem egymás anagrammája."
+            }
+        }
+    </script>
+</body>
+</html>

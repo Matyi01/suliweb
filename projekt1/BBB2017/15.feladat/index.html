@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Egy szóról megmondom, hogy tükörszó-e</h1>
+    <label for="szo">Kérek egy szót:</label>
+    <input type="text" id="szo">
+    <input type="button" value="Küldés" onclick="tukorszo()">
+    <div id="demo"></div>
+
+    <script>
+        function tukorszo()
+        {
+            let szo = document.getElementById("szo").value;
+            if (szo === szo.split("").reverse().join(""))
+            {
+                document.getElementById("demo").innerHTML = "Ez egy tükörszó."
+            }
+            else
+            {
+                document.getElementById("demo").innerHTML = "Ez nem egy tükörszó."
+            }
+        }
+    </script>
+</body>
+</html>
