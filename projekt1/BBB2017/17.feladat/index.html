@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Megfordítok egy 10 elemű pozitív egész számokból álló számsort</h1>
+
+    <label for="szam1"></label>
+    <input type="number" id="szam1"><br>
+    <input type="number" id="szam2"><br>
+    <input type="number" id="szam3"><br>
+    <input type="number" id="szam4"><br>
+    <input type="number" id="szam5"><br>
+    <input type="number" id="szam6"><br>
+    <input type="number" id="szam7"><br>
+    <input type="number" id="szam8"><br>
+    <input type="number" id="szam9"><br>
+    <input type="number" id="szam10"><br>
+    <input type="button" value="Fordítás" onclick="forditas()">
+    <div id="szamok"></div>
+
+    <script>
+        function maxinarray(tomb)
+        {
+
+            return tomb.indexOf(Math.max(...tomb));
+        }
+
+        function forditas()
+        {
+            let szam1 = document.getElementById("szam1").value;
+            let szam2 = document.getElementById("szam2").value;
+            let szam3 = document.getElementById("szam3").value;
+            let szam4 = document.getElementById("szam4").value;
+            let szam5 = document.getElementById("szam5").value;
+            let szam6 = document.getElementById("szam6").value;
+            let szam7 = document.getElementById("szam7").value;
+            let szam8 = document.getElementById("szam8").value;
+            let szam9 = document.getElementById("szam9").value;
+            let szam10 = document.getElementById("szam10").value;
+
+            let szamok = [parseInt(szam1), parseInt(szam2), parseInt(szam3), parseInt(szam4), parseInt(szam5), parseInt(szam6), parseInt(szam7), parseInt(szam8), parseInt(szam9), parseInt(szam10)];
+
+            for(let i = 0; i < 10; i++)
+            {
+
+                document.getElementById("szamok").innerHTML += "\n" + szamok[maxinarray(szamok)];
+                szamok[maxinarray(szamok)] = -1;
+            }
+
+
+        }
+    </script>
+</body>
+</html>
