@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Eldobott labda röppályálya:</h1>
+
+    <label for="ero">Ferde hajítás erőssége:</label><br>
+    <input type="number" id="ero"><br>
+    <label for="szog">Ferde hajítás szöge:</label><br>
+    <input type="number" id="szog"><br>
+    <input type="button" value="Számolj" onclick="ferdehajitas()">
+    <div id="eredmeny"></div>
+
+    <script>
+        function ferdehajitas()
+        {
+            let ero = document.getElementById("ero").value;
+            let szog = document.getElementById("szog").value;
+            let szograd = szog * (Math.PI / 180);
+
+            let h = ((ero * ero) * (Math.sin(szograd) * Math.sin(szograd))) / (2 * 9.81);
+            let d = ((ero * ero) * Math.sin(2 * szograd)) / 9.81;
+
+            document.getElementById("eredmeny").innerHTML = "A dobás maximális magassága: " + h + " m, távolsága: " + d + "m";
+        }
+    </script>
+</body>
+</html>
