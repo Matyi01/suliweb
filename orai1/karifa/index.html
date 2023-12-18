@@ -12,23 +12,32 @@
         {
             for (let i = 0; i < 24; i++)
             {
-                gombdisz();
+                gombdisz(i);
             }
         }
-        function gombdisz()
+        function gombdisz(i)
         {
             let elem = document.createElement("img");
             elem.src = "disz.png";
+            let top = rand(30, 515);
+            let left = rand(top * -0.5 + 273.5,top * 0.5 + 223.5);
             elem.style.height = rand(30, 100) + "px";
             elem.style.position = "absolute";
-            elem.style.left = rand(30, 447) + "px";
-            elem.style.top = rand(30, 515) + "px";
+            elem.style.left = left + "px";
+            elem.style.top = top + "px";
+            elem.onclick = 
+            elem.id = i;
 
             document.getElementById("fenyo").appendChild(elem);
         }
         function rand(min, max)
         {
             return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function duplakatt(i)
+        {
+            elem = document.getElementById(i);
+            elem.style.visibility = "hidden";
         }
     </script>
 
