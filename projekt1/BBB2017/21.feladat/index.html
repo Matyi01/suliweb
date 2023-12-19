@@ -1,0 +1,99 @@
+<!--
+Készítsetek egy honlapot, ami egy jármű műszerfalát utánozza. Az oldalon legyen néhány kijelző: Egy, ami 
+az aktuális sebességet jeleníti meg, egy ami a fordulatszámát, egy ami a sebességváltó fokozatát, 
+és egy ami az üzemanyag szintjét. Ezek lehetnek egyszerűen számok is.
+
+Legyen két gomb, amik segítségével a jármű sebességét lehet csökkenteni vagy növelni (mondjuk 10km/h-val).
+
+Legyen két gomb, amivel a sebességváltót lehet állítani egyel magasabb vagy alacsonyabb sebességbe.
+
+A jármű fordulatszámát úgy kell megjeleníteni, hogy ugyanakkora járműsebesség mellett a váltó nagyobb 
+fokozata kisebb fordulatszámot eredményezzen. 
+
+(A járműnek 3-as fokozatban nagyobb fordulatszám kell az 50km/h-hoz, mint 4-es fokozatban.) 
+Ugyanakkor ha a váltót nem állítjuk, akkor a sebesség növekedésével arányosan változzon a fordulatszám.
+
+Az üzemanyag szintje az idő telésével fokozatosan csökkenjen. A csökkenés mértéke a fordulatszámtól függjön.
+
+Legyen egy gomb, amivel tankolni tudunk. Ilyenkor az üzemanyag tartályt teletöltjük, és a program írja ki, 
+hogy mennyi üzemanyagot tankoltunk.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body onload="init()">
+    <div id="muszerfal"></div>
+
+    <div id="sebesseg">0</div>
+    <div id="fordulatszam">0</div>
+    <div id="fokozat">0</div>
+    <div id="uzemanyag">100</div>
+    <div id="tankolt"></div>
+
+    <input type="button" value="+10 km/h" id="sebessegfel" class="gombok" onclick="speedup(); rpm()">
+    <input type="button" value="-10 km/h" id="sebessegvissza" class="gombok" onclick="speeddown(); rpm()">
+    <input type="button" value="+1 sebesség" id="fokozatfel" class="gombok" onclick="gearup(); rpm()">
+    <input type="button" value="-1 sebesség" id="fokozatle" class="gombok" onclick="geardown(); rpm()">
+    <input type="button" value="tankolás" id="tankolni" class="gombok" onclick="refuel()">
+
+
+    <script>
+        function init()
+        {
+            setInterval(egetes, 1000);
+        }
+        function speedup()
+        {
+            document.getElementById("sebesseg").innerHTML = parseInt(document.getElementById("sebesseg").innerHTML) + 10;
+        }
+        function speeddown()
+        {
+            if(document.getElementById("sebesseg").innerHTML >= 10)
+            {
+                document.getElementById("sebesseg").innerHTML -= 10;
+            }
+        }
+        function gearup()
+        {
+            if(document.getElementById("fokozat").innerHTML < 6)
+            {
+                document.getElementById("fokozat").innerHTML = parseInt(document.getElementById("fokozat").innerHTML) + 1;
+            }
+        }
+        function geardown()
+        {
+            if(document.getElementById("fokozat").innerHTML >= 1)
+            {
+                document.getElementById("fokozat").innerHTML -= 1;
+            }
+        }
+        function rpm()
+        {
+            if (document.getElementById("fokozat").innerHTML == 0)
+            {
+                document.getElementById("fordulatszam").innerHTML = 0;
+            }
+            else
+            {
+                document.getElementById("fordulatszam").innerHTML = Math.floor(parseInt(document.getElementById("sebesseg").innerHTML) / parseInt(document.getElementById("fokozat").innerHTML) * 100);
+            }
+        }
+        function refuel()
+        {
+            let szint = document.getElementById("uzemanyag").innerHTML;
+            document.getElementById("uzemanyag").innerHTML = 100;
+            document.getElementById("tankolt").innerHTML = 100 - szint;
+        }
+        function egetes()
+        {
+            document.getElementById("uzemanyag").innerHTML -= document.getElementById("fordulatszam").innerHTML / 1000;
+        }
+    </script>
+</body>
+</html>
