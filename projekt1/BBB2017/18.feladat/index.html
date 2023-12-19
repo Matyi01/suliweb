@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18.feladat</title>
+    <style>
+        .kepek{
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Képnézegető honlap</h1>
+    
+    <!--Készítsetek egy képnézegető honlapot. Az oldal tartalmazzon 4 képet, az oldal tetején, kicsi méretben megjelenítve. A kis kép valamelyikére kattintva a neki 
+        megfelelő nagyobb méretű párja jelenjen meg a kis képek alatt. Mindig csak egy kép legyen nagy méretben látható.-->
+
+    <img src="kep1.jpg" alt="kep1" id="kep1" class="kepek" >
+    <img src="kep2.jpg" alt="kep2" id="kep2" class="kepek" >
+    <img src="kep3.jpg" alt="kep3" id="kep3" class="kepek" >
+    <img src="kep4.jpg" alt="kep4" id="kep4" class="kepek" >
+    <p>Nagyításhoz kattints a képre!</p>
+    <script>
+        let kepek = document.getElementsByTagName("img");
+        document.getElementById("kep1").onclick = function() {kepNagyito1()};
+        function kepNagyito1(){
+            kepek[0].style.width="300px";
+            kepek[0].style.height="300px";
+            kepek[1].style.height="150px";
+            kepek[1].style.width="150px";
+            kepek[2].style.height="150px";
+            kepek[2].style.width="150px";
+            kepek[3].style.height="150px";
+            kepek[3].style.width="150px";
+
+            
+        }
+        document.getElementById("kep2").onclick = function() {kepNagyito2()};
+        function kepNagyito2(){
+            kepek[1].style.width="300px";
+            kepek[1].style.height="300px";
+            kepek[0].style.height="150px";
+            kepek[0].style.width="150px";
+            kepek[2].style.height="150px";
+            kepek[2].style.width="150px";
+            kepek[3].style.height="150px";
+            kepek[3].style.width="150px";
+        }
+        document.getElementById("kep3").onclick = function() {kepNagyito3()};
+        function kepNagyito3(){
+            kepek[2].style.width="300px";
+            kepek[2].style.height="300px";
+            kepek[0].style.height="150px";
+            kepek[0].style.width="150px";
+            kepek[1].style.height="150px";
+            kepek[1].style.width="150px";
+            kepek[3].style.height="150px";
+            kepek[3].style.width="150px";
+        }
+        document.getElementById("kep4").onclick = function() {kepNagyito4()};
+        function kepNagyito4(){
+            kepek[3].style.width="300px";
+            kepek[3].style.height="300px";
+            kepek[0].style.height="150px";
+            kepek[0].style.width="150px";
+            kepek[2].style.height="150px";
+            kepek[2].style.width="150px";
+            kepek[1].style.height="150px";
+            kepek[1].style.width="150px";
+        }
+
+    </script>
+</body>
+</html>

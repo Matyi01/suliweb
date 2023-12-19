@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20.feladat</title>
+    <style>
+        #demo{
+            position: absolute;
+            width: 100px;
+            height: 50px;
+            top: 50%;
+            left: 50%;
+            font-size: 50px;
+            transition: color 0.5s ease-in-out;
+            color: black;
+            
+            
+            
+        }
+        #szoveg{
+            text-align: center;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="szoveg">Számláló oldal</h1>
+    <!--Készítsetek egy számláló honlapot. A holnapon legyen egy nagyobb szám, ami a honlap megnyitásakor 0, és minden másodpercben egyel nő. A szám színe minden 10. növekedést követően változzon meg.-->
+        <script>
+            let szam = 0;
+            function szamlalo(){
+                szam+=1;
+                let szamKi = document.getElementById("demo");
+                szamKi.innerHTML = szam;
+                
+
+                if(szam%10===0 && szam != 0){
+
+                    szamKi.style.color=randomSzin();
+                }
+                
+            }
+            const randomSzin= () =>  {
+             return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
+            }
+
+            setInterval(szamlalo,1000);
+       
+        </script>
+        <div id="demo">0</div>
+    
+</body>
+</html>
