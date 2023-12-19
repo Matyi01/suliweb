@@ -24,6 +24,9 @@
             elem.style.height = rand(30, 100) + "px";
             elem.style.position = "absolute";
             elem.style.left = left + "px";
+            top = Math.sqrt(top);
+            top *= 27;
+            top -= 100;
             elem.style.top = top + "px";
             elem.ondblclick = function katt(){elem.style.visibility = "hidden"};
 
