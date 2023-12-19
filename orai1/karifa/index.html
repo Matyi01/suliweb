@@ -17,20 +17,29 @@
         }
         function gombdisz(i)
         {
+            let ajandek = document.getElementById("ajandek");
             let elem = document.createElement("img");
+            let elemszam = document.createElement("div");
+            elem.id = i+"disz";
             elem.src = "disz.png";
             let top = rand(30, 515);
             let left = rand(top * -0.5 + 273.5,top * 0.5 + 223.5);
-            elem.style.height = rand(30, 100) + "px";
+            elem.style.height = rand(30, 60) + "px";
             elem.style.position = "absolute";
             elem.style.left = left + "px";
             top = Math.sqrt(top);
             top *= 27;
             top -= 100;
             elem.style.top = top + "px";
-            elem.ondblclick = function katt(){elem.style.visibility = "hidden"};
+            elem.ondblclick = function katt(){elem.style.transition = "1s"; elem.style.opacity = "0"; ajandek.innerHTML = i+1+". ajándék"};
+
+            elemszam.innerHTML = i+1;
+            elemszam.style.position = "absolute";
+            elemszam.style.left = left + "px";
+            elemszam.style.top = top + "px";
 
             document.getElementById("fenyo").appendChild(elem);
+            document.getElementById("fenyo").appendChild(elemszam);
         }
         function rand(min, max)
         {
@@ -39,5 +48,6 @@
     </script>
 
     <div id="fenyo"></div>
+    <div id="ajandek"></div>
 </body>
 </html>
