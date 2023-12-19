@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osztók keresése</title>
+
+</head>
+<body>
+    <h2>Osztók keresése</h2>
+    <label for="szam">Kérem, adjon meg egy számot:</label>
+    <input type="number" id="szam">
+    <button onclick="myFunction()">Osztók keresése</button>
+
+    <div id="osztokEredmeny"></div>
+
+    <script>
+        function myFunction() {
+            let szamBe = document.getElementById("szam").value;
+            let szam = parseInt(szamBe);
+
+            let osztok = [];
+            for (let i = 1; i <= szam; i++) {
+                if (szam % i === 0) {
+                    osztok.push(i);
+                }
+            }
+
+            let osztokEredmeny = document.getElementById("osztokEredmeny");
+            osztokEredmeny.innerHTML = "A(z) " + szam + " osztói: " + osztok;
+        }
+    </script>
+</body>
+</html>

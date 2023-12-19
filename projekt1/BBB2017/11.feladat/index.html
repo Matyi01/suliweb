@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szamok vizsgalata.</title>
+</head>
+<body>
+    <form> 
+        <form>
+            <input type="text" id="szam1" placeholder="pl.: 123"><br>
+            <input type="text" id="szam2"><br>
+            <input type="text" id="szam3"><br>
+            <input type="button" onclick="myFunction()" value="Adatbeolvasás">
+        </form>
+        
+        <p id="demo"></p>
+        
+        <script>
+            function myFunction() {
+               let szam1 = parseInt(document.getElementById("szam1").value);
+               let szam2 = parseInt(document.getElementById("szam2").value);
+               let szam3 = parseInt(document.getElementById("szam3").value);
+               let szamok = [szam1, szam2, szam3];
+               let osszeg = 0;
+               let legnagyobb = 0;
+               let legkisebb = 0;
+
+               for (let i = 0; i < szamok.length; i++)
+               {
+                    if (szamok[i] > legnagyobb)
+                    {
+                        legnagyobb = szamok[i];
+                    }
+               }
+               legkisebb = szamok[0]
+               for (let i = 0; i < szamok.length; i++)
+               {
+                     if (szamok[i] < legkisebb)
+                    {
+                        legkisebb = szamok[i];
+                    }          
+               }
+
+               for (let i = 0; i < szamok.length; i++)
+               {
+                    osszeg += szamok[i];
+               }
+                let atlag = osszeg / 3;
+               document.getElementById("demo").innerHTML = "Legnagyobb: " + legnagyobb + ", legkisebb: " + legkisebb + ", átlaguk: " + atlag;
+            }
+
+            
+
+
+    </script>
+</body>
+</html>

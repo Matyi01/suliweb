@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13.Feladat</title>
+</head>
+<body>
+    <!--Készítsetek egy programot, amely egy 20 elemű tömböt feltölt véletlen számokkal. 
+        Jelenítsétek meg a generált számokat, majd az összegüket is-->
+        <input type="button" name="" id="" value="Generálás" onclick="myFunction()">
+        <script>
+            function myFunction(){
+                let szamok = [];
+                for(let i =0;i<20;i++){
+                    let randomSzam = Math.floor(Math.random() * 10000);
+                    szamok.push(randomSzam);
+
+                }
+                let sum = 0;
+                for(let i =0;i<szamok.length;i++){
+                    sum+=szamok[i];
+
+                }
+                document.getElementById("demo").innerHTML = szamok;
+                document.getElementById("eredmeny").innerHTML = "Összegük: "+sum;          
+                
+                
+                
+                console.log(szamok)
+            }
+        </script>
+        <p id="demo"></p>
+        <p id="eredmeny"></p>
+    
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tökéletes szám</title>
+</head>
+<body>
+    <h1>A tökéletes számok</h1>
+    <form>
+        <input type="button" onclick="myFunction2()" value="tokeletes">
+    </form>
+    <p id="vegeredmeny"></p>
+    <script>
+        function myFunction()
+        {
+            let szam = [];
+            for (let i = 1; i < 10001; i++)
+            {
+                szam.push(i)
+            }
+            let osztok = [];
+            for (let i = 1; i < szam.length; i++)
+            {
+                osztok.push(i)
+            }
+            let bennevane = 0;
+            let tokeletes = [];
+            for (let i = 0; i < szam.length; i++)
+            {
+                for (let k = 0; k < szam.length; k++)
+                {
+                    if (szam[i] % osztok[k] == 0)
+                    {
+                        if (szam[i] != osztok[k])
+                        {
+                            bennevane += osztok[k];
+                        if (bennevane === szam[i])
+                        {
+                            tokeletes.push(szam[i]);
+                        }
+                        }
+                        
+                    }
+                   
+                }
+                bennevane = 0;
+            }
+            console.log(tokeletes)    
+        }
+
+        function myFunction2()
+        {
+            let tokeletes = [];
+            for (let szam = 1; szam <= 10000; szam++)
+            {
+                let osszeg = 0;
+            for (let i = 1; i < szam; i++)
+            {
+                if (szam % i === 0)
+                {
+                    osszeg += i;
+                }
+            }
+            if (osszeg === szam)
+            {
+                tokeletes += osszeg + ", "   
+            }
+            }         
+            document.getElementById("vegeredmeny").innerHTML = "tokeletes szam: " + tokeletes;
+        }
+
+        
+    </script>
+    
+</body>
+</html>
