@@ -1,0 +1,41 @@
+<!--Készítsetek programot, amely a csapatotok nevét
+     és egy rövid mottót 10 karakter széles helyen, 
+     fényreklámszerűen a képernyő közepén mozgatja. 
+     A felirat színe is változzon az idő múlásával.
+-->
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fényreklám</title>
+    <link rel="stylesheet" href="">
+</head>
+<body onload="fenyReklam()">
+    <script>
+        
+        function fenyReklam(){ 
+            //console.log(nev)
+            //console.log(motto)
+            let stilus = document.createElement("link");
+            stilus.rel="stylesheet";
+            stilus.href="style.css";
+            document.head.appendChild(stilus);
+            }
+            setInterval(
+            function() {
+                let nev = document.getElementById("nev");
+                let motto = document.getElementById("motto");
+                let randomSzin = Math.floor(Math.random() * 16777215).toString(16);
+                nev.style.color = "#" + randomSzin;
+                motto.style.color = "#" + randomSzin;
+            }, 1000);
+          
+
+    </script>
+    <div id="reklamKep">
+    <p id="nev" class="szov">BBB</p>
+    <p id="motto" class="szov">Csak előre!</p>
+    </div>
+</body>
+</html>

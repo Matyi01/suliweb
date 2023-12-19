@@ -1,0 +1,27 @@
+#reklamKep{
+    position: absolute;
+    left: 47%;
+    top: 35%;
+    font-size: 50px;
+    text-align: center;
+
+    
+}
+#reklamKep {
+bottom: 15%;
+position: absolute;
+animation: linear infinite;
+animation-name: run;
+animation-duration: 10s;
+}
+@keyframes run {
+0% {
+    left: 0;
+}
+50% {
+    left: 88%;
+}
+100% {
+    left: 0;    
+}
+}
