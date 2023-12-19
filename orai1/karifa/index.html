@@ -25,19 +25,13 @@
             elem.style.position = "absolute";
             elem.style.left = left + "px";
             elem.style.top = top + "px";
-            elem.onclick = 
-            elem.id = i;
+            elem.ondblclick = function katt(){elem.style.visibility = "hidden"};
 
             document.getElementById("fenyo").appendChild(elem);
         }
         function rand(min, max)
         {
             return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-        function duplakatt(i)
-        {
-            elem = document.getElementById(i);
-            elem.style.visibility = "hidden";
         }
     </script>
 
