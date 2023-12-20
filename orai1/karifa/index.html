@@ -1,3 +1,6 @@
+<!--
+    Többféle gömb (listából random)
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,8 +38,8 @@
 
             elemszam.innerHTML = i+1;
             elemszam.style.position = "absolute";
-            elemszam.style.left = left + "px";
-            elemszam.style.top = top + "px";
+            elemszam.style.left = left + (parseInt(elem.style.height) / 3) + "px";
+            elemszam.style.top = top + (parseInt(elem.style.height) / 3) + "px";
 
             document.getElementById("fenyo").appendChild(elem);
             document.getElementById("fenyo").appendChild(elemszam);
