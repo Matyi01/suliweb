@@ -20,12 +20,12 @@
         }
         function gombdisz(i)
         {
-            let diszek = ["disz.png", "disz2.png"]
+            let diszek = ["disz.png", "disz2.jpg"]
             let ajandek = document.getElementById("ajandek");
             let elem = document.createElement("img");
             let elemszam = document.createElement("div");
             elem.id = i+"disz";
-            elem.src = diszek[Math.rand(1)];
+            elem.src = diszek[rand(0,1)];
             let top = rand(30, 515);
             let left = rand(top * -0.5 + 273.5,top * 0.5 + 223.5);
             elem.style.height = rand(30, 60) + "px";
