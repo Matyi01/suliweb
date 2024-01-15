@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinamikus űrlapszerűség</title>
+</head>
+<body>
+    <h1>Dinamikus lista</h1>
+    <button onclick="ujelem()">új elem</button>
+    <div id="container"></div>
+
+    <script>
+        function ujelem()
+        {
+            let tarolo = document.getElementById("container");
+
+            uj = document.createElement("div");
+            uj.innerHTML = "valami";
+            uj.onclick = function(){this.style.border = "1px solid red"};
+            uj.ondblclick = function(){this.remove()}
+
+            tarolo.appendChild(uj);
+
+
+        }
+        
+    </script>
+</body>
+</html>
