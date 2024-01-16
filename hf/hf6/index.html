@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szorzótábla</title>
+</head>
+<body onload="keszit()">
+    <table id="tabla"></table>
+
+    <script>
+        function keszit()
+        {
+            let tabla = document.getElementById("tabla");
+            for (let i = 0; i < 100; i++)
+            {
+                sor = document.createElement("tr");
+                tabla.appendChild(sor)
+                for (let j = 0; j < 100; j++)
+                {
+                    szam = document.createElement("td");
+                    szam.innerHTML = (i + 1) * (j + 1);
+                    tabla.appendChild(szam);
+                    szam.style.border = "1px solid black";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
