@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arrays</title>
+</head>
+<body>
+    
+
+    <script>
+        const szamok1 = [];
+        for (let i = 0; i < 100; i++)
+        {
+            szamok1.push(i + 1);
+        }
+        console.log(szamok1);
+        const szamok2 = [];
+        for (let i = 100; i > 0; i--)
+        {
+            szamok2.unshift(i);
+        }
+        console.log(szamok2);
+        const szamok3 = [];
+        for (let i = 0; i < 100; i++)
+        {
+            szamok3.splice(i, 0, i + 1);
+        }
+        console.log(szamok3);
+        const szamok4 = [];
+        for (let i = 100; i > 0; i--)
+        {
+            szamok4.push(i);
+        }
+        console.log(szamok4);
+        const szamok5 = szamok1.prototype.toSplice(90, 10);
+        console.log(szamok5)
+    </script>
+</body>
+</html>
