@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tömb kiíratás</title>
+</head>
+<body>
+    <div id="demo"></div>
+
+    <script>
+        const szamok = [0, 1, 2, 3, 4];
+
+        szamok.forEach(kiir);
+        function kiir(value, index, array)
+        {
+            if(index === 0)
+            {
+                document.getElementById("demo").innerHTML += array[index] + ", " + array[index + 1] + "<br>";
+            }
+            else if(index === array.length - 1)
+            {
+                document.getElementById("demo").innerHTML += array[index - 1] + ", " + array[index] + "<br>";
+            }
+            else
+            {
+                document.getElementById("demo").innerHTML += array[index - 1] + ", " + array[index] + ", " + array[index + 1] + "<br>";
+
+            }
+        }
+    </script>
+</body>
+</html>
