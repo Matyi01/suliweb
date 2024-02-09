@@ -27,7 +27,11 @@ function kepkirakas()
             let uj = document.createElement("div");
             uj.className = "kartya";
             uj.onclick = function(){
-                if (kattintas < 2)
+                //if (typeof uj.dataset.felforditva === 'undefined' || uj.dataset.felforditva === null)
+
+                if (kattintas < 2 &&
+                    !(typeof uj.dataset.felforditva !== 'undefined' && uj.dataset.felforditva !== null) &&
+                    uj.dataset.felforditva !== "true")
                 {
                     uj.style.backgroundImage = "url(kepek/" + kepekurl[i] + ")";
                     uj.dataset.felforditva = "true";
@@ -62,31 +66,36 @@ function visszafordit()
             aktiv.push(lapok[i]);
         }
     }
-    if (aktiv[0].style.backgroundImage !== aktiv[1].style.backgroundImage)
+
+    if(aktiv.length >= 2)
     {
-        aktiv[0].style.backgroundImage = "";
-        aktiv[1].style.backgroundImage = "";
-    }
-    else
-    {
-        aktiv[0].onclick = "";
-        aktiv[1].onclick = "";
-        if (!vanemeg())
+        if (aktiv[0].style.backgroundImage !== aktiv[1].style.backgroundImage)
         {
-            nyertel();
+            aktiv[0].style.backgroundImage = "";
+            aktiv[1].style.backgroundImage = "";
+        }
+        else
+        {
+            aktiv[0].onclick = "";
+            aktiv[1].onclick = "";
+            if (!vanemeg())
+            {
+                nyertel();
+            }
         }
     }
     aktiv[0].dataset.felforditva = "";
     aktiv[1].dataset.felforditva = "";
 
     kattintas = 0;
+    
 }
 
 function nyertel()
 {
-    let uj = doucment.createElement("div");
+    let uj = document.createElement("div");
     uj.innerHTML = "Game over";
-
+    document.getElementsByTagName("header")[0].appendChild(uj);
     
 }
 
