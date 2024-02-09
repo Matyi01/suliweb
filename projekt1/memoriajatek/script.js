@@ -54,6 +54,7 @@ function kepkirakas()
     }
 }   
 
+const megtalaltparok = [];
 function visszafordit()
 {
     const aktiv = [];
@@ -73,6 +74,8 @@ function visszafordit()
         {
             aktiv[0].onclick = "";
             aktiv[1].onclick = "";
+            megtalaltparok.push(aktiv[0]);
+            megtalaltparok.push(aktiv[1]);
             if (!vanemeg())
             {
                 nyertel();
@@ -81,6 +84,17 @@ function visszafordit()
     }
     aktiv[0].dataset.felforditva = "";
     aktiv[1].dataset.felforditva = "";
+
+    const lapok = document.getElementById("asztal").children;
+    for(let i = 0; i < lapok.length; i++)
+    {
+        lapok[i].style.backgroundImage = "";
+    }
+
+    for(let i = 0; i < megtalaltparok.length; i++)
+    {
+        megtalaltparok[i].style.backgroundImage = "";
+    }
 
     lathatolapok = [];
 }
