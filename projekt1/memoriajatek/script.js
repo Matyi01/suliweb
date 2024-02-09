@@ -9,11 +9,12 @@ var kepekurl = [
     "8.jpg"
 ];
 var pardb = 4;
-var kattintas = 0;
 function init()
 {
     kepkirakas();
 }
+var kattintas = 0;
+let lathatolapok = [];
 function kepkirakas()
 {
     let asztal = document.getElementById("asztal");
@@ -28,16 +29,14 @@ function kepkirakas()
             uj.className = "kartya";
             uj.onclick = function(){
                 //if (typeof uj.dataset.felforditva === 'undefined' || uj.dataset.felforditva === null)
-
-                if (kattintas < 2 &&
-                    !(typeof uj.dataset.felforditva !== 'undefined' && uj.dataset.felforditva !== null) &&
-                    uj.dataset.felforditva !== "true")
+                //if (lathatolapok.length < 2 &&!(typeof uj.dataset.felforditva !== 'undefined' && uj.dataset.felforditva !== null) &&uj.dataset.felforditva !== "true")
+                if (lathatolapok.length < 2 && !lathatolapok.includes(uj))
                 {
+                    lathatolapok.push(uj);
                     uj.style.backgroundImage = "url(kepek/" + kepekurl[i] + ")";
                     uj.dataset.felforditva = "true";
                 }
-                kattintas++;
-                if (kattintas === 2)
+                if (lathatolapok.length === 2)
                 {
                     setTimeout(visszafordit, 2000);
                 }
@@ -57,14 +56,10 @@ function kepkirakas()
 
 function visszafordit()
 {
-    const lapok = document.getElementById("asztal").children;
     const aktiv = [];
-    for (let i = 0; i < lapok.length; i++)
+    for (let i = 0; i < lathatolapok.length; i++)
     {
-        if (lapok[i].dataset.felforditva === "true")
-        {
-            aktiv.push(lapok[i]);
-        }
+        aktiv.push(lathatolapok[i]);
     }
 
     if(aktiv.length >= 2)
@@ -87,8 +82,7 @@ function visszafordit()
     aktiv[0].dataset.felforditva = "";
     aktiv[1].dataset.felforditva = "";
 
-    kattintas = 0;
-    
+    lathatolapok = [];
 }
 
 function nyertel()
