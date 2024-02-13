@@ -27,9 +27,14 @@ function kepkirakas()
         {
             let uj = document.createElement("div");
             uj.className = "kartya";
+            uj.dataset.hatterkep = "url(kepek/" + kepekurl[i] + ")";
             uj.onclick = function(){
-                //if (typeof uj.dataset.felforditva === 'undefined' || uj.dataset.felforditva === null)
-                //if (lathatolapok.length < 2 &&!(typeof uj.dataset.felforditva !== 'undefined' && uj.dataset.felforditva !== null) &&uj.dataset.felforditva !== "true")
+                if(kattintas === 0)
+                {
+                    orastart();
+                }
+                kattintas++;
+                document.getElementById("kattintasok").innerHTML = "Kattintások száma: " + kattintas;
                 if (lathatolapok.length < 2 && !lathatolapok.includes(uj))
                 {
                     lathatolapok.push(uj);
@@ -38,7 +43,8 @@ function kepkirakas()
                 }
                 if (lathatolapok.length === 2)
                 {
-                    setTimeout(visszafordit, 2000);
+                    visszafordit();
+                    //setTimeout(visszafordit, 2000);
                 }
             };
             
@@ -54,10 +60,10 @@ function kepkirakas()
     }
 }   
 
+let aktiv = [];
 const megtalaltparok = [];
 function visszafordit()
 {
-    const aktiv = [];
     for (let i = 0; i < lathatolapok.length; i++)
     {
         aktiv.push(lathatolapok[i]);
@@ -67,8 +73,8 @@ function visszafordit()
     {
         if (aktiv[0].style.backgroundImage !== aktiv[1].style.backgroundImage)
         {
-            aktiv[0].style.backgroundImage = "";
-            aktiv[1].style.backgroundImage = "";
+            setTimeout(nemparvisszafordit, 2000);
+
         }
         else
         {
@@ -80,23 +86,53 @@ function visszafordit()
             {
                 nyertel();
             }
+            aktiv[0].dataset.felforditva = "";
+            aktiv[1].dataset.felforditva = "";
+        
+            const lapok = document.getElementById("asztal").children;
+            for(let i = 0; i < lapok.length; i++)
+            {
+                lapok[i].style.backgroundImage = "";
+            }
+        
+            for(let i = 0; i < megtalaltparok.length; i++)
+            {
+                megtalaltparok[i].style.backgroundImage = megtalaltparok[i].dataset.hatterkep;
+            }
+        
+            lathatolapok = [];
+            aktiv = [];
         }
     }
-    aktiv[0].dataset.felforditva = "";
-    aktiv[1].dataset.felforditva = "";
 
-    const lapok = document.getElementById("asztal").children;
-    for(let i = 0; i < lapok.length; i++)
-    {
-        lapok[i].style.backgroundImage = "";
-    }
+}
 
-    for(let i = 0; i < megtalaltparok.length; i++)
-    {
-        megtalaltparok[i].style.backgroundImage = "";
-    }
+function nemparvisszafordit()
+{
+    aktiv[0].style.backgroundImage = "";
+    aktiv[1].style.backgroundImage = "";
+    aktiv = [];
+}
 
-    lathatolapok = [];
+let starttime = "";
+let timer;
+function orastart()
+{
+    starttime = new Date();
+
+    timer = setInterval(orashow, 100);
+}
+function orashow()
+{
+    const aktualtume = new Date();
+
+    const kulonbseg = aktualtume - starttime;
+
+    const ido = new Date(kulonbseg);
+    const mp = ido.getSeconds();
+    const perc = ido.getMinutes();
+
+    document.getElementById("ido").innerHTML = perc + ":" + (mp < 10 ? "0" : "") + mp + "." + Math.floor(ido.getMilliseconds()/100);
 }
 
 function nyertel()
@@ -104,7 +140,7 @@ function nyertel()
     let uj = document.createElement("div");
     uj.innerHTML = "Game over";
     document.getElementsByTagName("header")[0].appendChild(uj);
-    
+    clearInterval(timer);
 }
 
 function vanemeg()
