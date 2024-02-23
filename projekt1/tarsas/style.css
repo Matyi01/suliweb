@@ -1,0 +1,26 @@
+#tabla div{
+    height: 300px;
+    width: 150px;
+    border: 2px solid black;
+    position: absolute;
+}
+#bolt0{
+    top: 20px;
+    left: 20px;
+}
+#bolt1{
+    top: 20px;
+    left: 190px;
+}
+#bolt2{
+    top: 20px;
+    left: 380px;
+}
+#bolt3{
+    top: 20px;
+    left: 570px;
+}
+#bolt4{
+    top: 20px;
+    left: 760px;
+}
