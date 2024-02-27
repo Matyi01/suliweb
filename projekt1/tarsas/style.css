@@ -10,17 +10,43 @@
 }
 #bolt1{
     top: 20px;
-    left: 190px;
+    left: 194px;
 }
 #bolt2{
     top: 20px;
-    left: 380px;
+    left: 368px;
 }
 #bolt3{
     top: 20px;
-    left: 570px;
+    left: 542px;
 }
 #bolt4{
     top: 20px;
-    left: 760px;
+    left: 716px;
+}
+#bazar{
+    top: 400px;
+    left: 20px;
+}
+ul{
+    list-style-type: none;
+}
+li{
+    border: 1px solid black;
+    height: 10px;
+    width: 10px;
+    margin: 5px;
+}
+#tabla #szinek{
+    height: 96px;
+    width: 96px;
+    top: 774px;
+    left: 20px;
+    line-height: 0;
+}
+#tabla #szinek div{
+    display: inline-block;
+    position: relative;
+    height: 20px;
+    width: 20px;
 }
