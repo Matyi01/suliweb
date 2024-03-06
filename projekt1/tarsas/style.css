@@ -1,10 +1,6 @@
-#tabla div{
-    border: 2px solid black;
-    position: absolute;
-}
 #bazar{
     height: 400px;
-    width: 150px;
+    width: 250px;
     top: 400px;
     left: 20px;
 }
