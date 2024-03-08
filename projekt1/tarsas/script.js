@@ -36,6 +36,8 @@ let BUTOR = ["1","2","3","4","5","6","7","8","9","10","11","12"];
 
 let RUHA = ["1","2","3","4","5","6","7","8","9","10","11","12"];
 
+let boltsorok = [["","","","","","","",""],["","","","","","","",""],["","","","","","","",""],["","","","","","","",""],["","","","","","","",""]];
+
 function init()
 {
     let tabla = document.getElementById("tabla");
@@ -83,13 +85,17 @@ function boltletrehozas(i)
 
     bolt.id = "bolt" + i;
     bolt.onclick = function(){
-        if (aktivjatekos === jatekosszam)
+        if (bolthelyek[i] !== 8)
         {
-            aktivjatekos = 0;
+            document.getElementById("bolt" + i).children[0].children[bolthelyek[i]].style.backgroundColor = szinek[aktivjatekos];
+            boltsorok[i][bolthelyek[i]++] = szinek[aktivjatekos];
+            document.getElementById(szinek[aktivjatekos++]).style.border = "2px solid black";
+            if (aktivjatekos === jatekosszam)
+            {
+                aktivjatekos = 0;
+            }
+            document.getElementById(szinek[aktivjatekos]).style.border = "2px solid red";
         }
-        document.getElementById("bolt" + i).children[0].children[bolthelyek[i]++].style.backgroundColor = szinek[aktivjatekos];
-        document.getElementById(szinek[aktivjatekos]).style.border = "2px solid black";
-        document.getElementById(szinek[++aktivjatekos]).style.border = "2px solid red";
     };
     let sor = document.createElement("ul");
     sor.style.paddingLeft = "20px"
