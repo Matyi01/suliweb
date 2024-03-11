@@ -1,6 +1,7 @@
 let szinek = ["blue","red","green","yellow","brown","orange"];
 let aktivjatekos = 0;
 let bolthelyek = [0, 0, 0, 0, 0];
+let bazarhely = 0;
 let boltwidth = 250;
 let boltheight = 300;
 let jatekosszam = 6;
@@ -37,6 +38,8 @@ let BUTOR = ["1","2","3","4","5","6","7","8","9","10","11","12"];
 let RUHA = ["1","2","3","4","5","6","7","8","9","10","11","12"];
 
 let boltsorok = [["","","","","","","",""],["","","","","","","",""],["","","","","","","",""],["","","","","","","",""],["","","","","","","",""]];
+
+let bazarsor = ["","","","","","","","","","","","","",""]
 
 function init()
 {
@@ -82,6 +85,7 @@ function boltletrehozas(i)
     bolt.style.fontFamily = "Impact, fantasy";
     bolt.style.position = "absolute";
     bolt.style.border = "2px solid black";
+    bolt.style.lineHeight = "75px"
 
     bolt.id = "bolt" + i;
     bolt.onclick = function(){
@@ -96,13 +100,19 @@ function boltletrehozas(i)
             }
             document.getElementById(szinek[aktivjatekos]).style.border = "2px solid red";
         }
-    };
+    }
     let sor = document.createElement("ul");
+    sor.style.listStyleType = "none";
     sor.style.paddingLeft = "20px"
+    sor.style.marginTop = "-10px"
     sor.id = "sor" + i;
     for (let j = 0; j < 8; j++)
     {
         let hely = document.createElement("li");
+        hely.style.border = "1px solid black";
+        hely.style.height = "20px";
+        hely.style.width = "20px";
+        hely.style.margin = "5px";
         hely.id = "hely" + j;
         sor.appendChild(hely);
     }
@@ -126,20 +136,64 @@ function boltletrehozas(i)
 function bazarletrehozas()
 {
     let bazar = document.createElement("div");
-
+    bazar.innerHTML = "BAZÁR";
+    bazar.style.textAlign = "center";
+    bazar.style.fontSize = "35px"
+    bazar.style.fontFamily = "Impact, fantasy";
     bazar.style.position = "absolute";
     bazar.style.border = "2px solid black";
+    bazar.style.lineHeight = "55px"
+    bazar.style.height = "440px";
+    bazar.style.width = "550px";
+    bazar.style.top = "350px";
+    bazar.style.left = "25px";
 
     bazar.id = "bazar";
     let sor = document.createElement("ul");
+    sor.style.listStyleType = "none";
+    sor.style.paddingLeft = "20px"
+    sor.style.marginTop = "-10px"
     sor.id = "bazarsor";
+
+    bazar.onclick = function(){
+        if (bazarhely !== 14)
+        {
+            document.getElementById("bazarsor").children[bazarhely].style.backgroundColor = szinek[aktivjatekos];
+            bazarsor[bazarhely++] = szinek[aktivjatekos];
+            document.getElementById(szinek[aktivjatekos++]).style.border = "2px solid black";
+            if (aktivjatekos === jatekosszam)
+            {
+                aktivjatekos = 0;
+            }
+            document.getElementById(szinek[aktivjatekos]).style.border = "2px solid red";
+        }
+    }
+
     for (let i = 0; i < 14; i++)
     {
         let hely = document.createElement("li");
+        hely.style.border = "1px solid black";
+        hely.style.height = "20px";
+        hely.style.width = "20px";
+        hely.style.margin = "5px";
         hely.id = "hely" + i;
         sor.appendChild(hely);
     }
     bazar.appendChild(sor);
+
+    for (let i = 0; i < 5; i++)
+    {
+        let kartyahely = document.createElement("div");
+        kartyahely.id = "bazarkartyahely" + i;
+        kartyahely.style.height = "200px";
+        kartyahely.style.width = "140px";
+        kartyahely.style.border = "2px solid black";
+        kartyahely.style.position = "relative";
+        kartyahely.style.display = "inline-block";
+        kartyahely.style.borderRadius = "10px";
+        bazar.appendChild(kartyahely);
+    }
+
     return bazar;
 }
 
@@ -154,7 +208,6 @@ function szinekvalasztasa()
     for(let i = 0; i < jatekosszam; i++)
     {
         let szin = document.createElement("div");
-        szin.style.position = "realitve";
         szin.style.border = "2px solid black";
         szin.id = szinek[i];
         szin.style.backgroundColor = szinek[i];
