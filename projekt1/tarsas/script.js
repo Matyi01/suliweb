@@ -76,57 +76,49 @@ function boltletrehozas(i)
     else if (i === 4)
         bolt.innerHTML += "RUHA";
 
-    bolt.style.height = boltheight + "px";
-    bolt.style.width = boltwidth + "px";
-    bolt.style.top = "20px";
-    bolt.style.left = 25 + i * (boltwidth + 25) + "px";
-    bolt.style.textAlign = "center";
-    bolt.style.fontSize = "35px"
-    bolt.style.fontFamily = "Impact, fantasy";
-    bolt.style.position = "absolute";
-    bolt.style.border = "2px solid black";
-    bolt.style.lineHeight = "75px"
+    bolt.style.left = 25 + i * 275 + "px";
 
     bolt.id = "bolt" + i;
+    bolt.className = "bolt";
+
     bolt.onclick = function(){
         if (bolthelyek[i] !== 8)
         {
             document.getElementById("bolt" + i).children[0].children[bolthelyek[i]].style.backgroundColor = szinek[aktivjatekos];
+            document.getElementById("bolt" + i).children[0].children[bolthelyek[i]].style.backgroundImage = "url(kepek/" + aktivjatekos + ".png)";
+
             boltsorok[i][bolthelyek[i]++] = szinek[aktivjatekos];
             document.getElementById(szinek[aktivjatekos++]).style.border = "2px solid black";
+          
             if (aktivjatekos === jatekosszam)
             {
                 aktivjatekos = 0;
             }
+
             document.getElementById(szinek[aktivjatekos]).style.border = "2px solid red";
         }
     }
+
     let sor = document.createElement("ul");
-    sor.style.listStyleType = "none";
-    sor.style.paddingLeft = "20px"
-    sor.style.marginTop = "-10px"
     sor.id = "sor" + i;
+    sor.className = "sor";
+
     for (let j = 0; j < 8; j++)
     {
         let hely = document.createElement("li");
-        hely.style.border = "1px solid black";
-        hely.style.height = "20px";
-        hely.style.width = "20px";
-        hely.style.margin = "5px";
+
         hely.id = "hely" + j;
+        hely.className = "hely";
+
         sor.appendChild(hely);
     }
+
     bolt.appendChild(sor);
 
     let kartyahely = document.createElement("div");
+
     kartyahely.id = "kartyahely" + i;
-    kartyahely.style.height = "200px";
-    kartyahely.style.width = "140px";
-    kartyahely.style.border = "2px solid black";
-    kartyahely.style.position = "absolute";
-    kartyahely.style.top = "75px";
-    kartyahely.style.left = "75px";
-    kartyahely.style.borderRadius = "10px";
+    kartyahely.className = "kartyahely";
 
     bolt.appendChild(kartyahely);
 
@@ -136,35 +128,29 @@ function boltletrehozas(i)
 function bazarletrehozas()
 {
     let bazar = document.createElement("div");
-    bazar.innerHTML = "BAZÁR";
-    bazar.style.textAlign = "center";
-    bazar.style.fontSize = "35px"
-    bazar.style.fontFamily = "Impact, fantasy";
-    bazar.style.position = "absolute";
-    bazar.style.border = "2px solid black";
-    bazar.style.lineHeight = "55px"
-    bazar.style.height = "440px";
-    bazar.style.width = "550px";
-    bazar.style.top = "350px";
-    bazar.style.left = "25px";
 
+    bazar.innerHTML = "BAZÁR";
     bazar.id = "bazar";
+
     let sor = document.createElement("ul");
-    sor.style.listStyleType = "none";
-    sor.style.paddingLeft = "20px"
-    sor.style.marginTop = "-10px"
+
     sor.id = "bazarsor";
+    sor.className = "sor";
 
     bazar.onclick = function(){
         if (bazarhely !== 14)
         {
             document.getElementById("bazarsor").children[bazarhely].style.backgroundColor = szinek[aktivjatekos];
+            document.getElementById("bazarsor").children[bazarhely].style.backgroundImage = "url(kepek/" + aktivjatekos + ".png)";
+
             bazarsor[bazarhely++] = szinek[aktivjatekos];
             document.getElementById(szinek[aktivjatekos++]).style.border = "2px solid black";
+            
             if (aktivjatekos === jatekosszam)
             {
                 aktivjatekos = 0;
             }
+
             document.getElementById(szinek[aktivjatekos]).style.border = "2px solid red";
         }
     }
@@ -172,27 +158,28 @@ function bazarletrehozas()
     for (let i = 0; i < 14; i++)
     {
         let hely = document.createElement("li");
-        hely.style.border = "1px solid black";
-        hely.style.height = "20px";
-        hely.style.width = "20px";
-        hely.style.margin = "5px";
+
         hely.id = "hely" + i;
+        hely.className = "hely";
         sor.appendChild(hely);
     }
+
     bazar.appendChild(sor);
+
+    let kartyadoboz = document.createElement("div");
+
+    kartyadoboz.id = "kartyadoboz";
 
     for (let i = 0; i < 5; i++)
     {
         let kartyahely = document.createElement("div");
+
         kartyahely.id = "bazarkartyahely" + i;
-        kartyahely.style.height = "200px";
-        kartyahely.style.width = "140px";
-        kartyahely.style.border = "2px solid black";
-        kartyahely.style.position = "relative";
-        kartyahely.style.display = "inline-block";
-        kartyahely.style.borderRadius = "10px";
-        bazar.appendChild(kartyahely);
+        kartyahely.className = "bazarkartyahely";
+        kartyadoboz.appendChild(kartyahely);
     }
+
+    bazar.appendChild(kartyadoboz);
 
     return bazar;
 }
@@ -201,16 +188,15 @@ function szinekvalasztasa()
 {
     let szinvalaszto = document.createElement("div");
 
-    szinvalaszto.style.position = "absolute";
-    szinvalaszto.style.border = "2px solid black";
-
     szinvalaszto.id = "szinek";
+
     for(let i = 0; i < jatekosszam; i++)
     {
         let szin = document.createElement("div");
-        szin.style.border = "2px solid black";
+        szin.className = "szin";
         szin.id = szinek[i];
         szin.style.backgroundColor = szinek[i];
+
         szinvalaszto.appendChild(szin);
     }
     return szinvalaszto;
