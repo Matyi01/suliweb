@@ -1,0 +1,21 @@
+.gomb{
+    border: 1px solid black;
+    width: 65px;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 5px;
+    background-color: #1111;
+}
+.gomb:hover{
+    background-color: #3333;
+    cursor: pointer;
+}
+@keyframes le{
+    from {height: 0px;}
+    to {height: 15px;}
+}
+.megoldas{
+    margin: 10px;
+    animation-name: le;
+    animation-duration: 2s;
+}

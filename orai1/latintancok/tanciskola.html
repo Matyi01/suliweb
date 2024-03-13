@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Latin táncok</title>
 </head>
 <body>
     <h1>Latin táncok</h1>
     <div class="gomb" onclick="feladat2()">2. feladat</div>
     <div class="megoldas" id="feladat2"></div>
+    <div class="gomb" onclick="feladat3()">3. feladat</div>
+    <div class="megoldas" id="feladat3"></div>
+    <div class="gomb" onclick="feladat4()">4. feladat</div>
+    <div class="megoldas" id="feladat4"></div>
+    <div class="gomb" onclick="feladat5()">5. feladat</div>
+    <label for="tancnev">Tánc neve: </label>
+    <input type="text" id="tancnevinput" name="tancnev">
+    <div class="megoldas" id="feladat5"></div>
 
     <script>
 class Par {
@@ -27,17 +36,36 @@ for (let i = 0; i < sorok.length; i += 3){
     tancok.push(new Par(sorok[i], sorok[i + 1], sorok[i + 2]));
 }
 
+function ir(hova, mit){
+    document.getElementById(hova).innerHTML = mit;
+}
+
 function feladat2(){
     const szoveg = "Az elsőként bemutatott tánc a " + tancok[0].tanc + " volt, az utolsó pedig a " + tancok[tancok.length - 1].tanc + ".";
-    document.getElementById("feladat2").innerHTML = szoveg;
+    ir("feladat2", szoveg);
 }
 
 function feladat3(){
     let darab = 0;
-    tancok.forEach(function(ertek){})
-    console.log(darab)
+    tancok.forEach(function(ertek)
+        {if (ertek.tanc === "samba") {
+            darab++
+        }});
+    ir("feladat3", darab);
 }
 
+function feladat4(){
+    let vilmatancok = [];
+    tancok.forEach(function(ertek)
+        {if (ertek.lany === "Vilma" && !vilmatancok.includes(ertek.tanc)) {
+            vilmatancok.push(ertek.tanc)
+        }});
+        ir("feladat4", vilmatancok);
+}
+
+function feladat5(){
+
+}
     </script>
 </body>
 </html>
