@@ -8,13 +8,13 @@
 </head>
 <body>
     <h1>Latin táncok</h1>
-    <div class="gomb" onclick="feladat2()">2. feladat</div>
+    <div class="gomb" onclick="feladat2(), animacio('feladat2')">2. feladat</div>
     <div class="megoldas" id="feladat2"></div>
-    <div class="gomb" onclick="feladat3()">3. feladat</div>
+    <div class="gomb" onclick="feladat3(), animacio('feladat3')">3. feladat</div>
     <div class="megoldas" id="feladat3"></div>
-    <div class="gomb" onclick="feladat4()">4. feladat</div>
+    <div class="gomb" onclick="feladat4(), animacio('feladat4')">4. feladat</div>
     <div class="megoldas" id="feladat4"></div>
-    <div class="gomb" onclick="feladat5()">5. feladat</div>
+    <div class="gomb" onclick="feladat5(), animacio('feladat5')">5. feladat</div>
     <label for="tancnev">Tánc neve: </label>
     <input type="text" id="tancnevinput" name="tancnev">
     <div class="megoldas" id="feladat5"></div>
@@ -38,6 +38,10 @@ for (let i = 0; i < sorok.length; i += 3){
 
 function ir(hova, mit){
     document.getElementById(hova).innerHTML = mit;
+}
+
+function animacio(id){
+    document.getElementById(id).className = "megoldasani";
 }
 
 function feladat2(){
@@ -64,7 +68,16 @@ function feladat4(){
 }
 
 function feladat5(){
-
+    let betanc = document.getElementById("tancnevinput").value;
+    for (let i = 0; i < tancok.length; i++){
+        if (tancok[i].tanc == betanc && tancok[i].lany == "Vilma"){
+            ir("feladat5","A " + betanc + " bemutatóján Vilma párja " + tancok[i].fiu + " volt.");
+            break;
+        }
+        else{
+            ir("feladat5","Vilma nem táncolt " + betanc + "-t.");
+        }
+    }
 }
     </script>
 </body>

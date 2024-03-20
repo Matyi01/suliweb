@@ -11,11 +11,15 @@
     cursor: pointer;
 }
 @keyframes le{
-    from {height: 0px;}
-    to {height: 15px;}
+    from {height: 0px;opacity: 0%;}
+    to {height: 15px;opacity: 100%;}
 }
 .megoldas{
     margin: 10px;
+}
+.megoldasani{
+    margin: 10px;
     animation-name: le;
-    animation-duration: 2s;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-out;
 }
