@@ -44,7 +44,7 @@ let bazarsor = ["","","","","","","","","","","","","",""]
 let babuotthon = [];
 for (let i = 0; i < jatekosszam; i++)
 {
-
+    babuotthon.push(6);    
 }
 
 function init()
@@ -66,7 +66,7 @@ function init()
 
     //kezdőjátékos színének a jelölése
     document.getElementById(szinek[aktivjatekos]).style.border = "2px solid red";
-    getElementsByClassName("aktivszin")
+    document.getElementsByClassName("aktivszin")[0].id = szinek[aktivjatekos];
 }
 
 function boltletrehozas(i)
@@ -90,10 +90,18 @@ function boltletrehozas(i)
     bolt.className = "bolt";
 
     bolt.onclick = function(){
-        if (bolthelyek[i] !== 8)
+        if (bolthelyek[i] !== 8 && babuotthon[aktivjatekos] !== 0)
         {
+            babuotthon[aktivjatekos]--;
             document.getElementById("bolt" + i).children[0].children[bolthelyek[i]].id = szinek[aktivjatekos] + "babu";
-            document.getElementsByClassName("aktivszin")[0].id = szinek[aktivjatekos];
+            if (aktivjatekos === jatekosszam - 1)
+            {
+                document.getElementsByClassName("aktivszin")[0].id = szinek[0];
+            }
+            else
+            {
+                document.getElementsByClassName("aktivszin")[0].id = szinek[aktivjatekos + 1];
+            }
 
             boltsorok[i][bolthelyek[i]++] = szinek[aktivjatekos];
             document.getElementById(szinek[aktivjatekos++]).style.border = "2px solid black";
@@ -146,10 +154,18 @@ function bazarletrehozas()
     sor.className = "sor";
 
     bazar.onclick = function(){
-        if (bazarhely !== 14)
+        if (bazarhely !== 14 && babuotthon[aktivjatekos] !== 0)
         {
+            babuotthon[aktivjatekos]--;
             document.getElementById("bazarsor").children[bazarhely].id = szinek[aktivjatekos] + "babu";
-            document.getElementsByClassName("aktivszin")[0].id = szinek[aktivjatekos];
+            if (aktivjatekos === jatekosszam - 1)
+            {
+                document.getElementsByClassName("aktivszin")[0].id = szinek[0];
+            }
+            else
+            {
+                document.getElementsByClassName("aktivszin")[0].id = szinek[aktivjatekos + 1];
+            }
 
             bazarsor[bazarhely++] = szinek[aktivjatekos];
             document.getElementById(szinek[aktivjatekos++]).style.border = "2px solid black";
