@@ -41,6 +41,12 @@ let boltsorok = [["","","","","","","",""],["","","","","","","",""],["","","","
 
 let bazarsor = ["","","","","","","","","","","","","",""]
 
+let babuotthon = [];
+for (let i = 0; i < jatekosszam; i++)
+{
+
+}
+
 function init()
 {
     let tabla = document.getElementById("tabla");
@@ -55,10 +61,12 @@ function init()
     tabla.appendChild(bazarletrehozas());
     
     //szinek válsztása
-    tabla.appendChild(szinekvalasztasa());
+    tabla.appendChild(szinekvalasztasa()[0]);
+    tabla.appendChild(szinekvalasztasa()[1]);
 
     //kezdőjátékos színének a jelölése
     document.getElementById(szinek[aktivjatekos]).style.border = "2px solid red";
+    getElementsByClassName("aktivszin")
 }
 
 function boltletrehozas(i)
@@ -84,8 +92,8 @@ function boltletrehozas(i)
     bolt.onclick = function(){
         if (bolthelyek[i] !== 8)
         {
-            document.getElementById("bolt" + i).children[0].children[bolthelyek[i]].style.backgroundColor = szinek[aktivjatekos];
-            document.getElementById("bolt" + i).children[0].children[bolthelyek[i]].style.backgroundImage = "url(kepek/" + aktivjatekos + ".png)";
+            document.getElementById("bolt" + i).children[0].children[bolthelyek[i]].id = szinek[aktivjatekos] + "babu";
+            document.getElementsByClassName("aktivszin")[0].id = szinek[aktivjatekos];
 
             boltsorok[i][bolthelyek[i]++] = szinek[aktivjatekos];
             document.getElementById(szinek[aktivjatekos++]).style.border = "2px solid black";
@@ -140,8 +148,8 @@ function bazarletrehozas()
     bazar.onclick = function(){
         if (bazarhely !== 14)
         {
-            document.getElementById("bazarsor").children[bazarhely].style.backgroundColor = szinek[aktivjatekos];
-            document.getElementById("bazarsor").children[bazarhely].style.backgroundImage = "url(kepek/" + aktivjatekos + ".png)";
+            document.getElementById("bazarsor").children[bazarhely].id = szinek[aktivjatekos] + "babu";
+            document.getElementsByClassName("aktivszin")[0].id = szinek[aktivjatekos];
 
             bazarsor[bazarhely++] = szinek[aktivjatekos];
             document.getElementById(szinek[aktivjatekos++]).style.border = "2px solid black";
@@ -188,16 +196,20 @@ function szinekvalasztasa()
 {
     let szinvalaszto = document.createElement("div");
 
-    szinvalaszto.id = "szinek";
+    szinvalaszto.id = "szindoboz";
 
     for(let i = 0; i < jatekosszam; i++)
     {
         let szin = document.createElement("div");
         szin.className = "szin";
         szin.id = szinek[i];
-        szin.style.backgroundColor = szinek[i];
 
         szinvalaszto.appendChild(szin);
     }
-    return szinvalaszto;
+
+    let aktivszin = document.createElement("div");
+
+    aktivszin.className = "aktivszin";
+
+    return [szinvalaszto, aktivszin];
 }
