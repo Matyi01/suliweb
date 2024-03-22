@@ -25,7 +25,7 @@ const sorkartyak = [
     {nev : "Áru a pult alól", tortenes : "Egy ismerős bolti eladó a bolt nyitása előtt ad el neked árut.", cselekves : "Ha első vagy a sorban, vidd haza azonnal az árut."},
     {nev : "Téves szállítás", tortenes : "A teherautó sofőrje összekeverte a boltokat.", cselekves : "Egy árut szomszéd boltban kell átvenni."},
     {nev : "A hatalom kritikája", tortenes : "A sorban valaki hangosan szidja a rendszert és a vezetést.", cselekves : "Miközben a rendőrség igazoltatja, mások elé tolakodtak. Lépj két hellyel hátrébb."}
-]
+];
 
 //bevásárlólisták object
 const bevasarlolistak = [
@@ -34,7 +34,7 @@ const bevasarlolistak = [
     {nev:"Gyerekek táboroztatása",id:4, Trafik:3,ABC:2,Kisgep:1,Butor:0,Ruha:4},
     {nev:"Konyhafelszerelés",id:1, Trafik:1,ABC:0,Kisgep:4,Butor:3,Ruha:2},
     {nev:"A kiutalt lakás berendezése",id:5, Trafik:2,ABC:1,Kisgep:0,Butor:4,Ruha:3}
-]
+];
 
 //???
 let ABC = ["1","2","3","4","5","6","7","8","9","10","11","12"];
@@ -51,7 +51,7 @@ let RUHA = ["1","2","3","4","5","6","7","8","9","10","11","12"];
 let boltsorok = [["","","","","","","",""],["","","","","","","",""],["","","","","","","",""],["","","","","","","",""],["","","","","","","",""]];
 
 //bazar sora
-let bazarsor = ["","","","","","","","","","","","","",""]
+let bazarsor = ["","","","","","","","","","","","","",""];
 
 //otthon lévő, le nem rakott bábúk száma
 let babuotthon = [];
@@ -111,40 +111,38 @@ function boltletrehozas(i)
         //ha kevesebb a bábú mint 8 és a játékosnak van még lerakható bábúja
         if (bolthelyek[i] !== 8 && babuotthon[aktivjatekos] !== 0)
         {
-            //elvesz egy bábút otthonról
-            babuotthon[aktivjatekos]--;
             //az adott bolt sorába belerakja az aktív játékos bábúját
-            document.getElementById("bolt" + i).children[0].children[bolthelyek[i]].id = szinek[aktivjatekos] + "babu";
+            document.querySelectorAll("#bolt" + i + " .sor li")[bolthelyek[i]].id = szinek[aktivjatekos] + "babu";
+
             //ha az aktív játékos az utolsó, a következő ember színe az első
             let babuk = document.getElementsByClassName("babu");
-            if (aktivjatekos === jatekosszam - 1)
-            {
-                for (let i = 0; i < babuk.length; i++){
-                    babuk[i].id = szinek[0];
-                    babuk[i].style.display = "none";
-                }
-            }
-            else
-            {
-                for (let i = 0; i < babuk.length; i++){
-                    babuk[i].id = szinek[aktivjatekos + 1];
-                    babuk[i].style.display = "none";
-                }
-            }
 
-            for (let i = 0; i < babuotthon[aktivjatekos]; i++){
-                babuk[i].style.display = "inline-block";
-            }
+            //elvesz egy bábút otthonról
+            babuotthon[aktivjatekos]--;
 
             //hozzáadja az adott bolt sorához az aktív játékos színét
             boltsorok[i][bolthelyek[i]++] = szinek[aktivjatekos];
+
             //az aktív játékos jelző körvonala fekete lesz
-            document.getElementById(szinek[aktivjatekos++]).style.border = "2px solid black";
+            document.getElementById(szinek[aktivjatekos]).style.border = "2px solid black";
           
+            aktivjatekos++;
+
             //ha az utolsó játékos lépett az első következik
             if (aktivjatekos === jatekosszam)
             {
                 aktivjatekos = 0;
+            }
+
+            //bábuk átszínezése és eltüntetése
+            for (let i = 0; i < babuk.length; i++){
+                babuk[i].id = szinek[aktivjatekos];
+                babuk[i].style.display = "none";
+            }
+
+            //az adott szín nem lerakott bábújának mutatása
+            for (let i = 0; i < babuotthon[aktivjatekos]; i++){
+                babuk[i].style.display = "inline-block";
             }
 
             //a következő játékos körvonala piros lesz
@@ -191,35 +189,36 @@ function bazarletrehozas()
         //ha kevesebb a bábú mint 14 és a játékosnak van még lerakható bábúja
         if (bazarhely !== 14 && babuotthon[aktivjatekos] !== 0)
         {
+            //a bazár sorába belerakja az aktív játékos bábúját
+            //document.getElementById("bazarsor").children[bazarhely].id = szinek[aktivjatekos] + "babu";
+            document.querySelectorAll("#bazarsor li")[bazarhely].id = szinek[aktivjatekos] + "babu";
+
+            let babuk = document.getElementsByClassName("babu");
+
             //elvesz egy bábút otthonról
             babuotthon[aktivjatekos]--;
-            //a bazár sorába belerakja az aktív játékos bábúját
-            document.getElementById("bazarsor").children[bazarhely].id = szinek[aktivjatekos] + "babu";
-            //ha az aktív játékos az utolsó, a következő ember színe az első
-            if (aktivjatekos === jatekosszam - 1)
-            {
-                let babuk = document.getElementsByClassName("babu");
-                for (let i = 0; i < babuk.length; i++){
-                    babuk[i].id = szinek[0];
-                }
-            }
-            else
-            {
-                let babuk = document.getElementsByClassName("babu");
-                for (let i = 0; i < babuk.length; i++){
-                    babuk[i].id = szinek[aktivjatekos + 1];
-                }
-            }
-
+            
             //hozzáadja a bazár sorához az aktív játékos színét
             bazarsor[bazarhely++] = szinek[aktivjatekos];
+
             //az aktív játékos jelző körvonala fekete lesz
-            document.getElementById(szinek[aktivjatekos++]).style.border = "2px solid black";
+            document.getElementById(szinek[aktivjatekos]).style.border = "2px solid black";
+            aktivjatekos++;
             
             //ha az utolsó játékos lépett az első következik
             if (aktivjatekos === jatekosszam)
             {
                 aktivjatekos = 0;
+            }
+
+            
+            for (let i = 0; i < babuk.length; i++){
+                babuk[i].id = szinek[aktivjatekos];
+                babuk[i].style.display = "none";
+            }
+
+            for (let i = 0; i < babuotthon[aktivjatekos]; i++){
+                babuk[i].style.display = "inline-block";
             }
 
             //a következő játékos körvonala piros lesz
