@@ -125,11 +125,12 @@
     background-image: url(kepek/5.png);
     background-color: orange;
 }
-.aktivszin{
-    position: absolute;
+.babu{
+    position: relative;
+    display: inline-block;
     left: 200px;
-    height: 102px;
-    width: 102px;
-    top: 818px;
+    height: 70px;
+    width: 70px;
+    top: 810px;
     border: 2px solid black;
 }

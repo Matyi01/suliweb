@@ -79,7 +79,10 @@ function init()
 
     //kezdőjátékos színének a jelölése
     document.getElementById(szinek[aktivjatekos]).style.border = "2px solid red";
-    document.getElementsByClassName("aktivszin")[0].id = szinek[aktivjatekos];
+    let babuk = document.getElementsByClassName("babu");
+    for (let i = 0; i < babuk.length; i++){
+        babuk[i].id = szinek[aktivjatekos];
+    }
 }
 
 function boltletrehozas(i)
@@ -113,13 +116,24 @@ function boltletrehozas(i)
             //az adott bolt sorába belerakja az aktív játékos bábúját
             document.getElementById("bolt" + i).children[0].children[bolthelyek[i]].id = szinek[aktivjatekos] + "babu";
             //ha az aktív játékos az utolsó, a következő ember színe az első
+            let babuk = document.getElementsByClassName("babu");
             if (aktivjatekos === jatekosszam - 1)
             {
-                document.getElementsByClassName("aktivszin")[0].id = szinek[0];
+                for (let i = 0; i < babuk.length; i++){
+                    babuk[i].id = szinek[0];
+                    babuk[i].style.display = "none";
+                }
             }
             else
             {
-                document.getElementsByClassName("aktivszin")[0].id = szinek[aktivjatekos + 1];
+                for (let i = 0; i < babuk.length; i++){
+                    babuk[i].id = szinek[aktivjatekos + 1];
+                    babuk[i].style.display = "none";
+                }
+            }
+
+            for (let i = 0; i < babuotthon[aktivjatekos]; i++){
+                babuk[i].style.display = "inline-block";
             }
 
             //hozzáadja az adott bolt sorához az aktív játékos színét
@@ -184,11 +198,17 @@ function bazarletrehozas()
             //ha az aktív játékos az utolsó, a következő ember színe az első
             if (aktivjatekos === jatekosszam - 1)
             {
-                document.getElementsByClassName("aktivszin")[0].id = szinek[0];
+                let babuk = document.getElementsByClassName("babu");
+                for (let i = 0; i < babuk.length; i++){
+                    babuk[i].id = szinek[0];
+                }
             }
             else
             {
-                document.getElementsByClassName("aktivszin")[0].id = szinek[aktivjatekos + 1];
+                let babuk = document.getElementsByClassName("babu");
+                for (let i = 0; i < babuk.length; i++){
+                    babuk[i].id = szinek[aktivjatekos + 1];
+                }
             }
 
             //hozzáadja a bazár sorához az aktív játékos színét
@@ -259,9 +279,20 @@ function szinekvalasztasa()
         szinvalaszto.appendChild(szin);
     }
 
-    let aktivszin = document.createElement("div");
+    //aktív játékos bábúinak száma és színe
+    let babudoboz = document.createElement("div");
 
-    aktivszin.className = "aktivszin";
+    babudoboz.className = "babudoboz";
 
-    return [szinvalaszto, aktivszin];
+    for (let j = 0; j < babuotthon[0]; j++){
+        let babu = document.createElement("div");
+
+        babu.className = "babu";
+
+        babudoboz.appendChild(babu);
+    }
+
+
+    return [szinvalaszto, babudoboz];
 }
+
