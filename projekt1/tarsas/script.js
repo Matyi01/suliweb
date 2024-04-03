@@ -60,6 +60,20 @@ for (let i = 0; i < jatekosszam; i++)
     babuotthon.push(6);    
 }
 
+//játékosok bevásárló listáinak id-i
+let jatekoslistaid = [];
+let listaid = [];
+for (let i = 1; i < bevasarlolistak.length + 1; i++)
+{
+    listaid.push(i);    
+}
+for (let i = 0; i < jatekosszam; i++)
+{
+    let temp = Math.floor(Math.random() * listaid.length);
+    jatekoslistaid.push(listaid[temp]);
+    listaid.splice(temp, 1);
+}
+
 function init()
 {
     let tabla = document.getElementById("tabla");
@@ -295,3 +309,14 @@ function szinekvalasztasa()
     return [szinvalaszto, babudoboz];
 }
 
+function bevasarlolistaletrehozas(){
+    let tabla = document.getElementById("tabla");
+
+    for (let i = 0; i < jatekosszam; i++){
+        let bevasarlokartyahely = document.createElement("div");
+
+        bevasarlokartyahely.className = "bevasarlokartyahely";
+        bevasarlokartyahely.id = i + "bevasarlokartyahely";
+    }
+
+}
