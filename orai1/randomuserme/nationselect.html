@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="natselect"></select>
+
+    <script>
+        const natlist = ["AU", "BR", "CA", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IN", "IR", "MX", "NL", "NO", "NZ", "RS", "TR", "UA", "US"];
+    
+        const select = document.getElementById("natselect");
+    
+        natlist.forEach(function(value){
+            const elem = document.createElement("option");
+            elem.innerHTML = value;
+            elem.value = value;
+            select.appendChild(elem);
+        });
+
+        select.addEventListener("change", function(){
+            console.log(this);
+        })
+    </script>
+
+</body>
+</html>
