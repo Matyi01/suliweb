@@ -9,11 +9,12 @@ var kepekurl = [
     "8.jpg"
 ];
 var pardb = 4;
-var kattintas = 0;
 function init()
 {
     kepkirakas();
 }
+var kattintas = 0;
+let lathatolapok = [];
 function kepkirakas()
 {
     let asztal = document.getElementById("asztal");
@@ -26,16 +27,24 @@ function kepkirakas()
         {
             let uj = document.createElement("div");
             uj.className = "kartya";
+            uj.dataset.hatterkep = "url(kepek/" + kepekurl[i] + ")";
             uj.onclick = function(){
-                if (kattintas < 2)
+                if(kattintas === 0)
                 {
+                    orastart();
+                }
+                kattintas++;
+                document.getElementById("kattintasok").innerHTML = "Kattintások száma: " + kattintas;
+                if (lathatolapok.length < 2 && !lathatolapok.includes(uj))
+                {
+                    lathatolapok.push(uj);
                     uj.style.backgroundImage = "url(kepek/" + kepekurl[i] + ")";
                     uj.dataset.felforditva = "true";
                 }
-                kattintas++;
-                if (kattintas === 2)
+                if (lathatolapok.length === 2)
                 {
-                    setTimeout(visszafordit, 2000);
+                    visszafordit();
+                    //setTimeout(visszafordit, 2000);
                 }
             };
             
@@ -51,43 +60,87 @@ function kepkirakas()
     }
 }   
 
+let aktiv = [];
+const megtalaltparok = [];
 function visszafordit()
 {
-    const lapok = document.getElementById("asztal").children;
-    const aktiv = [];
-    for (let i = 0; i < lapok.length; i++)
+    for (let i = 0; i < lathatolapok.length; i++)
     {
-        if (lapok[i].dataset.felforditva === "true")
-        {
-            aktiv.push(lapok[i]);
-        }
+        aktiv.push(lathatolapok[i]);
     }
-    if (aktiv[0].style.backgroundImage !== aktiv[1].style.backgroundImage)
-    {
-        aktiv[0].style.backgroundImage = "";
-        aktiv[1].style.backgroundImage = "";
-    }
-    else
-    {
-        aktiv[0].onclick = "";
-        aktiv[1].onclick = "";
-        if (!vanemeg())
-        {
-            nyertel();
-        }
-    }
-    aktiv[0].dataset.felforditva = "";
-    aktiv[1].dataset.felforditva = "";
 
-    kattintas = 0;
+    if(aktiv.length >= 2)
+    {
+        if (aktiv[0].style.backgroundImage !== aktiv[1].style.backgroundImage)
+        {
+            setTimeout(nemparvisszafordit, 2000);
+
+        }
+        else
+        {
+            aktiv[0].onclick = "";
+            aktiv[1].onclick = "";
+            megtalaltparok.push(aktiv[0]);
+            megtalaltparok.push(aktiv[1]);
+            if (!vanemeg())
+            {
+                nyertel();
+            }
+            aktiv[0].dataset.felforditva = "";
+            aktiv[1].dataset.felforditva = "";
+        
+            const lapok = document.getElementById("asztal").children;
+            for(let i = 0; i < lapok.length; i++)
+            {
+                lapok[i].style.backgroundImage = "";
+            }
+        
+            for(let i = 0; i < megtalaltparok.length; i++)
+            {
+                megtalaltparok[i].style.backgroundImage = megtalaltparok[i].dataset.hatterkep;
+            }
+        
+            lathatolapok = [];
+            aktiv = [];
+        }
+    }
+
+}
+
+function nemparvisszafordit()
+{
+    aktiv[0].style.backgroundImage = "";
+    aktiv[1].style.backgroundImage = "";
+    aktiv = [];
+}
+
+let starttime = "";
+let timer;
+function orastart()
+{
+    starttime = new Date();
+
+    timer = setInterval(orashow, 100);
+}
+function orashow()
+{
+    const aktualtume = new Date();
+
+    const kulonbseg = aktualtume - starttime;
+
+    const ido = new Date(kulonbseg);
+    const mp = ido.getSeconds();
+    const perc = ido.getMinutes();
+
+    document.getElementById("ido").innerHTML = perc + ":" + (mp < 10 ? "0" : "") + mp + "." + Math.floor(ido.getMilliseconds()/100);
 }
 
 function nyertel()
 {
-    let uj = doucment.createElement("div");
+    let uj = document.createElement("div");
     uj.innerHTML = "Game over";
-
-    
+    document.getElementsByTagName("header")[0].appendChild(uj);
+    clearInterval(timer);
 }
 
 function vanemeg()

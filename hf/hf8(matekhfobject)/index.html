@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matek házi</title>
+</head>
+<body>
+    <h1>Matek házi</h1>
+    <div id="szoveg"></div>
+
+    <script>
+        const matekhf = {
+            db: 0,
+            hatarido: "hétfő",
+            tema: "exponenciális egyenletek",
+            nehezseg: 0,
+            kesz: false,
+            keszvan: function() {
+                if (this.kesz){
+                    return "igen";
+                }
+                else{
+                    return "nem";
+                }
+            },
+            get mennyiseg() {
+                return this.db;
+            },
+            set ujmennyiseg(szam) {
+                this.db = szam;
+            }
+        }
+        let szoveg = document.getElementById("szoveg");
+        szoveg.innerHTML += "db: " + matekhf.mennyiseg +
+            "<br>határidő: " + matekhf.hatarido +
+            "<br>téma: " + matekhf.tema +
+            "<br>nehézség: " + matekhf.nehezseg +
+            "<br>készen van? " + matekhf.keszvan();
+        matekhf.ujmennyiseg = 99;
+        szoveg.innerHTML += "<br>új mennyiség: " + matekhf.mennyiseg;
+    </script>
+</body>
+</html>

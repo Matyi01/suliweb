@@ -1,0 +1,25 @@
+.gomb{
+    border: 1px solid black;
+    width: 65px;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 5px;
+    background-color: #1111;
+}
+.gomb:hover{
+    background-color: #3333;
+    cursor: pointer;
+}
+@keyframes le{
+    from {height: 0px;opacity: 0%;}
+    to {height: 15px;opacity: 100%;}
+}
+.megoldas{
+    margin: 10px;
+}
+.megoldasani{
+    margin: 10px;
+    animation-name: le;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-out;
+}

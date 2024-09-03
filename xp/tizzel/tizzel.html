@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.getElementsByTagName("body")[0].innerHTML += "Holczer Máytás, 2024<br>";
+        for(let i = 1; i < 101; i++){
+            document.getElementsByTagName("body")[0].innerHTML += i + " ";
+            if(i % 10 === 0){
+                document.getElementsByTagName("body")[0].innerHTML += "<br>";
+            }
+        }
+    </script>
+</body>
+</html>

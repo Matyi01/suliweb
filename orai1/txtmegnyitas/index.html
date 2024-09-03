@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File betöltés</title>
+</head>
+<body onload="loadDoc">
+    <div id="demo"></div>
+
+    <script>
+function loadDoc() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML =
+            this.responseText;
+        }
+    };
+    xhttp.open("GET", "test.txt");
+    xhttp.send();
+}
+    </script>
+</body>
+</html>

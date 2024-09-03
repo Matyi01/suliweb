@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let szamok = [];
+        for(let i = 0; i < 4; i++){
+            while(isNaN(szamok[i])){
+                szamok[i] = (parseInt(prompt("Kérek egy számot")));
+            }
+        }
+        document.getElementsByTagName("body")[0].innerHTML += szamok.reverse();
+    </script>
+</body>
+</html>

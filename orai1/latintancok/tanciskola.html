@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Latin táncok</title>
+</head>
+<body>
+    <h1>Latin táncok</h1>
+    <div class="gomb" onclick="feladat2(), animacio('feladat2')">2. feladat</div>
+    <div class="megoldas" id="feladat2"></div>
+    <div class="gomb" onclick="feladat3(), animacio('feladat3')">3. feladat</div>
+    <div class="megoldas" id="feladat3"></div>
+    <div class="gomb" onclick="feladat4(), animacio('feladat4')">4. feladat</div>
+    <div class="megoldas" id="feladat4"></div>
+    <div class="gomb" onclick="feladat5(), animacio('feladat5')">5. feladat</div>
+    <label for="tancnev">Tánc neve: </label>
+    <input type="text" id="tancnevinput" name="tancnev">
+    <div class="megoldas" id="feladat5"></div>
+    <div class="gomb" onclick="feladat6(), animacio('feladat6')">6. feladat</div>
+    <div class="megoldas" id="feladat6"></div>
+    <div class="gomb" onclick="feladat7(), animacio('feladat7')">7. feladat</div>
+    <div class="megoldas" id="feladat7"></div>
+
+    <script>
+class Par {
+    constructor(tanc, lany, fiu){
+        this.tanc = tanc;
+        this.fiu = fiu;
+        this.lany = lany;
+    }
+}
+
+const tancrend = "cha-cha\nLuca\nKelemen\ncha-cha\nKatalin\nBertalan\ncha-cha\nAdrienn\nLajos\ncha-cha\nEmma\nIgor\ncha-cha\nVilma\nKolos\ncha-cha\nSzilvia\nAlfonz\ncha-cha\nElza\nTivadar\ncha-cha\nFruzsina\nEde\nsalsa\nSzilvia\nImre\nsalsa\nJudit\nAttila\nsalsa\nKatalin\nBertalan\nsalsa\nGabriella\nKelemen\nsalsa\nIrma\nKolos\nsalsa\nFruzsina\nTivadar\nrumba\nEmma\nAlfonz\nrumba\nSzilvia\nAttila\nrumba\nKatalin\nBertalan\nrumba\nAdrienn\nLajos\nrumba\nLuca\nKelemen\nrumba\nJudit\nKolos\nrumba\nElza\nSalamon\nrumba\nVilma\nImre\nrumba\nFruzsina\nTivadar\nrumba\nIrma\nMarcell\nsamba\nGabriella\nAlfonz\nsamba\nSzilvia\nIgor\nsamba\nElza\nKelemen\nsamba\nKatalin\nBertalan\nsamba\nAdrienn\nLajos\nsamba\nEmma\nKolos\nsamba\nLuca\nAttila\nsamba\nIrma\nImre\nsamba\nSzabina\nEde\nsamba\nFruzsina\nMarcell\njive\nEmma\nAttila\njive\nKatalin\nBertalan\njive\nElza\nKelemen\njive\nJudit\nKolos\njive\nIrma\nMarcell\njive\nSzilvia\nAlfonz\ntango\nVilma\nTivadar\ntango\nKatalin\nBertalan\ntango\nAdrienn\nLajos\ntango\nIrma\nKolos\ntango\nLuca\nSalamon\ntango\nEmma\nImre\ntango\nGabriella\nIgor\ntango\nElza\nAlfonz\ntango\nJudit\nAttila\ntango\nSzilvia\nKelemen\ntango\nFruzsina\nEde\ntango\nSzabina\nMarcell\nbachata\nKatalin\nBertalan\nbachata\nEmma\nKelemen\nbachata\nIrma\nEde\nbachata\nSzilvia\nIgor\nbachata\nLuca\nAlfonz\nbachata\nElza\nAttila\n";
+const sorok = tancrend.trimEnd().split("\n");
+
+const tancok = [];
+for (let i = 0; i < sorok.length; i += 3){
+    tancok.push(new Par(sorok[i], sorok[i + 1], sorok[i + 2]));
+}
+
+function ir(hova, mit){
+    document.getElementById(hova).innerHTML = mit;
+}
+
+function animacio(id){
+    document.getElementById(id).className = "megoldasani";
+}
+
+function feladat2(){
+    const szoveg = "Az elsőként bemutatott tánc a " + tancok[0].tanc + " volt, az utolsó pedig a " + tancok[tancok.length - 1].tanc + ".";
+    ir("feladat2", szoveg);
+}
+
+function feladat3(){
+    let darab = 0;
+    tancok.forEach(function(ertek)
+        {if (ertek.tanc === "samba") {
+            darab++
+        }});
+    ir("feladat3", darab);
+}
+
+function feladat4(){
+    let vilmatancok = [];
+    tancok.forEach(function(ertek)
+        {if (ertek.lany === "Vilma" && !vilmatancok.includes(ertek.tanc)) {
+            vilmatancok.push(ertek.tanc)
+        }});
+        ir("feladat4", vilmatancok);
+}
+
+function feladat5(){
+    let betanc = document.getElementById("tancnevinput").value;
+    for (let i = 0; i < tancok.length; i++){
+        if (tancok[i].tanc === betanc && tancok[i].lany === "Vilma"){
+            ir("feladat5","A " + betanc + " bemutatóján Vilma párja " + tancok[i].fiu + " volt.");
+            break;
+        }
+        else{
+            ir("feladat5","Vilma nem táncolt " + betanc + "-t.");
+        }
+    }
+}
+
+
+function feladat6(){
+    let lanyok = [];
+    let fiuk = [];
+    for (let i = 0; i < tancok.length; i++){
+        if (!lanyok.includes(tancok[i].lany)){
+            lanyok.push(tancok[i].lany);
+        }
+        if (!fiuk.includes(tancok[i].fiu)){
+            fiuk.push(tancok[i].fiu);
+        }
+    }
+    ir("feladat6","Lányok: " + lanyok.join(", ") + "<br>" + "Fiúk: " + fiuk.join(", "));
+}
+
+function feladat7(){
+    let lanyok = [];
+    let fiuk = [];
+    for (let i = 0; i < tancok.length; i++){
+        if (!lanyok.includes(tancok[i].lany)){
+            lanyok.push(tancok[i].lany);
+        }
+        if (!fiuk.includes(tancok[i].fiu)){
+            fiuk.push(tancok[i].fiu);
+        }
+    }
+
+    let lanyhanyszor = [];
+    for (let i = 0; i < lanyok.length; i++){
+        lanyhanyszor.push(0);
+    }
+    let fiuhanyszor = [];
+    for (let i = 0; i < fiuk.length; i++){
+        fiuhanyszor.push(0);
+    }
+
+    for(let i = 0; i < tancok.length; i++){
+        lanyhanyszor[lanyok.indexOf(tancok[i].lany)]++;
+        fiuhanyszor[fiuk.indexOf(tancok[i].fiu)]++;
+    }
+
+    let lanymaxindexek = [];
+    for (let i = 0; i < lanyhanyszor.length; i++){
+        if (lanyhanyszor[i] === Math.max(...lanyhanyszor)){
+            lanymaxindexek.push(i);
+        }
+    }
+    let fiumaxindexek = [];
+    for (let i = 0; i < fiuhanyszor.length; i++){
+        if (fiuhanyszor[i] === Math.max(...fiuhanyszor)){
+            fiumaxindexek.push(i);
+        }
+    }
+
+    let lanymaxnevek = []
+    for (let i = 0; i < lanymaxindexek.length; i++){
+        lanymaxnevek.push(lanyok[lanymaxindexek[i]]);
+    }
+    let fiumaxnevek = []
+    for (let i = 0; i <fiumaxindexek.length; i++){
+        fiumaxnevek.push(fiuk[fiumaxindexek[i]]);
+    }
+
+    ir("feladat7", "Legtöbbet szerepelt lány: " + lanymaxnevek.join(", ") + "<br>" + "Legtöbbet szerepelt fiú: " + fiumaxnevek.join(", "));
+}
+    </script>
+</body>
+</html>

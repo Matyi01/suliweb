@@ -1,0 +1,136 @@
+#szindoboz{
+    height: 102px;
+    width: 102px;
+    top: 820px;
+    left: 20px;
+    line-height: 0;
+    position: absolute;
+}
+.szin{
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    width: 30px;
+    border: 2px solid black;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.kartyahely{
+    height : 200px;
+    width : 140px;
+    border : 2px solid black;
+    border-radius : 10px;
+    position: absolute;
+    top: 75px;
+    left: 75px;
+}
+.bazarkartyahely{
+    height : 200px;
+    width : 140px;
+    border : 2px solid black;
+    border-radius : 10px;
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+}
+#kartyadoboz{
+    position: absolute;
+    top: 70px;
+    left: 70px;
+    line-height: 0px;
+}
+.hely{
+    border: 1px solid black;
+    height: 20px;
+    width: 20px;
+    margin: 5px;
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.sor{
+    list-style-type: none;
+    padding-left: 20px;
+    margin-top: -10px;
+}
+.bolt{
+    height: 300px;
+    width: 250px;
+    top: 20px;
+    text-align: center;
+    font-size: 35px;
+    font-family: impact, fantasy;
+    position: absolute;
+    border: 2px solid black;
+    line-height: 75px;
+}
+#bazar{
+    text-align: center;
+    font-size: 35px;
+    font-family: impact, fantasy;
+    position: absolute;
+    border: 2px solid black;
+    line-height: 55px;
+    height: 440px;
+    width: 860px;
+    top: 350px;
+    left: 25px;
+}
+#blue{
+    background-image: url(kepek/0.png);
+    background-color: blue;
+}
+#red{
+    background-image: url(kepek/1.png);
+    background-color: red;
+}
+#green{
+    background-image: url(kepek/2.png);
+    background-color: green;
+}
+#yellow{
+    background-image: url(kepek/3.png);
+    background-color: yellow;
+}
+#brown{
+    background-image: url(kepek/4.png);
+    background-color: brown;
+}
+#orange{
+    background-image: url(kepek/5.png);
+    background-color: orange;
+}
+#bluebabu{
+    background-image: url(kepek/0.png);
+    background-color: blue;
+}
+#redbabu{
+    background-image: url(kepek/1.png);
+    background-color: red;
+}
+#greenbabu{
+    background-image: url(kepek/2.png);
+    background-color: green;
+}
+#yellowbabu{
+    background-image: url(kepek/3.png);
+    background-color: yellow;
+}
+#brownbabu{
+    background-image: url(kepek/4.png);
+    background-color: brown;
+}
+#orangebabu{
+    background-image: url(kepek/5.png);
+    background-color: orange;
+}
+.babu{
+    position: relative;
+    display: inline-block;
+    left: 200px;
+    height: 70px;
+    width: 70px;
+    top: 810px;
+    border: 2px solid black;
+}
