@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input type="number" id="szam1" name="szam1">
+        <input type="number" id="szam2" name="szam2">
+        <input type="text" id="muvelet" name="muvelet">
+        <input type="button" onclick="szamol()">
+    </form>
+    <script>
+        function szamol(){
+            szam1 = document.getElementById("szam1");
+            szam2 = document.getElementById("szam2");
+            muvelet = document.getElementById("muvelet");
+            if(muvelet === "+"){
+                alert(szam1 + szam2);
+            }
+            
+        }
+    </script>
+</body>
+</html>
