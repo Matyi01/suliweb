@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szorzó tábla</title>
+    <style>
+        #sor{
+            position: absolute;
+            top: 10px;
+            left: 100px;
+        }
+        #oszlop{
+            position: absolute;
+            top: 150px;
+            left: -40px;
+            rotate: 90deg;
+        }
+        #tabla{
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <form oninput="func()">
+        <input type="range" min="1" max="20" id="oszlop" name="oszlop"><br>
+        <input type="range" min="1" max="20" id="sor" name="sor">
+    </form>
+    <table id="tabla">
+
+    </table>
+    <script>
+        function func(){
+            let tabla = document.getElementById("tabla");
+            tabla.innerHTML = "";
+            let oszlop = document.getElementById("oszlop").value;
+            let sor = document.getElementById("sor").value;
+
+            for (let i = 1; i <= oszlop; i++){
+                let ujoszlop = document.createElement("tr");
+                for(let j = 1; j <= sor; j++){
+                    let ujsor = document.createElement("td");
+                    ujsor.innerHTML = i * j;
+                    ujoszlop.appendChild(ujsor);
+                }
+                tabla.appendChild(ujoszlop);
+            }
+        }
+    </script>
+</body>
+</html>
