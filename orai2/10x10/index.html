@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cella{
+            height: 50px;
+            width: 50px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body onload="tablazat()">
+    <script>
+        function tablazat(){
+            let tabla = document.createElement("table");
+            for(let i = 0; i < 10; i++){
+                let sor = document.createElement("tr");
+                for(let j = 0; j < 10; j++){
+                    let cella = document.createElement("td");
+                    cella.innerHTML = i + "," + j;
+                    cella.style.backgroundColor = "white";
+                    cella.onclick = function(){kattra(i, j)};
+                    cella.id = i + "," + j;
+                    cella.classList.add("cella");
+                    sor.appendChild(cella);
+                }
+                tabla.appendChild(sor);
+            }
+            document.getElementsByTagName("body")[0].appendChild(tabla)
+        }
+        function kattra(i, j){
+            let j2 = j;
+            for(let i2 = i; i2 < 10; i2++){
+                document.getElementById(i2 + "," + j2++).style.backgroundColor = "red";
+            }
+            let j3 = j;
+            for(let i3 = i; i3 >= 0; i3--){
+                document.getElementById(i3 + "," + j3--).style.backgroundColor = "red";
+            }
+            let j4 = j;
+            for(let i4 = i; i4 >= 0; i4--){
+                document.getElementById(i4 + "," + j4++).style.backgroundColor = "red";
+            }
+            let j5 = j;
+            for(let i5 = i; i5 < 10; i5++){
+                document.getElementById(i5 + "," + j5--).style.backgroundColor = "red";
+            }
+        }
+    </script>
+</body>
+</html>
