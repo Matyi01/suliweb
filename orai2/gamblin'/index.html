@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div{
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body onload="func(5)">
+    <script>
+        function func(mennyi){
+            document.getElementsByTagName("body")[0].innerHTML = "";
+
+            const melyik = Math.floor(Math.random() * mennyi);
+
+            for(let i = 0; i < mennyi; i++){
+                let kartya = document.createElement("div");
+                kartya.id = i;
+                kartya.onclick = function(){katt(i)};
+                document.getElementsByTagName("body")[0].appendChild(kartya);
+            }
+            function katt(szam){
+                if(szam === melyik){
+                    document.getElementById(szam).style.backgroundColor = "green";
+
+                    var delayInMilliseconds = 1000; //1 second
+                    setTimeout(function() {
+                    //your code to be executed after 1 second
+                    func(5);
+                    }, delayInMilliseconds);
+                    
+                }
+                else{
+                    document.getElementById(szam).style.backgroundColor = "red";
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
