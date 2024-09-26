@@ -10,11 +10,15 @@
     <div id="main">
         <table id="tankolasok">
             <thead>
-                <td>Dátum</td><td>Liter</td><td>Forint</td>
+                <td>Dátum</td><td>Liter</td><td>Forint</td><td>Kilóméter óra</td>
             </thead>
         </table>
         <button onclick="hozzaad()">Adat hozzáadása</button>
         <div id="havikiadas"></div>
+        <input type="date" id="eleje">
+        <input type="date" id="vege">
+        <div id="szures"></div>
+        <button onclick="szures()">Szűrés</button>
     </div>
     <script src="script.js"></script>
 </body>
