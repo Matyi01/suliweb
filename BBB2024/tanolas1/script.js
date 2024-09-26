@@ -42,6 +42,11 @@ let forint = 0;
 let km = 0;
 let adatok = [];
 let havibontas = [];
+let kmkulonbseg = 0;
+let elfogyasztott = 0;
+let atlag = 0;
+let atlagok = [];
+let id = 0;
 
 function hozzaad(){
     ev = document.getElementById("datuminput").value.split("-")[0];
@@ -50,25 +55,50 @@ function hozzaad(){
     liter = document.getElementById("literinput").value;
     forint = document.getElementById("forintinput").value;
     km = document.getElementById("kminput").value;
-
-    adatok.push([ev, honap, nap, liter, forint, km])
+    if (adatok.length > 0){
+        kmkulonbseg = km - adatok[adatok.length-1][5];
+        elfogyasztott = adatok[adatok.length-1][3];
+        atlag = elfogyasztott / kmkulonbseg;
+    }
+    if (adatok.length > 0){
+        adatok.push([ev, honap, nap, liter, forint, km, kmkulonbseg, elfogyasztott, atlag]);
+        atlagok.push(atlag);
+    }
+    else{
+        adatok.push([ev, honap, nap, liter, forint, km]);
+    }
 
     let ujsor = document.createElement("tr")
+    ujsor.id = id++;
 
     let datumcella = document.createElement("td");
     let litercella = document.createElement("td");
     let forintcella = document.createElement("td");
     let kmcella = document.createElement("td");
+    let kmkulonbsegcella;
+    let elfogyasztottcella;
+    if (adatok.length > 1){
+        kmkulonbsegcella = document.createElement("td");
+        elfogyasztottcella = document.createElement("td");
+    }
 
     datumcella.innerHTML = ev + " " + honap + " " + nap;
     litercella.innerHTML = liter;
     forintcella.innerHTML = forint;
     kmcella.innerHTML = km;
+    if (adatok.length > 1){
+        kmkulonbsegcella.innerHTML = kmkulonbseg;
+        elfogyasztottcella.innerHTML = elfogyasztott;
+    }
 
     ujsor.appendChild(datumcella);
     ujsor.appendChild(litercella);
     ujsor.appendChild(forintcella);
     ujsor.appendChild(kmcella);
+    if (adatok.length > 1){
+        ujsor.appendChild(kmkulonbsegcella);
+        ujsor.appendChild(elfogyasztottcella);
+    }
 
     document.getElementById("tankolasok").appendChild(ujsor);
 
@@ -94,7 +124,20 @@ function hozzaad(){
     for (let i = 0; i < havibontas.length; i++){
         document.getElementById("havikiadas").innerHTML += havibontas[i][0] + ". " + havibontas[i][1] + ". " + havibontas[i][2] + "L " + havibontas[i][3] + "Ft<br>";
     }
+
+    for (let i = 0; i < 1; i++){
+        for (let j = 0; j < adatok.length; j++){
+            console.log(adatok[j][8]);
+            if (Math.max(atlagok) === adatok[j][8]){
+                document.getElementById(j).style.backgroundColor = "red";
+                console.log("bement");
+            }
+        }
+        console.log(Math.max(atlagok));
+    }
+    console.log(atlagok);
 }
+
 function szures(){
     let elejeev = document.getElementById("eleje").value.split("-")[0];
     let elejehonap = document.getElementById("eleje").value.split("-")[1];
@@ -113,7 +156,6 @@ function szures(){
             }
         }
     }
-
 
     document.getElementById("szures").innerHTML = "";
     for (let i = 0; i < kiirando.length; i++){
