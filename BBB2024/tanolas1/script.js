@@ -58,7 +58,7 @@ function hozzaad(){
     if (adatok.length > 0){
         kmkulonbseg = km - adatok[adatok.length-1][5];
         elfogyasztott = adatok[adatok.length-1][3];
-        atlag = elfogyasztott / kmkulonbseg;
+        atlag = kmkulonbseg / elfogyasztott;
     }
     if (adatok.length > 0){
         adatok.push([ev, honap, nap, liter, forint, km, kmkulonbseg, elfogyasztott, atlag]);
@@ -125,17 +125,12 @@ function hozzaad(){
         document.getElementById("havikiadas").innerHTML += havibontas[i][0] + ". " + havibontas[i][1] + ". " + havibontas[i][2] + "L " + havibontas[i][3] + "Ft<br>";
     }
 
-    for (let i = 0; i < 1; i++){
-        for (let j = 0; j < adatok.length; j++){
-            console.log(adatok[j][8]);
-            if (Math.max(atlagok) === adatok[j][8]){
-                document.getElementById(j).style.backgroundColor = "red";
-                console.log("bement");
-            }
+    for (let j = 0; j < adatok.length; j++){
+        document.getElementById(j).style.backgroundColor = "";
+        if (Math.max(...atlagok) === adatok[j][8]){
+            document.getElementById(j).style.backgroundColor = "red";
         }
-        console.log(Math.max(atlagok));
     }
-    console.log(atlagok);
 }
 
 function szures(){
