@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="topnav">
+        <a href="index.html">Kezdőlap</a>
+        <a  href="1feladat.html">Első feladat</a>
+        <a class="active" href="2feladat.html">Második feladat</a>
+    </div>
+    <div id="main">
+        <table id="tankolasok">
+            <thead>
+                <td>Dátum</td><td>Liter</td><td>Forint</td><td>Kilóméter óra</td><td>Kilóméter külőnbség</td><td>Elfogyasztott üzemanyag</td>
+            </thead>
+        </table>
+        <button onclick="hozzaad()">Adat hozzáadása</button>
+        <div id="havikiadas"></div>
+        <input type="date" id="eleje">
+        <input type="date" id="vege">
+        <div id="szures"></div>
+        <button onclick="szures()">Szűrés</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
