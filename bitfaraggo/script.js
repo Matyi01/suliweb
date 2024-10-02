@@ -156,15 +156,29 @@ function szures(){
     let kiirando = [];
 
     for (let i = 0; i < adatok.length; i++){
-        if (adatok[i][0] >= elejeev && adatok[i][0] <= vegeev){
-            if (adatok[i][1] >= elejehonap && adatok[i][1] <= vegehonap){
+
+        if (adatok[i][0] > elejeev && adatok[i][0] < vegeev){
+            kiirando.push(adatok[i]);
+        }
+        else if (adatok[i][0] === elejeev && adatok[i][0] === vegeev){
+            if (adatok[i][1] > elejehonap && adatok[i][1] < vegehonap){
+                kiirando.push(adatok[i]);
+            }
+            else if (adatok[i][1] === elejehonap && adatok[i][1] === vegehonap){
                 if (adatok[i][2] >= elejenap && adatok[i][2] <= vegenap){
                     kiirando.push(adatok[i]);
                 }
             }
-        }
-        if (adatok[i][0] > elejeev && adatok[i][0] < vegeev){
-            kiirando.push(adatok[i]);
+            else if (adatok[i][1] === elejehonap){
+                if (adatok[i][2] >= elejenap){
+                    kiirando.push(adatok[i]);
+                }
+            }
+            else if (adatok[i][1] === vegehonap){
+                if (adatok[i][2] <= vegenap){
+                    kiirando.push(adatok[i]);
+                }
+            }
         }
         else if (adatok[i][0] === elejeev){
             if (adatok[i][1] > elejehonap){
