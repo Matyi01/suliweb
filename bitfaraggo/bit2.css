@@ -1,4 +1,4 @@
-h1
+ h1
 {
     text-align: center;
     color: bisque;
@@ -79,11 +79,7 @@ body
     background-color:darkcyan;
     color: white;
   }
-#keto
-  {
-    background-color: black;
-    color: bisque   ;
-  }
+
 #kartya
 {
     border: 1px solid black;

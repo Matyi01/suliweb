@@ -132,7 +132,7 @@ function nyomasPepa()
     let a=document.getElementById("bemutat")
     if(kattint==0)
     {
-        a.innerHTML="";
+        a.innerHTML="Papp Péter: Sok-sok éve foglalkozik programozással, annak tanításával pedig 15 éve. Pécsett végzett informatikus mérnökként és mérnöktanárként. A jelenlegi iskolájában főként C# és Javascript nyelvekkel terheli tanulóit (más években a HTML, CSS, SQL, Python is előfordul).A BBB versenyek lelkes híve.";
         kattint++;
     }
     else if(kattint==1)

@@ -1,29 +1,57 @@
 .topnav {
-    background-color: #333;
-    overflow: hidden;
+  background-color: #333;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: darkcyan;
+  color: white;
+}
+
+body {
+  background-image: url(Coding-Wallpaper-Free-Download.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@keyframes rotation {
+  from {
+    transform-origin: center;
+    transform: rotate(0deg);
   }
-  
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
+
+  to {
+    transform-origin: center;
+    transform: rotate(360deg);
   }
-  
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .topnav a.active {
-    background-color:darkcyan;
-    color: white;
-  }
-  body
-{
-    background-image: url(Coding-Wallpaper-Free-Download.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+
+}
+
+p {
+  animation: rotation 0.8s infinite;
+  color: bisque;
+  text-align: center;
+  font-size: 150px;
+  margin: auto;
+  font-style: italic;
+  display: inline-block;
+}
+
+#keret {
+  padding-top: 300px;
+  text-align: center;
 }
