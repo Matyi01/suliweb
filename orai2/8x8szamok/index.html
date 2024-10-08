@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="letrehoz()">
+    <div id="main"></div>
+
+    <script>
+        function letrehoz(){
+            let sordb = 8;
+            let celladb = 8;
+            let tabla = document.createElement("table");
+
+            let fej = document.createElement("tr");
+            for(let i = 0; i < celladb; i++){
+                let cella = document.createElement("td");
+                fej.appendChild(cella);
+            }
+            tabla.appendChild(fej);
+
+            for(let i = 0; i < sordb; i++){
+                let sor = document.createElement("tr");
+                for(let j = 0; j < celladb; j++){
+                    let cella = document.createElement("td");
+                    cella.id = i + ";" + j;
+
+                    let szaminput = document.createElement("input");
+                    szaminput.type = "number";
+
+                    cella.ondblclick = function(){
+                        szaminput.value = cella.innerHTML;
+                        cella.innerHTML = "";
+                        cella.appendChild(szaminput);
+                        szaminput.focus();
+                    }
+
+                    cella.onkeydown = function(){
+                        if(event.keyCode === 13){
+                            cella.innerHTML = szaminput.value;
+                        }
+                    }
+
+                    sor.appendChild(cella);
+                }
+                tabla.appendChild(sor);
+            }
+            document.getElementById("main").appendChild(tabla);
+        }
+    </script>
+
+    <style>
+        td{
+            height: 30px;
+            width: 100px;
+            border: 1px solid black;
+        }
+        input{
+            height: 25px;
+            width: 95px;
+        }
+    </style>
+</body>
+</html>
