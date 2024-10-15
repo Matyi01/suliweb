@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <title>Számok</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <style type="text/css" media="screen,projection,print">
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: auto;
+        }
+
+        section {
+            min-width: 400px;
+            padding: 20px;
+            margin: 10px auto 10px auto;
+        }
+
+        h1,
+        p {
+            text-align: center;
+            line-height: 10px;
+        }
+
+        h1 {
+            color: #1f2839;
+            font-size: 2.5em;
+            text-shadow: 6px 6px 2px #d0d0d0;
+        }
+
+        #palya {
+            background: orange;
+            font-size: 2em;
+            text-align: center;
+            margin: auto;
+            border-color: orange;
+            box-shadow: 10px 10px 5px #d0d0d0;
+        }
+
+        button {
+            background-color: cornflowerblue;
+            border: none;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h1>Játék</h1>
+
+        <button onclick="location.href = 'index.html';">Szabályzat</button>
+
+        <p>Hátralévő lépésszám:</p>
+        <p id="hatralevo"></p>
+
+        <p>Pontoszám:</p>
+        <p id="score">0</p>
+
+        <p>Legjobb pontszám:</p>
+        <p id="highscore">0</p>
+
+        <table id="palya"></table>
+
+        <button onclick="ujra()" id="reset">Pálya visszatöltése</button>
+
+        <p>Képességek:</p>
+        <button onclick="teleport()" id="tp">Teleport</button>
+        <button onclick="pluszegy()" id="plusz">Minden irányba eggyel több lépés</button>
+        <button onclick="kereszt()" id="cross">Minden irányba bármennyi lépés</button>
+
+    </section>
+    <script>
+        var nrow = 8;
+        var ncell = 8;
+        var tt = new Array(nrow);
+        var newrow;
+        let lepes = Math.floor(Math.random() * 10) + 5;
+        const eredetilepes = lepes;
+        let aktivrow = 0;
+        let aktivcolumn = 0;
+        function init() {
+            var szolok = ["szolo1", "szolo2", "szolo3", "szolo4", "szolo5", "szolo6"];
+            let ertekek = [16, 8, 9, 13, 10, 10];
+
+            document.getElementById("hatralevo").innerHTML += lepes;
+            for (var i = 0; i < nrow; i++) {
+                newrow = document.getElementById("palya").insertRow(i);
+                tt[i] = new Array(ncell);
+                for (var j = 0; j < ncell; j++) {
+                    tt[i][j] = newrow.insertCell(j);
+                    tt[i][j].id = i * ncell + j;
+                    tt[i][j].onclick = function () {
+                        cellClicked(this);
+                    };
+                    tt[i][j].style.width = "50px";
+                    tt[i][j].style.height = "50px";
+                    tt[i][j].style.color = "#fcfcfc";
+                    tt[i][j].style.background = "rgb(153, 153, 153)";
+                    let random = Math.floor(Math.random() * szolok.length);
+
+                    tt[i][j].innerHTML = '<img src="' + szolok[random] + '.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">';
+                    tt[i][j].dataset.ertek = random;
+                    tt[i][j].dataset.aktivertek = ertekek[random];
+                    let layer = document.createElement("div");
+                    layer.style.background = "rgba(119, 119, 119, 0.7)";
+                    layer.style.display = "none";
+                    layer.style.height = "50px";
+                    layer.style.width = "50px";
+
+                    tt[i][j].appendChild(layer);
+                    console.dir(tt[i][j]);
+                }
+            }
+        }
+        function clearBackground() {
+            for (var i = 0; i < nrow; i++) {
+                for (var j = 0; j < ncell; j++) {
+                    tt[i][j].style.background = "rgb(153, 153, 153)";
+                }
+            }
+        }
+        function cellClicked(obj) {
+            if (eredetilepes === lepes) {
+                aktivmezo(obj);
+            }
+            else if (obj.style.background === "rgba(119, 119, 119, 0.7)" && lepes >= 0) {
+                aktivmezo(obj);
+                if (lepes === -1) {
+                    if (document.getElementById("highscore").innerHTML < document.getElementById("score").innerHTML) {
+                        document.getElementById("highscore").innerHTML = document.getElementById("score").innerHTML;
+                    }
+                }
+            }
+        }
+        function cellClickable() {
+            console.log(aktivrow, aktivcolumn)
+            if (aktivrow !== nrow - 1) {
+                tt[aktivrow + 1][aktivcolumn].style.background = "rgba(119, 119, 119, 0.7)";
+                tt[aktivrow + 1][aktivcolumn].lastChild.style.display = "block";
+            }
+            if (aktivcolumn !== 0) {
+                tt[aktivrow][aktivcolumn - 1].style.background = "rgba(119, 119, 119, 0.7)";
+                tt[aktivrow][aktivcolumn - 1].lastChild.style.display = "block";
+            }
+            if (aktivcolumn !== ncell - 1) {
+                tt[aktivrow][aktivcolumn + 1].style.background = "rgba(119, 119, 119, 0.7)";
+                tt[aktivrow][aktivcolumn + 1].lastChild.style.display = "block";
+            }
+            if (aktivrow !== 0) {
+                tt[aktivrow - 1][aktivcolumn].style.background = "rgba(119, 119, 119, 0.7)";
+                tt[aktivrow - 1][aktivcolumn].lastChild.style.display = "block";
+            }
+        }
+        function aktivmezo(obj) {
+            clearBackground();
+            var row = parseInt(obj.id / ncell);
+            var column = obj.id % ncell;
+            tt[row][column].style.background = "rgb(0, 0, 0)";
+            aktivrow = row;
+            aktivcolumn = column;
+
+            cellClickable();
+
+            document.getElementById("hatralevo").innerHTML = lepes--;
+
+            document.getElementById("score").innerHTML = Number(document.getElementById("score").innerHTML) + Number(tt[aktivrow][aktivcolumn].dataset.aktivertek);
+            tt[aktivrow][aktivcolumn].innerHTML = 0
+        }
+        function ujra() {
+            if (document.getElementById("highscore").innerHTML < document.getElementById("score").innerHTML) {
+                document.getElementById("highscore").innerHTML = document.getElementById("score").innerHTML;
+            }
+            lepes = eredetilepes;
+            document.getElementById("hatralevo").innerHTML = lepes;
+            document.getElementById("score").innerHTML = 0;
+
+            for (var i = 0; i < nrow; i++) {
+                for (var j = 0; j < ncell; j++) {
+                    tt[i][j].style.background = "rgb(153, 153, 153)";
+                    tt[i][j].innerHTML = tt[i][j].dataset.ertek;
+                }
+            }
+            document.getElementById("tp").style.display = "inline-block";
+            document.getElementById("plusz").style.display = "inline-block";
+            document.getElementById("cross").style.display = "inline-block";
+        }
+        function teleport() {
+            for (var i = 0; i < nrow; i++) {
+                for (var j = 0; j < ncell; j++) {
+                    tt[i][j].style.background = "rgba(119, 119, 119, 0.7)";
+                }
+            }
+            tt[aktivrow][aktivcolumn].style.background = "rgb(0, 0, 0)";
+            document.getElementById("tp").style.display = "none";
+        }
+        function pluszegy() {
+            if (aktivrow < nrow - 2) {
+                tt[aktivrow + 2][aktivcolumn].style.background = "rgba(119, 119, 119, 0.7)";
+            }
+            if (aktivcolumn > 1) {
+                tt[aktivrow][aktivcolumn - 2].style.background = "rgba(119, 119, 119, 0.7)";
+            }
+            if (aktivcolumn < ncell - 2) {
+                tt[aktivrow][aktivcolumn + 2].style.background = "rgba(119, 119, 119, 0.7)";
+            }
+            if (aktivrow > 1) {
+                tt[aktivrow - 2][aktivcolumn].style.background = "rgba(119, 119, 119, 0.7)";
+            }
+            document.getElementById("plusz").style.display = "none";
+        }
+        function kereszt() {
+            for (var i = 0; i < nrow; i++) {
+                for (var j = 0; j < ncell; j++) {
+                    if (i === aktivrow || j === aktivcolumn) {
+                        tt[i][j].style.background = "rgba(119, 119, 119, 0.7)";
+                    }
+                }
+            }
+            tt[aktivrow][aktivcolumn].style.background = "rgb(0, 0 ,0 )";
+            document.getElementById("cross").style.display = "none";
+
+        }
+    </script>
+    <script>
+        init();
+    </script>
+</body>
+
+</html>
