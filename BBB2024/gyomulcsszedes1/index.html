@@ -41,14 +41,25 @@
 <body>
     <section>
         <h1>Játék</h1>
+
         <p>Hátralévő lépésszám:</p>
         <p id="hatralevo"></p>
+
         <p>Pontoszám:</p>
         <p id="score">0</p>
+
         <p>Legjobb pontszám:</p>
         <p id="highscore">0</p>
+
         <table id="palya"></table>
-        <button onclick="ujra()">Pálya visszatöltése</button>
+
+        <button onclick="ujra()" id="reset">Pálya visszatöltése</button>
+
+        <p>Képességek:</p>
+        <button onclick="teleport()" id="tp">Teleport</button>
+        <button onclick="pluszegy()" id="plusz">Minden irányba eggyel több lépés</button>
+        <button onclick="kereszt()" id="cross">Minden irányba bármennyi lépés</button>
+
     </section>
     <script>
         var nrow = 8;
@@ -96,7 +107,6 @@
                 if (lepes === -1) {
                     if (document.getElementById("highscore").innerHTML < document.getElementById("score").innerHTML) {
                         document.getElementById("highscore").innerHTML = document.getElementById("score").innerHTML;
-
                     }
                 }
             }
@@ -132,6 +142,9 @@
             tt[aktivrow][aktivcolumn].innerHTML = 0
         }
         function ujra() {
+            if (document.getElementById("highscore").innerHTML < document.getElementById("score").innerHTML) {
+                document.getElementById("highscore").innerHTML = document.getElementById("score").innerHTML;
+            }
             lepes = eredetilepes;
             document.getElementById("hatralevo").innerHTML = lepes;
             document.getElementById("score").innerHTML = 0;
@@ -142,6 +155,45 @@
                     tt[i][j].innerHTML = tt[i][j].dataset.ertek;
                 }
             }
+            document.getElementById("tp").style.display = "inline-block";
+            document.getElementById("plusz").style.display = "inline-block";
+            document.getElementById("cross").style.display = "inline-block";
+        }
+        function teleport() {
+            for (var i = 0; i < nrow; i++) {
+                for (var j = 0; j < ncell; j++) {
+                    tt[i][j].style.background = "rgb(119, 119, 119)";
+                }
+            }
+            tt[aktivrow][aktivcolumn].style.background = "rgb(0, 0, 0)";
+            document.getElementById("tp").style.display = "none";
+        }
+        function pluszegy() {
+            if (aktivrow < nrow - 2) {
+                tt[aktivrow + 2][aktivcolumn].style.background = "rgb(119, 119, 119)";
+            }
+            if (aktivcolumn > 1) {
+                tt[aktivrow][aktivcolumn - 2].style.background = "rgb(119, 119, 119)";
+            }
+            if (aktivcolumn < ncell - 2) {
+                tt[aktivrow][aktivcolumn + 2].style.background = "rgb(119, 119, 119)";
+            }
+            if (aktivrow > 1) {
+                tt[aktivrow - 2][aktivcolumn].style.background = "rgb(119, 119, 119)";
+            }
+            document.getElementById("plusz").style.display = "none";
+        }
+        function kereszt() {
+            for (var i = 0; i < nrow; i++) {
+                for (var j = 0; j < ncell; j++) {
+                    if (i === aktivrow || j === aktivcolumn) {
+                        tt[i][j].style.background = "rgb(119, 119, 119)";
+                    }
+                }
+            }
+            tt[aktivrow][aktivcolumn].style.background = "rgb(0, 0 ,0 )";
+            document.getElementById("cross").style.display = "none";
+
         }
     </script>
     <script>
