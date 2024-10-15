@@ -7,7 +7,7 @@
     <style type="text/css" media="screen,projection,print">
         body {
             font-family: Arial, Helvetica, sans-serif;
-            margin: auto;
+            background-color: bisque;
         }
 
         section {
@@ -19,13 +19,13 @@
         h1,
         p {
             text-align: center;
-            line-height: 10px;
+            line-height: 5px;
         }
 
         h1 {
             color: #1f2839;
             font-size: 2.5em;
-            text-shadow: 6px 6px 2px #d0d0d0;
+            margin-top: 0px;
         }
 
         #palya {
@@ -44,18 +44,28 @@
             padding: 10px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
+            display: block;
             font-size: 16px;
-            margin: 4px 2px;
+            margin: 20px auto;
             cursor: pointer;
             border-radius: 4px;
+        }
+
+        #gombok button {
+            display: inline-block;
+            margin: 0px 0px;
+        }
+
+        #gombok {
+            width: max-content;
+            margin: 0px auto;
         }
     </style>
 </head>
 
 <body>
     <section>
-        <h1>Játék</h1>
+        <h1>Szüretelés</h1>
 
         <button onclick="location.href = 'index.html';">Szabályzat</button>
 
@@ -73,14 +83,16 @@
         <button onclick="ujra()" id="reset">Pálya visszatöltése</button>
 
         <p>Képességek:</p>
-        <button onclick="teleport()" id="tp">Teleportálás</button>
-        <button onclick="pluszegy()" id="plusz">Látótávolság növelés</button>
-        <button onclick="kereszt()" id="cross">Függ/vízsz</button>
+        <div id="gombok">
+            <button onclick="teleport()" id="tp">Teleportálás</button>
+            <button onclick="pluszegy()" id="plusz">Látótávolság növelés</button>
+            <button onclick="kereszt()" id="cross">Kereszt</button>
+        </div>
 
     </section>
     <script>
-        var nrow = 8;
-        var ncell = 8;
+        var nrow = 10;
+        var ncell = 10;
         var tt = new Array(nrow);
         var newrow;
         let lepes = Math.floor(Math.random() * 10) + 5;
@@ -206,6 +218,7 @@
             }
 
             tt[row][column].dataset.aktiv = 2;
+            tt[row][column].lastChild.style.filter = "brightness(100%)";
             document.getElementById("tp").style.display = "none";
         }
 
@@ -241,6 +254,7 @@
             }
 
             tt[row][column].dataset.aktiv = 2;
+            tt[row][column].lastChild.style.filter = "brightness(100%)";
             document.getElementById("cross").style.display = "none";
         }
     </script>
