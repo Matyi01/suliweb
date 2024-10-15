@@ -73,9 +73,9 @@
         <button onclick="ujra()" id="reset">Pálya visszatöltése</button>
 
         <p>Képességek:</p>
-        <button onclick="teleport()" id="tp">Teleport</button>
-        <button onclick="pluszegy()" id="plusz">Minden irányba eggyel több lépés</button>
-        <button onclick="kereszt()" id="cross">Minden irányba bármennyi lépés</button>
+        <button onclick="teleport()" id="tp">Teleportálás</button>
+        <button onclick="pluszegy()" id="plusz">Látótávolság növelés</button>
+        <button onclick="kereszt()" id="cross">Függ/vízsz</button>
 
     </section>
     <script>
@@ -85,12 +85,12 @@
         var newrow;
         let lepes = Math.floor(Math.random() * 10) + 5;
         const eredetilepes = lepes;
-        let aktivrow = 0;
-        let aktivcolumn = 0;
-        function init() {
-            var szolok = ["szolo1", "szolo2", "szolo3", "szolo4", "szolo5", "szolo6"];
-            let ertekek = [16, 8, 9, 13, 10, 10];
+        let row = 0;
+        let column = 0;
+        let szolok = ["szolo1", "szolo2", "szolo3", "szolo4", "szolo5", "szolo6"];
+        let ertekek = [16, 8, 9, 13, 10, 10];
 
+        function init() {
             document.getElementById("hatralevo").innerHTML += lepes;
             for (var i = 0; i < nrow; i++) {
                 newrow = document.getElementById("palya").insertRow(i);
@@ -104,35 +104,29 @@
                     tt[i][j].style.width = "50px";
                     tt[i][j].style.height = "50px";
                     tt[i][j].style.color = "#fcfcfc";
-                    tt[i][j].style.background = "rgb(153, 153, 153)";
+                    tt[i][j].dataset.aktiv = 0;
                     let random = Math.floor(Math.random() * szolok.length);
-
-                    tt[i][j].innerHTML = '<img src="' + szolok[random] + '.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">';
+                    tt[i][j].innerHTML = '<img src="' + szolok[random] + '.png" style="width: 100%; height: 100%; object-fit: cover; display: block; position: relative">';
                     tt[i][j].dataset.ertek = random;
                     tt[i][j].dataset.aktivertek = ertekek[random];
-                    let layer = document.createElement("div");
-                    layer.style.background = "rgba(119, 119, 119, 0.7)";
-                    layer.style.display = "none";
-                    layer.style.height = "50px";
-                    layer.style.width = "50px";
-
-                    tt[i][j].appendChild(layer);
-                    console.dir(tt[i][j]);
                 }
             }
         }
+
         function clearBackground() {
             for (var i = 0; i < nrow; i++) {
                 for (var j = 0; j < ncell; j++) {
-                    tt[i][j].style.background = "rgb(153, 153, 153)";
+                    tt[i][j].dataset.aktiv = 0;
+                    tt[i][j].lastChild.style.filter = "brightness(100%)";
                 }
             }
         }
+
         function cellClicked(obj) {
             if (eredetilepes === lepes) {
                 aktivmezo(obj);
             }
-            else if (obj.style.background === "rgba(119, 119, 119, 0.7)" && lepes >= 0) {
+            else if (obj.dataset.aktiv == 1 && lepes >= 0) {
                 aktivmezo(obj);
                 if (lepes === -1) {
                     if (document.getElementById("highscore").innerHTML < document.getElementById("score").innerHTML) {
@@ -141,93 +135,113 @@
                 }
             }
         }
+
         function cellClickable() {
-            console.log(aktivrow, aktivcolumn)
-            if (aktivrow !== nrow - 1) {
-                tt[aktivrow + 1][aktivcolumn].style.background = "rgba(119, 119, 119, 0.7)";
-                tt[aktivrow + 1][aktivcolumn].lastChild.style.display = "block";
+            if (row !== nrow - 1) {
+                tt[row + 1][column].dataset.aktiv = 1;
+                tt[row + 1][column].lastChild.style.filter = "brightness(75%)";
             }
-            if (aktivcolumn !== 0) {
-                tt[aktivrow][aktivcolumn - 1].style.background = "rgba(119, 119, 119, 0.7)";
-                tt[aktivrow][aktivcolumn - 1].lastChild.style.display = "block";
+            if (column !== 0) {
+                tt[row][column - 1].dataset.aktiv = 1;
+                tt[row][column - 1].lastChild.style.filter = "brightness(75%)";
             }
-            if (aktivcolumn !== ncell - 1) {
-                tt[aktivrow][aktivcolumn + 1].style.background = "rgba(119, 119, 119, 0.7)";
-                tt[aktivrow][aktivcolumn + 1].lastChild.style.display = "block";
+            if (column !== ncell - 1) {
+                tt[row][column + 1].dataset.aktiv = 1;
+                tt[row][column + 1].lastChild.style.filter = "brightness(75%)";
             }
-            if (aktivrow !== 0) {
-                tt[aktivrow - 1][aktivcolumn].style.background = "rgba(119, 119, 119, 0.7)";
-                tt[aktivrow - 1][aktivcolumn].lastChild.style.display = "block";
+            if (row !== 0) {
+                tt[row - 1][column].dataset.aktiv = 1;
+                tt[row - 1][column].lastChild.style.filter = "brightness(75%)";
             }
         }
+
         function aktivmezo(obj) {
+            if (lepes !== eredetilepes) {
+                tt[row][column].innerHTML = '<img src="dead.png" style="width: 100%; height: 100%; object-fit: cover; display: block; position: relative">';
+            }
+
             clearBackground();
-            var row = parseInt(obj.id / ncell);
-            var column = obj.id % ncell;
-            tt[row][column].style.background = "rgb(0, 0, 0)";
-            aktivrow = row;
-            aktivcolumn = column;
+
+            row = parseInt(obj.id / ncell);
+            column = obj.id % ncell;
+            tt[row][column].dataset.aktiv = 2;
 
             cellClickable();
 
             document.getElementById("hatralevo").innerHTML = lepes--;
+            document.getElementById("score").innerHTML = Number(document.getElementById("score").innerHTML) + Number(tt[row][column].dataset.aktivertek);
 
-            document.getElementById("score").innerHTML = Number(document.getElementById("score").innerHTML) + Number(tt[aktivrow][aktivcolumn].dataset.aktivertek);
-            tt[aktivrow][aktivcolumn].innerHTML = 0
+            tt[row][column].innerHTML = '<img src="kosar.jpeg" style="width: 100%; height: 100%; object-fit: cover; display: block; position: relative">';
+            tt[row][column].dataset.aktivertek = 0;
         }
+
         function ujra() {
             if (document.getElementById("highscore").innerHTML < document.getElementById("score").innerHTML) {
                 document.getElementById("highscore").innerHTML = document.getElementById("score").innerHTML;
             }
+
             lepes = eredetilepes;
             document.getElementById("hatralevo").innerHTML = lepes;
             document.getElementById("score").innerHTML = 0;
 
             for (var i = 0; i < nrow; i++) {
                 for (var j = 0; j < ncell; j++) {
-                    tt[i][j].style.background = "rgb(153, 153, 153)";
-                    tt[i][j].innerHTML = tt[i][j].dataset.ertek;
+                    tt[i][j].dataset.aktiv = 0;
+                    tt[i][j].lastChild.style.filter = "brightness(100%)";
+                    tt[i][j].innerHTML = '<img src="' + szolok[tt[i][j].dataset.ertek] + '.png" style="width: 100%; height: 100%; object-fit: cover; display: block; position: relative">';
                 }
             }
+
             document.getElementById("tp").style.display = "inline-block";
             document.getElementById("plusz").style.display = "inline-block";
             document.getElementById("cross").style.display = "inline-block";
         }
+
         function teleport() {
             for (var i = 0; i < nrow; i++) {
                 for (var j = 0; j < ncell; j++) {
-                    tt[i][j].style.background = "rgba(119, 119, 119, 0.7)";
+                    tt[i][j].dataset.aktiv = 1;
+                    tt[i][j].lastChild.style.filter = "brightness(75%)";
                 }
             }
-            tt[aktivrow][aktivcolumn].style.background = "rgb(0, 0, 0)";
+
+            tt[row][column].dataset.aktiv = 2;
             document.getElementById("tp").style.display = "none";
         }
+
         function pluszegy() {
-            if (aktivrow < nrow - 2) {
-                tt[aktivrow + 2][aktivcolumn].style.background = "rgba(119, 119, 119, 0.7)";
+            if (row < nrow - 2) {
+                tt[row + 2][column].dataset.aktiv = 1;
+                tt[row + 2][column].lastChild.style.filter = "brightness(75%)";
             }
-            if (aktivcolumn > 1) {
-                tt[aktivrow][aktivcolumn - 2].style.background = "rgba(119, 119, 119, 0.7)";
+            if (column > 1) {
+                tt[row][column - 2].dataset.aktiv = 1;
+                tt[row][column - 2].lastChild.style.filter = "brightness(75%)";
             }
-            if (aktivcolumn < ncell - 2) {
-                tt[aktivrow][aktivcolumn + 2].style.background = "rgba(119, 119, 119, 0.7)";
+            if (column < ncell - 2) {
+                tt[row][column + 2].dataset.aktiv = 1;
+                tt[row][column + 2].lastChild.style.filter = "brightness(75%)";
             }
-            if (aktivrow > 1) {
-                tt[aktivrow - 2][aktivcolumn].style.background = "rgba(119, 119, 119, 0.7)";
+            if (row > 1) {
+                tt[row - 2][column].dataset.aktiv = 1;
+                tt[row - 2][column].lastChild.style.filter = "brightness(75%)";
             }
+
             document.getElementById("plusz").style.display = "none";
         }
+
         function kereszt() {
             for (var i = 0; i < nrow; i++) {
                 for (var j = 0; j < ncell; j++) {
-                    if (i === aktivrow || j === aktivcolumn) {
-                        tt[i][j].style.background = "rgba(119, 119, 119, 0.7)";
+                    if (i === row || j === column) {
+                        tt[i][j].dataset.aktiv = 1;
+                        tt[i][j].lastChild.style.filter = "brightness(75%)";
                     }
                 }
             }
-            tt[aktivrow][aktivcolumn].style.background = "rgb(0, 0 ,0 )";
-            document.getElementById("cross").style.display = "none";
 
+            tt[row][column].dataset.aktiv = 2;
+            document.getElementById("cross").style.display = "none";
         }
     </script>
     <script>
