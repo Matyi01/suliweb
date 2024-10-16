@@ -1,101 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: bisque;
-            text-align: center;
-        }
-
-        td {
-            border: 1px solid black;
-            width: 150px;
-            height: 150px;
-            text-align: center;
-            font-size: 50px;
-        }
-
-        div {
-            font-size: 30px;
-            padding: 5px;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 50px;
-        }
-
-        h2 {
-            font-size: 40px;
-        }
-
-        img {
-            object-fit: cover;
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        button {
-            background-color: cornflowerblue;
-            border: none;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        table {
-            margin: 0 auto;
-        }
-
-        tr {
-            margin: 0;
-            border: 2px solid black;
-        }
-    </style>
+    <title>Szüretelés</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Szőlő szüretelős játék</h1>
-    <button onclick="location.href = 'index1.html';">vissza</button>
-    <div>A játék lényege hogy olyan irányba haladjunk, hogy minél több szőlőt tudjunk le szüretelni.</div>
-    <h2>Speciális lépések:</h2>
-    <div>Teleportálás: Ilyenkor bármely mezőre tudunk lépni és a játékot arról a mezőről folytatjuk.</div>
-    <div>Látótávolság növelés: Ilyenkor nem csak egy hanem kettő mező távolságra is tudunk lépni.</div>
-    <div>Kereszt: Ekkor a játékos az adott oszlopban és sorban bárhová képes lépni, és onnan folytatja ahová lépett.
-    </div>
-    <h2>Lapok értéke:</h2>
-    <table>
-        <tr>
-            <td>Képek:</td>
-            <td><img src="szolo1.PNG"></td>
-            <td><img src="szolo2.PNG"></td>
-            <td><img src="szolo3.PNG"></td>
-            <td><img src="szolo4.PNG"></td>
-            <td><img src="szolo5.PNG"></td>
-            <td><img src="szolo6.PNG"></td>
-        </tr>
-        <tr>
-            <td>Értékük:</td>
-            <td>16</td>
-            <td>8</td>
-            <td>9</td>
-            <td>13</td>
-            <td>10</td>
-            <td>10</td>
-        </tr>
-    </table>
+    <section id="main">
+        <section id="bal">
+            <h1>Szüretelés</h1>
+
+            <p>Hátralévő lépésszám:</p>
+            <p id="hatralevo"></p>
+
+            <p>Pontoszám:</p>
+            <p id="score">0</p>
+
+            <p>Legjobb pontszám:</p>
+            <p id="highscore">0</p>
+        </section>
+
+        <table id="palya"></table>
+
+        <div id="vege"></div>
+
+        <section id="jobb">
+            <button onclick="ujra()" id="reset">Pálya visszatöltése</button>
+
+            <p>Képességek:</p>
+            <button onclick="teleport()" id="tp">Teleportálás</button>
+            <button onclick="pluszegy()" id="plusz">Látótávolság növelés</button>
+            <button onclick="kereszt()" id="cross">Kereszt</button>
+        </section>
+
+        <script src="script.js"></script>
+    </section>
+    <section id="rules">
+        <h1>Szőlő szüretelős játék</h1>
+        <p>A játék lényege hogy olyan irányba haladjunk, hogy minél több szőlőt tudjunk le szüretelni.</p>
+        <h2>Speciális lépések:</h2>
+        <p>Teleportálás: Ilyenkor bármely mezőre tudunk lépni és a játékot arról a mezőről folytatjuk.</p>
+        <p>Látótávolság növelés: Ilyenkor nem csak egy hanem kettő mező távolságra is tudunk lépni.</p>
+        <p>Kereszt: Ekkor a játékos az adott oszlopban és sorban bárhová képes lépni, és onnan folytatja ahová lépett.
+        </p>
+        <h2>Lapok értéke:</h2>
+        <table id="pontok">
+            <tr>
+                <td>Képek:</td>
+                <td><img src="szolo1.PNG"></td>
+                <td><img src="szolo2.PNG"></td>
+                <td><img src="szolo3.PNG"></td>
+                <td><img src="szolo4.PNG"></td>
+                <td><img src="szolo5.PNG"></td>
+                <td><img src="szolo6.PNG"></td>
+            </tr>
+            <tr>
+                <td>Értékük:</td>
+                <td>16</td>
+                <td>8</td>
+                <td>9</td>
+                <td>13</td>
+                <td>10</td>
+                <td>10</td>
+            </tr>
+        </table>
+        <label for="meret">Pálya mérete:</label>
+        <input type="number" id="meret" min="2" max="20">
+        <button onclick="meretmegadas()">Kezdés</button>
+    </section>
 </body>
 
 </html>
