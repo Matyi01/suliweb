@@ -18,7 +18,9 @@ function tablaMeret() {
 
             tempCella.addEventListener("dblclick", function () {
                 this.classList.toggle("kattintott");
-                this.appendChild(inputkeszit(""));
+                this.innerHTML = "";
+                this.appendChild(inputkeszit(this.innerHTML));
+                this.firstChild.focus();
             })
             tempSor.appendChild(tempCella);
         }
@@ -35,21 +37,14 @@ function inputkeszit(ertek) {
     }
 
     input.addEventListener("keypress", function (event) {
-        // If the user presses the "Enter" key on the keyboard
         if (event.key === "Enter") {
-            // Cancel the default action, if needed
             event.preventDefault();
-            // Trigger the button element with a click
-            //document.getElementById("myBtn").click();
+            this.parentElement.classList.toggle("kattintott");
+            this.parentElement.innerHTML = this.value;
         }
     });
 
     return input;
-}
-
-function kattintas() {
-
-
 }
 
 function sliderMaker(label, id, min, max) {
