@@ -42,49 +42,37 @@ function updatePosition() {
     var canvasHeight = c.offsetHeight;
     var canvasWidth = c.offsetWidth;
     if (muhely.up && muhely.right) {
-        if (muhely.posx < canvasWidth) {
+        if (muhely.posx < canvasWidth)
             muhely.posx += muhely.speed * 1.41;
-        }
-        if (muhely.posy > 0) {
+        if (muhely.posy > 0)
             muhely.posy -= muhely.speed * 1.41;
-        }
     } else if (muhely.up && muhely.left) {
-        if (muhely.posx > 0) {
+        if (muhely.posx > 0)
             muhely.posx -= muhely.speed * 2.00;
-        }
-        if (muhely.posy > 0) {
+        if (muhely.posy > 0)
             muhely.posy -= muhely.speed * 1.41;
-        }
     } else if (muhely.down && muhely.right) {
-        if (muhely.posx < canvasWidth) {
+        if (muhely.posx < canvasWidth)
             muhely.posx += muhely.speed * 1.41;
-        }
-        if (muhely.posy < canvasHeight) {
+        if (muhely.posy < canvasHeight)
             muhely.posy += muhely.speed * 2.00;
-        }
     } else if (muhely.down && muhely.left) {
-        if (muhely.posx > 0) {
+        if (muhely.posx > 0)
             muhely.posx -= muhely.speed * 2.00;
-        }
-        if (muhely.posy < canvasHeight) {
+        if (muhely.posy < canvasHeight)
             muhely.posy += muhely.speed * 2.00;
-        }
     } else if (muhely.up) {
-        if (muhely.posy > 0) {
+        if (muhely.posy > 0)
             muhely.posy -= muhely.speed * 1.41;
-        }
     } else if (muhely.down) {
-        if (muhely.posy < canvasHeight) {
+        if (muhely.posy < canvasHeight)
             muhely.posy += muhely.speed * 2.00;
-        }
     } else if (muhely.left) {
-        if (muhely.posx > 0) {
+        if (muhely.posx > 0)
             muhely.posx -= muhely.speed * 2.00;
-        }
     } else if (muhely.right) {
-        if (muhely.posx < canvasWidth) {
+        if (muhely.posx < canvasWidth)
             muhely.posx += muhely.speed * 1.41;
-        }
     }
 }
 
@@ -93,17 +81,15 @@ function refreshCanvas() {
     var ctx = c.getContext("2d");
     var canvasHeight = c.offsetHeight;
     var canvasWidth = c.offsetWidth;
-    ctx.clearRect(0, 0, canvasHeight, canvasWidth);
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     updatePosition();
 
     for (let i = 0; i < varosok.length; i++) {
         let tavolsag = Math.sqrt((muhely.posx - varosok[i].posx) ** 2 + (muhely.posy - varosok[i].posy) ** 2);
-        if (tavolsag < 200 && muhely.color === varosok[i].defaultColor || varosok[i].aktiv === true) {
+        if (tavolsag < 200 && muhely.color === varosok[i].defaultColor || varosok[i].aktiv === true)
             varosok[i].color = varosok[i].aktivColor;
-        }
-        else {
+        else
             varosok[i].color = varosok[i].defaultColor;
-        }
     }
 
     ctx.beginPath();
@@ -176,25 +162,30 @@ function keyPressListener(event) {
     if (event.keyCode == 13 && document.getElementById(muhely.color).innerHTML > 0) {
         for (let i = 0; i < varosok.length; i++) {
             let tavolsag = Math.sqrt((muhely.posx - varosok[i].posx) ** 2 + (muhely.posy - varosok[i].posy) ** 2);
-            if (tavolsag < 200 && muhely.color === varosok[i].defaultColor) {
+            if (tavolsag < 200 && muhely.color === varosok[i].defaultColor)
                 varosok[i].aktiv = true;
-            }
         }
 
         document.getElementById(muhely.color).innerHTML--;
         muhelyek.push(muhely);
-        muhely = new muhelyClass(250, 250, muhely.color);
+        if (varosok.every((currentValue) => currentValue.aktiv === true)) {
+            muhely = "";
+            document.getElementById("message").innerHTML = "Nem basztad el";
+        }
+        else
+            muhely = new muhelyClass(250, 250, muhely.color);
+    }
+    if (document.getElementById("#cc0000").innerHTML == 0 && document.getElementById("#00cc00").innerHTML == 0 && document.getElementById("#0000cc").innerHTML == 0 && !(varosok.every((currentValue) => currentValue.aktiv === true))) {
+        muhely = "";
+        document.getElementById("message").innerHTML = "Elbasztad";
     }
     if (event.keyCode == 32) {
-        if (muhely.color === "#cc0000") {
+        if (muhely.color === "#cc0000")
             muhely.color = "#00cc00";
-        }
-        else if (muhely.color === "#00cc00") {
+        else if (muhely.color === "#00cc00")
             muhely.color = "#0000cc";
-        }
-        else if (muhely.color === "#0000cc") {
+        else if (muhely.color === "#0000cc")
             muhely.color = "#cc0000";
-        }
     }
 }
 
