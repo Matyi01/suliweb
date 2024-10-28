@@ -1,9 +1,11 @@
-class PlayerType {
-    constructor(posx, posy) {
+class muhelyClass {
+    constructor(posx, posy, color) {
         this.posx = posx;
         this.posy = posy;
         this.size = 10;
-        this.color = "#888888";
+        this.outersize = 200;
+        this.color = color;
+
         this.speed = 3;
         this.up = false;
         this.down = false;
@@ -13,11 +15,14 @@ class PlayerType {
 }
 
 class Varos {
-    constructor(posx, posy, color) {
+    constructor(posx, posy, color, aktivColor) {
         this.posx = posx;
         this.posy = posy;
         this.size = 15;
         this.color = color;
+        this.defaultColor = color;
+        this.aktivColor = aktivColor;
+        this.aktiv = false;
     }
 }
 
@@ -25,61 +30,60 @@ function toRadian(angle) {
     return angle * Math.PI / 180;
 }
 
-var player = new PlayerType(250, 250);
-let players = [];
+var muhely = new muhelyClass(250, 250, "#cc0000");
+let muhelyek = [];
 
-let varosok = [new Varos(450, 100, "#cc0000"), new Varos(50, 400, "#00cc00"), new Varos(350, 450, "#0000cc"),
-new Varos(100, 200, "#cc0000"), new Varos(200, 50, "#00cc00"), new Varos(300, 150, "#0000cc")
-];
+let varosok = [new Varos(450, 100, "#cc0000", "#ff0000"), new Varos(50, 400, "#00cc00", "#00ff00"), new Varos(350, 450, "#0000cc", "#0000ff"), new Varos(100, 200, "#cc0000", "#ff0000"),
+new Varos(200, 50, "#00cc00", "#00ff00"), new Varos(300, 150, "#0000cc", "#0000ff")];
 
 function updatePosition() {
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     var canvasHeight = c.offsetHeight;
     var canvasWidth = c.offsetWidth;
-    if (player.up && player.right) {
-        if (player.posx < canvasWidth) {
-            player.posx += player.speed * 1.41;
+    if (muhely.up && muhely.right) {
+        if (muhely.posx < canvasWidth) {
+            muhely.posx += muhely.speed * 1.41;
         }
-        if (player.posy > 0) {
-            player.posy -= player.speed * 1.41;
+        if (muhely.posy > 0) {
+            muhely.posy -= muhely.speed * 1.41;
         }
-    } else if (player.up && player.left) {
-        if (player.posx > 0) {
-            player.posx -= player.speed * 2.00;
+    } else if (muhely.up && muhely.left) {
+        if (muhely.posx > 0) {
+            muhely.posx -= muhely.speed * 2.00;
         }
-        if (player.posy > 0) {
-            player.posy -= player.speed * 1.41;
+        if (muhely.posy > 0) {
+            muhely.posy -= muhely.speed * 1.41;
         }
-    } else if (player.down && player.right) {
-        if (player.posx < canvasWidth) {
-            player.posx += player.speed * 1.41;
+    } else if (muhely.down && muhely.right) {
+        if (muhely.posx < canvasWidth) {
+            muhely.posx += muhely.speed * 1.41;
         }
-        if (player.posy < canvasHeight) {
-            player.posy += player.speed * 2.00;
+        if (muhely.posy < canvasHeight) {
+            muhely.posy += muhely.speed * 2.00;
         }
-    } else if (player.down && player.left) {
-        if (player.posx > 0) {
-            player.posx -= player.speed * 2.00;
+    } else if (muhely.down && muhely.left) {
+        if (muhely.posx > 0) {
+            muhely.posx -= muhely.speed * 2.00;
         }
-        if (player.posy < canvasHeight) {
-            player.posy += player.speed * 2.00;
+        if (muhely.posy < canvasHeight) {
+            muhely.posy += muhely.speed * 2.00;
         }
-    } else if (player.up) {
-        if (player.posy > 0) {
-            player.posy -= player.speed * 1.41;
+    } else if (muhely.up) {
+        if (muhely.posy > 0) {
+            muhely.posy -= muhely.speed * 1.41;
         }
-    } else if (player.down) {
-        if (player.posy < canvasHeight) {
-            player.posy += player.speed * 2.00;
+    } else if (muhely.down) {
+        if (muhely.posy < canvasHeight) {
+            muhely.posy += muhely.speed * 2.00;
         }
-    } else if (player.left) {
-        if (player.posx > 0) {
-            player.posx -= player.speed * 2.00;
+    } else if (muhely.left) {
+        if (muhely.posx > 0) {
+            muhely.posx -= muhely.speed * 2.00;
         }
-    } else if (player.right) {
-        if (player.posx < canvasWidth) {
-            player.posx += player.speed * 1.41;
+    } else if (muhely.right) {
+        if (muhely.posx < canvasWidth) {
+            muhely.posx += muhely.speed * 1.41;
         }
     }
 }
@@ -92,13 +96,23 @@ function refreshCanvas() {
     ctx.clearRect(0, 0, canvasHeight, canvasWidth);
     updatePosition();
 
+    for (let i = 0; i < varosok.length; i++) {
+        let tavolsag = Math.sqrt((muhely.posx - varosok[i].posx) ** 2 + (muhely.posy - varosok[i].posy) ** 2);
+        if (tavolsag < 200 && muhely.color === varosok[i].defaultColor || varosok[i].aktiv === true) {
+            varosok[i].color = varosok[i].aktivColor;
+        }
+        else {
+            varosok[i].color = varosok[i].defaultColor;
+        }
+    }
+
     ctx.beginPath();
-    ctx.arc(player.posx, player.posy, player.size, 0, 2 * Math.PI);
-    ctx.fillStyle = player.color;
+    ctx.arc(muhely.posx, muhely.posy, muhely.size, 0, 2 * Math.PI);
+    ctx.fillStyle = muhely.color;
     ctx.fill();
 
     ctx.beginPath();
-    ctx.arc(player.posx, player.posy, 200, 0, 2 * Math.PI);
+    ctx.arc(muhely.posx, muhely.posy, muhely.outersize, 0, 2 * Math.PI);
     ctx.fillStyle = "#000000";
     ctx.stroke();
 
@@ -109,58 +123,78 @@ function refreshCanvas() {
         ctx.fill();
     }
 
-    for (let i = 0; i < players.length; i++) {
+    for (let i = 0; i < muhelyek.length; i++) {
+        ctx.globalAlpha = 0.5
         ctx.beginPath();
-        ctx.arc(players[i].posx, players[i].posy, players[i].size, 0, 2 * Math.PI);
-        ctx.fillStyle = players[i].color;
+        ctx.arc(muhelyek[i].posx, muhelyek[i].posy, muhelyek[i].size, 0, 2 * Math.PI);
+        ctx.fillStyle = muhelyek[i].color;
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(players[i].posx, players[i].posy, 200, 0, 2 * Math.PI);
+        ctx.arc(muhelyek[i].posx, muhelyek[i].posy, muhelyek[i].outersize, 0, 2 * Math.PI);
         ctx.fillStyle = "#000000";
         ctx.stroke();
+        ctx.globalAlpha = 1
     }
 }
 
 function keyDownListener(event) {
     if (event.keyCode == 65) // a
     {
-        player.left = true;
-        player.right = false;
+        muhely.left = true;
+        muhely.right = false;
     }
     else if (event.keyCode == 68) // d
     {
-        player.right = true;
-        player.left = false;
+        muhely.right = true;
+        muhely.left = false;
     }
     else if (event.keyCode == 87) // w
     {
-        player.up = true;
-        player.down = false;
+        muhely.up = true;
+        muhely.down = false;
     }
     else if (event.keyCode == 83)// s
     {
-        player.down = true;
-        player.up = false;
-
+        muhely.down = true;
+        muhely.up = false;
     }
 }
 
 function keyUpListener(event) {
     if (event.keyCode == 65) // a
-        player.left = false;
+        muhely.left = false;
     else if (event.keyCode == 68) // d
-        player.right = false;
+        muhely.right = false;
     else if (event.keyCode == 87) // w
-        player.up = false;
+        muhely.up = false;
     else if (event.keyCode == 83) // s
-        player.down = false;
+        muhely.down = false;
 }
 
 function keyPressListener(event) {
-    if (event.keyCode == 13) {
-        players.push(player);
-        player = new PlayerType(250, 250);
+    if (event.keyCode == 13 && document.getElementById(muhely.color).innerHTML > 0) {
+        for (let i = 0; i < varosok.length; i++) {
+            let tavolsag = Math.sqrt((muhely.posx - varosok[i].posx) ** 2 + (muhely.posy - varosok[i].posy) ** 2);
+            if (tavolsag < 200 && muhely.color === varosok[i].defaultColor) {
+                varosok[i].aktiv = true;
+            }
+        }
+
+        document.getElementById(muhely.color).innerHTML--;
+        muhelyek.push(muhely);
+        muhely = new muhelyClass(250, 250, muhely.color);
+    }
+    if (event.keyCode == 32) {
+        if (muhely.color === "#cc0000") {
+            muhely.color = "#00cc00";
+        }
+        else if (muhely.color === "#00cc00") {
+            muhely.color = "#0000cc";
+        }
+        else if (muhely.color === "#0000cc") {
+            muhely.color = "#cc0000";
+        }
     }
 }
 
