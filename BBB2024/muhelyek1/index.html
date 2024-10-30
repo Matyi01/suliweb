@@ -9,12 +9,25 @@
     <script src="script.js"></script>
 </head>
 
-<body>
-    <canvas id="myCanvas" width="1500" height="750" style="border:1px solid #000000;"></canvas>
-    <p>Piros: <b id="#cc0000">2</b></p>
-    <p>Zöld: <b id="#00cc00">2</b></p>
-    <p>Kék: <b id="#0000cc">2</b></p>
-    <p id="message"></p>
+<body onload="init()">
+    <canvas id="myCanvas" width="1000" height="500"></canvas>
+    <section id="main">
+        <section id="palyak">
+            <input type="button" value="1. pálya" onclick="map1()" id="map1button">
+            <input type="button" value="2. pálya" onclick="map2()" id="map2button">
+            <input type="button" value="3. pálya" onclick="map3()" id="map3button">
+        </section>
+        <section id="pontok">
+            <b>1</b>
+            <b>1</b>
+            <b>1</b>
+        </section>
+
+        <section id="text">
+            <p>mozgás: w a s d, szín váltás: space, műhely lerakása: enter</p>
+            <p id="message"></p>
+        </section>
+    </section>
 </body>
 
 </html>

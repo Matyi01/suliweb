@@ -2,10 +2,9 @@ class muhelyClass {
     constructor(posx, posy, color) {
         this.posx = posx;
         this.posy = posy;
-        this.size = 10;
-        this.outersize = 200;
+        this.size = 30;
+        this.outersize = 225;
         this.color = color;
-
         this.speed = 3;
         this.up = false;
         this.down = false;
@@ -18,7 +17,7 @@ class Varos {
     constructor(posx, posy, color, aktivColor) {
         this.posx = posx;
         this.posy = posy;
-        this.size = 15;
+        this.size = 35;
         this.color = color;
         this.defaultColor = color;
         this.aktivColor = aktivColor;
@@ -30,11 +29,79 @@ function toRadian(angle) {
     return angle * Math.PI / 180;
 }
 
-var muhely = new muhelyClass(250, 250, "#cc0000");
+szin1 = "#ccaa00";
+szin2 = "#00ccaa";
+szin3 = "#aa00cc";
+szin1Aktiv = "#ffdd00";
+szin2Aktiv = "#00ffdd";
+szin3Aktiv = "#dd00ff";
+
+var muhely = new muhelyClass(250, 250, szin1Aktiv);
 let muhelyek = [];
 
-let varosok = [new Varos(450, 100, "#cc0000", "#ff0000"), new Varos(50, 400, "#00cc00", "#00ff00"), new Varos(350, 450, "#0000cc", "#0000ff"), new Varos(100, 200, "#cc0000", "#ff0000"),
-new Varos(200, 50, "#00cc00", "#00ff00"), new Varos(300, 150, "#0000cc", "#0000ff")];
+let varosok = [new Varos(450, 100, szin1, szin1Aktiv),
+new Varos(100, 400, szin2, szin2Aktiv),
+new Varos(350, 450, szin3, szin3Aktiv),
+new Varos(100, 200, szin1, szin1Aktiv),
+new Varos(200, 50, szin2, szin2Aktiv),
+new Varos(300, 150, szin3, szin3Aktiv)];
+
+function init() {
+    document.getElementsByTagName("b")[0].id = szin1Aktiv;
+    document.getElementsByTagName("b")[1].id = szin2Aktiv;
+    document.getElementsByTagName("b")[2].id = szin3Aktiv;
+    document.getElementsByTagName("b")[0].style.backgroundColor = szin1Aktiv;
+    document.getElementsByTagName("b")[1].style.backgroundColor = szin2Aktiv;
+    document.getElementsByTagName("b")[2].style.backgroundColor = szin3Aktiv;
+}
+
+function map1() {
+    document.getElementById("map1button").blur();
+    varosok = [new Varos(450, 100, szin1, szin1Aktiv),
+    new Varos(100, 400, szin2, szin2Aktiv),
+    new Varos(350, 450, szin3, szin3Aktiv),
+    new Varos(100, 200, szin1, szin1Aktiv),
+    new Varos(200, 50, szin2, szin2Aktiv),
+    new Varos(300, 150, szin3, szin3Aktiv)];
+    muhely = new muhelyClass(250, 250, szin1Aktiv);
+    muhelyek = [];
+    document.getElementById(szin1Aktiv).innerHTML = 1;
+    document.getElementById(szin2Aktiv).innerHTML = 1;
+    document.getElementById(szin3Aktiv).innerHTML = 1;
+    document.getElementById("message").innerHTML = "";
+}
+
+function map2() {
+    document.getElementById("map2button").blur();
+    varosok = [new Varos(50, 150, szin1, szin1Aktiv),
+    new Varos(150, 400, szin2, szin2Aktiv),
+    new Varos(350, 250, szin3, szin3Aktiv),
+    new Varos(450, 200, szin1, szin1Aktiv),
+    new Varos(200, 50, szin2, szin2Aktiv),
+    new Varos(400, 150, szin3, szin3Aktiv)];
+    muhely = new muhelyClass(250, 250, szin1Aktiv);
+    muhelyek = [];
+    document.getElementById(szin1Aktiv).innerHTML = 2;
+    document.getElementById(szin2Aktiv).innerHTML = 2;
+    document.getElementById(szin3Aktiv).innerHTML = 2;
+    document.getElementById("message").innerHTML = "";
+}
+
+function map3() {
+    document.getElementById("map3button").blur();
+    varosok = [new Varos(300, 100, szin1, szin1Aktiv),
+    new Varos(200, 400, szin2, szin2Aktiv),
+    new Varos(50, 450, szin3, szin3Aktiv),
+    new Varos(100, 350, szin1, szin1Aktiv),
+    new Varos(50, 50, szin2, szin2Aktiv),
+    new Varos(200, 150, szin3, szin3Aktiv)];
+    muhely = new muhelyClass(250, 250, szin1Aktiv);
+    muhelyek = [];
+    document.getElementById(szin1Aktiv).innerHTML = 2;
+    document.getElementById(szin2Aktiv).innerHTML = 2;
+    document.getElementById(szin3Aktiv).innerHTML = 2;
+    document.getElementById("message").innerHTML = "";
+}
 
 function updatePosition() {
     var c = document.getElementById("myCanvas");
@@ -86,27 +153,10 @@ function refreshCanvas() {
 
     for (let i = 0; i < varosok.length; i++) {
         let tavolsag = Math.sqrt((muhely.posx - varosok[i].posx) ** 2 + (muhely.posy - varosok[i].posy) ** 2);
-        if (tavolsag < 200 && muhely.color === varosok[i].defaultColor || varosok[i].aktiv === true)
+        if (tavolsag < muhely.outersize - varosok[i].size && muhely.color === varosok[i].aktivColor || varosok[i].aktiv === true)
             varosok[i].color = varosok[i].aktivColor;
         else
             varosok[i].color = varosok[i].defaultColor;
-    }
-
-    ctx.beginPath();
-    ctx.arc(muhely.posx, muhely.posy, muhely.size, 0, 2 * Math.PI);
-    ctx.fillStyle = muhely.color;
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.arc(muhely.posx, muhely.posy, muhely.outersize, 0, 2 * Math.PI);
-    ctx.fillStyle = "#000000";
-    ctx.stroke();
-
-    for (let i = 0; i < varosok.length; i++) {
-        ctx.beginPath();
-        ctx.arc(varosok[i].posx, varosok[i].posy, varosok[i].size, 0, 2 * Math.PI);
-        ctx.fillStyle = varosok[i].color;
-        ctx.fill();
     }
 
     for (let i = 0; i < muhelyek.length; i++) {
@@ -120,8 +170,37 @@ function refreshCanvas() {
         ctx.arc(muhelyek[i].posx, muhelyek[i].posy, muhelyek[i].outersize, 0, 2 * Math.PI);
         ctx.fillStyle = "#000000";
         ctx.stroke();
+
+        let image = new Image();
+        image.src = 'muhely.png';
+        ctx.drawImage(image, muhelyek[i].posx - 25, muhelyek[i].posy - 30, 50, 50);
         ctx.globalAlpha = 1
     }
+
+    for (let i = 0; i < varosok.length; i++) {
+        ctx.beginPath();
+        ctx.arc(varosok[i].posx, varosok[i].posy, varosok[i].size, 0, 2 * Math.PI);
+        ctx.fillStyle = varosok[i].color;
+        ctx.fill();
+
+        let image = new Image();
+        image.src = 'varos.png';
+        ctx.drawImage(image, varosok[i].posx - 30, varosok[i].posy - 35, 60, 60);
+    }
+
+    ctx.beginPath();
+    ctx.arc(muhely.posx, muhely.posy, muhely.size, 0, 2 * Math.PI);
+    ctx.fillStyle = muhely.color;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(muhely.posx, muhely.posy, muhely.outersize, 0, 2 * Math.PI);
+    ctx.fillStyle = "#000000";
+    ctx.stroke();
+
+    let image = new Image();
+    image.src = 'muhely.png';
+    ctx.drawImage(image, muhely.posx - 25, muhely.posy - 30, 50, 50);
 }
 
 function keyDownListener(event) {
@@ -162,7 +241,7 @@ function keyPressListener(event) {
     if (event.keyCode == 13 && document.getElementById(muhely.color).innerHTML > 0) {
         for (let i = 0; i < varosok.length; i++) {
             let tavolsag = Math.sqrt((muhely.posx - varosok[i].posx) ** 2 + (muhely.posy - varosok[i].posy) ** 2);
-            if (tavolsag < 200 && muhely.color === varosok[i].defaultColor)
+            if (tavolsag < 200 && muhely.color === varosok[i].aktivColor)
                 varosok[i].aktiv = true;
         }
 
@@ -173,19 +252,19 @@ function keyPressListener(event) {
             document.getElementById("message").innerHTML = "Nem basztad el";
         }
         else
-            muhely = new muhelyClass(250, 250, muhely.color);
+            muhely = new muhelyClass(250, 250, szin1Aktiv);
     }
-    if (document.getElementById("#cc0000").innerHTML == 0 && document.getElementById("#00cc00").innerHTML == 0 && document.getElementById("#0000cc").innerHTML == 0 && !(varosok.every((currentValue) => currentValue.aktiv === true))) {
+    if (document.getElementById(szin1Aktiv).innerHTML == 0 && document.getElementById(szin2Aktiv).innerHTML == 0 && document.getElementById(szin3Aktiv).innerHTML == 0 && !(varosok.every((currentValue) => currentValue.aktiv === true))) {
         muhely = "";
         document.getElementById("message").innerHTML = "Elbasztad";
     }
     if (event.keyCode == 32) {
-        if (muhely.color === "#cc0000")
-            muhely.color = "#00cc00";
-        else if (muhely.color === "#00cc00")
-            muhely.color = "#0000cc";
-        else if (muhely.color === "#0000cc")
-            muhely.color = "#cc0000";
+        if (muhely.color === szin1Aktiv)
+            muhely.color = szin2Aktiv;
+        else if (muhely.color === szin2Aktiv)
+            muhely.color = szin3Aktiv;
+        else if (muhely.color === szin3Aktiv)
+            muhely.color = szin1Aktiv;
     }
 }
 
