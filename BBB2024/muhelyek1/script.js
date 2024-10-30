@@ -2,7 +2,7 @@ class muhelyClass {
     constructor(posx, posy, color) {
         this.posx = posx;
         this.posy = posy;
-        this.size = 30;
+        this.size = 25;
         this.outersize = 225;
         this.color = color;
         this.speed = 3;
@@ -29,22 +29,28 @@ function toRadian(angle) {
     return angle * Math.PI / 180;
 }
 
-szin1 = "#ccaa00";
-szin2 = "#00ccaa";
-szin3 = "#aa00cc";
-szin1Aktiv = "#ffdd00";
-szin2Aktiv = "#00ffdd";
-szin3Aktiv = "#dd00ff";
+szin1 = "#cc0000";
+szin2 = "#00cc00";
+szin3 = "#0000cc";
+szin1Aktiv = "#ff0000";
+szin2Aktiv = "#00ff00";
+szin3Aktiv = "#0000ff";
 
-var muhely = new muhelyClass(250, 250, szin1Aktiv);
+var muhely = new muhelyClass(500, 250, szin1Aktiv);
 let muhelyek = [];
 
 let varosok = [new Varos(450, 100, szin1, szin1Aktiv),
-new Varos(100, 400, szin2, szin2Aktiv),
-new Varos(350, 450, szin3, szin3Aktiv),
-new Varos(100, 200, szin1, szin1Aktiv),
-new Varos(200, 50, szin2, szin2Aktiv),
-new Varos(300, 150, szin3, szin3Aktiv)];
+    new Varos(100, 400, szin2, szin2Aktiv),
+    new Varos(350, 450, szin3, szin3Aktiv),
+    new Varos(800, 170, szin1, szin1Aktiv),
+    new Varos(900, 350, szin2, szin2Aktiv),
+    new Varos(600, 70, szin3, szin3Aktiv),
+    new Varos(100, 200, szin1, szin1Aktiv),
+    new Varos(700, 300, szin1, szin1Aktiv),
+    new Varos(200, 50, szin2, szin2Aktiv),
+    new Varos(600, 400, szin2, szin2Aktiv),
+    new Varos(550, 200, szin3, szin3Aktiv),
+    new Varos(300, 150, szin3, szin3Aktiv)];
 
 function init() {
     document.getElementsByTagName("b")[0].id = szin1Aktiv;
@@ -58,16 +64,22 @@ function init() {
 function map1() {
     document.getElementById("map1button").blur();
     varosok = [new Varos(450, 100, szin1, szin1Aktiv),
-    new Varos(100, 400, szin2, szin2Aktiv),
-    new Varos(350, 450, szin3, szin3Aktiv),
-    new Varos(100, 200, szin1, szin1Aktiv),
-    new Varos(200, 50, szin2, szin2Aktiv),
-    new Varos(300, 150, szin3, szin3Aktiv)];
-    muhely = new muhelyClass(250, 250, szin1Aktiv);
+        new Varos(100, 400, szin2, szin2Aktiv),
+        new Varos(350, 450, szin3, szin3Aktiv),
+        new Varos(800, 170, szin1, szin1Aktiv),
+        new Varos(900, 350, szin2, szin2Aktiv),
+        new Varos(600, 70, szin3, szin3Aktiv),
+        new Varos(100, 200, szin1, szin1Aktiv),
+        new Varos(700, 300, szin1, szin1Aktiv),
+        new Varos(200, 50, szin2, szin2Aktiv),
+        new Varos(600, 400, szin2, szin2Aktiv),
+        new Varos(550, 200, szin3, szin3Aktiv),
+        new Varos(300, 150, szin3, szin3Aktiv)];
+    muhely = new muhelyClass(500, 250, szin1Aktiv);
     muhelyek = [];
-    document.getElementById(szin1Aktiv).innerHTML = 1;
-    document.getElementById(szin2Aktiv).innerHTML = 1;
-    document.getElementById(szin3Aktiv).innerHTML = 1;
+    document.getElementById(szin1Aktiv).innerHTML = 2;
+    document.getElementById(szin2Aktiv).innerHTML = 2;
+    document.getElementById(szin3Aktiv).innerHTML = 2;
     document.getElementById("message").innerHTML = "";
 }
 
@@ -76,12 +88,18 @@ function map2() {
     varosok = [new Varos(50, 150, szin1, szin1Aktiv),
     new Varos(150, 400, szin2, szin2Aktiv),
     new Varos(350, 250, szin3, szin3Aktiv),
-    new Varos(450, 200, szin1, szin1Aktiv),
+    new Varos(550, 250, szin1, szin1Aktiv),
+    new Varos(650, 400, szin2, szin2Aktiv),
+    new Varos(450, 50, szin3, szin3Aktiv),
+    new Varos(900, 80, szin1, szin1Aktiv),
+    new Varos(800, 270, szin2, szin2Aktiv),
+    new Varos(700, 380, szin3, szin3Aktiv),
+    new Varos(450, 400, szin1, szin1Aktiv),
     new Varos(200, 50, szin2, szin2Aktiv),
-    new Varos(400, 150, szin3, szin3Aktiv)];
-    muhely = new muhelyClass(250, 250, szin1Aktiv);
+    new Varos(470, 150, szin3, szin3Aktiv)];
+    muhely = new muhelyClass(500, 250, szin1Aktiv);
     muhelyek = [];
-    document.getElementById(szin1Aktiv).innerHTML = 2;
+    document.getElementById(szin1Aktiv).innerHTML = 3;
     document.getElementById(szin2Aktiv).innerHTML = 2;
     document.getElementById(szin3Aktiv).innerHTML = 2;
     document.getElementById("message").innerHTML = "";
@@ -92,10 +110,16 @@ function map3() {
     varosok = [new Varos(300, 100, szin1, szin1Aktiv),
     new Varos(200, 400, szin2, szin2Aktiv),
     new Varos(50, 450, szin3, szin3Aktiv),
+    new Varos(800, 150, szin1, szin1Aktiv),
+    new Varos(600, 300, szin2, szin2Aktiv),
+    new Varos(450, 200, szin3, szin3Aktiv),
+    new Varos(900, 400, szin1, szin1Aktiv),
+    new Varos(500, 350, szin2, szin2Aktiv),
+    new Varos(700, 50, szin3, szin3Aktiv),
     new Varos(100, 350, szin1, szin1Aktiv),
-    new Varos(50, 50, szin2, szin2Aktiv),
+    new Varos(75, 50, szin2, szin2Aktiv),
     new Varos(200, 150, szin3, szin3Aktiv)];
-    muhely = new muhelyClass(250, 250, szin1Aktiv);
+    muhely = new muhelyClass(500, 250, szin1Aktiv);
     muhelyek = [];
     document.getElementById(szin1Aktiv).innerHTML = 2;
     document.getElementById(szin2Aktiv).innerHTML = 2;
@@ -173,7 +197,7 @@ function refreshCanvas() {
 
         let image = new Image();
         image.src = 'muhely.png';
-        ctx.drawImage(image, muhelyek[i].posx - 25, muhelyek[i].posy - 30, 50, 50);
+        ctx.drawImage(image, muhelyek[i].posx - 20, muhelyek[i].posy - 25, 40, 40);
         ctx.globalAlpha = 1
     }
 
@@ -200,7 +224,7 @@ function refreshCanvas() {
 
     let image = new Image();
     image.src = 'muhely.png';
-    ctx.drawImage(image, muhely.posx - 25, muhely.posy - 30, 50, 50);
+    ctx.drawImage(image, muhely.posx - 20, muhely.posy - 25, 40, 40);
 }
 
 function keyDownListener(event) {
@@ -249,14 +273,14 @@ function keyPressListener(event) {
         muhelyek.push(muhely);
         if (varosok.every((currentValue) => currentValue.aktiv === true)) {
             muhely = "";
-            document.getElementById("message").innerHTML = "Nem basztad el";
+            document.getElementById("message").innerHTML = "Ez a megoldás helyes";
         }
         else
-            muhely = new muhelyClass(250, 250, szin1Aktiv);
+            muhely = new muhelyClass(500, 250, szin1Aktiv);
     }
     if (document.getElementById(szin1Aktiv).innerHTML == 0 && document.getElementById(szin2Aktiv).innerHTML == 0 && document.getElementById(szin3Aktiv).innerHTML == 0 && !(varosok.every((currentValue) => currentValue.aktiv === true))) {
         muhely = "";
-        document.getElementById("message").innerHTML = "Elbasztad";
+        document.getElementById("message").innerHTML = "Ez a megoldás nem helyes";
     }
     if (event.keyCode == 32) {
         if (muhely.color === szin1Aktiv)
