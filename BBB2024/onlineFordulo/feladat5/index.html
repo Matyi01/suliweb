@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>5. Feladat</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="main">
+        <input type="text" id="bekeres">
+        <input type="button" onclick="ertekeles()" value="Kiértékelés" class="gomb">
+        <input type="number" id="szam">
+        <input type="button" onclick="randszam()" value="Véletlen érték" class="gomb">
+        <p id="error"></p>
+        <p>’1’-es karakterek összes száma: <b id="sum1"></b></p>
+        <p>’0’-ás karakterek összes száma: <b id="sum0"></b></p>
+        <p>Leghosszabb ’1’-es sorozat: <b id="long1"></b></p>
+        <p>Leghosszabb ’0’-ás sorozat: <b id="long0"></b></p>
+        <p>Leghosszabb váltakozó sorozat (’0’ és ’1’ karakterek felváltva): <b id="longMix"></b></p>
+        <p>Leghosszabb olyan részsorozat, amely legalább kétszer előfordul: <b id="longDouble"></b></p>
+    </section>
+</body>
+</html>
