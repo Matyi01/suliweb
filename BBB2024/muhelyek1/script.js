@@ -29,12 +29,12 @@ function toRadian(angle) {
     return angle * Math.PI / 180;
 }
 
-szin1 = "#cc0000";
-szin2 = "#00cc00";
-szin3 = "#0000cc";
-szin1Aktiv = "#ff0000";
-szin2Aktiv = "#00ff00";
-szin3Aktiv = "#0000ff";
+let szin1 = "#ccaa00";
+let szin2 = "#00ccaa";
+let szin3 = "#aa00cc";
+let szin1Aktiv = "#ffdd00";
+let szin2Aktiv = "#00ffdd";
+let szin3Aktiv = "#dd00ff";
 
 var muhely = new muhelyClass(500, 250, szin1Aktiv);
 let muhelyek = [];
