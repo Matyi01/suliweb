@@ -1,0 +1,40 @@
+body {
+    background-color: aliceblue;
+}
+
+#main {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.gomb {
+    border: 1px solid black;
+    background-color: lightslategrey;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: large;
+}
+
+.gomb:hover {
+    background-color: slategray;
+
+}
+
+input {
+    border: 1px solid black;
+    background-color: gainsboro;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: large;
+}
+
+li{
+    list-style-type: none;
+}
