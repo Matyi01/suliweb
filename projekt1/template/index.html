@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <div class="topnav" id="myTopnav">
+        <a href="javascript:display('home');" class="active">Home</a>
+        <a href="javascript:display('news');">News</a>
+        <a href="javascript:display('contact');">Contact</a>
+        <a href="javascript:display('about');">About</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div class="pages" id="home" style="display: none;">home</div>
+    <div class="pages" id="news" style="display: none;">news</div>
+    <div class="pages" id="contact" style="display: none;">contact</div>
+    <div class="pages" id="about" style="display: none;">about</div>
+
+</body>
+
+</html>
