@@ -1,0 +1,15 @@
+img {
+    width: 300px;
+}
+body{
+    background-color: aliceblue;
+}
+#main{
+    background-color: white;
+    padding: 20px;
+    width: 350px;
+    margin: auto;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
