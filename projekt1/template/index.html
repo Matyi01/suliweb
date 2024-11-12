@@ -10,24 +10,331 @@
 </head>
 
 <body>
-    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
 
-    <div class="topnav" id="myTopnav">
-        <a href="javascript:display('home');" class="active">Home</a>
-        <a href="javascript:display('news');">News</a>
-        <a href="javascript:display('contact');">Contact</a>
-        <a href="javascript:display('about');">About</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
+    <div class="sidenav">
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
     </div>
-    <div class="pages" id="home" style="display: none;">home</div>
-    <div class="pages" id="news" style="display: none;">news</div>
-    <div class="pages" id="contact" style="display: none;">contact</div>
-    <div class="pages" id="about" style="display: none;">about</div>
 
+    <div class="main">
+        <div class="pages" id="home">
+            <h2>home</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nibh justo, varius eu felis a, mattis
+                bibendum magna. Aenean rutrum nisi hendrerit auctor maximus. Proin pharetra, enim et eleifend facilisis,
+                velit diam suscipit ex, id porttitor dolor lectus a neque. Nam non lobortis urna. Morbi eu orci
+                tristique,
+                vehicula metus nec, gravida massa. Curabitur et est congue, ullamcorper ex sed, hendrerit nunc. Quisque
+                porta erat eget ligula scelerisque, vel maximus lectus eleifend. Nullam pharetra, diam ac interdum
+                tempor,
+                felis nisi vulputate purus, quis iaculis orci urna ac massa. Proin non commodo risus, nec porttitor
+                quam.
+                Aenean eget dictum lectus. Integer sed tincidunt sapien, at interdum nunc. Phasellus quam risus, tempor
+                vel
+                ultrices sit amet, ultrices et orci. Nullam tempor vulputate dolor, sed gravida mauris finibus eu.
+            </p>
+            <p>
+                Integer commodo dolor non odio placerat convallis. Etiam nec venenatis lorem. Mauris sollicitudin arcu
+                pretium ullamcorper rutrum. Praesent gravida leo vulputate, volutpat neque at, blandit ex. Aliquam
+                posuere,
+                magna sit amet varius porttitor, erat purus pretium tellus, non mollis massa massa at nisl. Suspendisse
+                fermentum sed justo nec faucibus. Suspendisse potenti. Nulla facilisi. In gravida congue lacinia.
+                Pellentesque feugiat purus quis maximus eleifend. Fusce porta tortor nisi, et tincidunt purus tempor
+                vel.
+                Nunc in ante a diam tempus consectetur id et nulla. Integer sollicitudin ligula quis turpis aliquet,
+                eget
+                sodales est egestas. Sed a magna odio. Aenean id dolor et nunc fringilla tincidunt.
+            </p>
+            <p>
+                Pellentesque facilisis malesuada eros id dictum. Quisque vitae vehicula nibh. Curabitur in cursus arcu.
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam
+                cursus
+                eu metus id malesuada. Nunc mattis quis felis quis congue. Mauris vehicula turpis mi, sed commodo dolor
+                pulvinar sit amet. Maecenas pharetra mauris vitae mi molestie, in mattis enim volutpat. Nullam rhoncus
+                magna
+                lacus, et condimentum sapien venenatis a. Maecenas fermentum maximus consectetur. Vivamus orci arcu,
+                rutrum
+                vel augue sit amet, blandit tempus sem. Fusce a tempus tortor. Etiam facilisis dolor risus. Nunc ut
+                massa
+                ex. Quisque tempus nisl quis velit consectetur luctus. Sed at lacus mattis, finibus quam a, interdum
+                turpis.
+            </p>
+            <p>
+                Pellentesque et lectus elementum, egestas sapien non, dictum tortor. Proin ac mi in arcu laoreet
+                vehicula at
+                et odio. Phasellus orci nibh, ultrices non convallis sit amet, condimentum vel felis. Phasellus dapibus
+                metus vel semper imperdiet. Pellentesque sodales, tortor porta volutpat dapibus, mi diam iaculis sem, id
+                tincidunt ipsum metus ut lorem. Cras semper lobortis magna ut commodo. Pellentesque libero purus, congue
+                vel
+                ligula vel, viverra vestibulum felis. Sed et mi at dolor viverra laoreet. Fusce fringilla aliquam
+                luctus.
+                Donec vitae rutrum eros. Nullam id augue eu quam elementum sagittis. Proin arcu nisl, mollis in
+                tincidunt
+                eu, interdum sit amet turpis. Ut id velit non lectus vehicula egestas vitae vel ligula.
+            </p>
+            <p>
+                Sed arcu ipsum, hendrerit eget mi ac, tristique tempus sem. Ut hendrerit tortor urna, id aliquam orci
+                porttitor nec. Praesent felis justo, dictum quis metus id, fermentum pellentesque sapien. Praesent
+                pharetra
+                ex vel erat ultricies aliquam. Morbi vestibulum nunc in metus finibus mollis. Donec semper libero eu
+                tempus
+                sagittis. Aliquam ornare elementum elementum. Quisque ullamcorper placerat diam. Sed sodales mauris vel
+                velit efficitur eleifend. Praesent ac elit quis lectus viverra maximus nec fringilla risus. Proin congue
+                molestie metus, euismod auctor justo laoreet id. Vivamus semper dolor vitae ante aliquet, in feugiat
+                nulla
+                imperdiet. Vivamus non elementum purus. Curabitur viverra commodo enim nec ornare.
+            </p>
+        </div>
+        <div class="pages" id="news">
+            <h2>news</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nibh justo, varius eu felis a, mattis
+                bibendum magna. Aenean rutrum nisi hendrerit auctor maximus. Proin pharetra, enim et eleifend facilisis,
+                velit diam suscipit ex, id porttitor dolor lectus a neque. Nam non lobortis urna. Morbi eu orci
+                tristique,
+                vehicula metus nec, gravida massa. Curabitur et est congue, ullamcorper ex sed, hendrerit nunc. Quisque
+                porta erat eget ligula scelerisque, vel maximus lectus eleifend. Nullam pharetra, diam ac interdum
+                tempor,
+                felis nisi vulputate purus, quis iaculis orci urna ac massa. Proin non commodo risus, nec porttitor
+                quam.
+                Aenean eget dictum lectus. Integer sed tincidunt sapien, at interdum nunc. Phasellus quam risus, tempor
+                vel
+                ultrices sit amet, ultrices et orci. Nullam tempor vulputate dolor, sed gravida mauris finibus eu.
+            </p>
+            <p>
+                Integer commodo dolor non odio placerat convallis. Etiam nec venenatis lorem. Mauris sollicitudin arcu
+                pretium ullamcorper rutrum. Praesent gravida leo vulputate, volutpat neque at, blandit ex. Aliquam
+                posuere,
+                magna sit amet varius porttitor, erat purus pretium tellus, non mollis massa massa at nisl. Suspendisse
+                fermentum sed justo nec faucibus. Suspendisse potenti. Nulla facilisi. In gravida congue lacinia.
+                Pellentesque feugiat purus quis maximus eleifend. Fusce porta tortor nisi, et tincidunt purus tempor
+                vel.
+                Nunc in ante a diam tempus consectetur id et nulla. Integer sollicitudin ligula quis turpis aliquet,
+                eget
+                sodales est egestas. Sed a magna odio. Aenean id dolor et nunc fringilla tincidunt.
+            </p>
+            <p>
+                Pellentesque facilisis malesuada eros id dictum. Quisque vitae vehicula nibh. Curabitur in cursus arcu.
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam
+                cursus
+                eu metus id malesuada. Nunc mattis quis felis quis congue. Mauris vehicula turpis mi, sed commodo dolor
+                pulvinar sit amet. Maecenas pharetra mauris vitae mi molestie, in mattis enim volutpat. Nullam rhoncus
+                magna
+                lacus, et condimentum sapien venenatis a. Maecenas fermentum maximus consectetur. Vivamus orci arcu,
+                rutrum
+                vel augue sit amet, blandit tempus sem. Fusce a tempus tortor. Etiam facilisis dolor risus. Nunc ut
+                massa
+                ex. Quisque tempus nisl quis velit consectetur luctus. Sed at lacus mattis, finibus quam a, interdum
+                turpis.
+            </p>
+            <p>
+                Pellentesque et lectus elementum, egestas sapien non, dictum tortor. Proin ac mi in arcu laoreet
+                vehicula at
+                et odio. Phasellus orci nibh, ultrices non convallis sit amet, condimentum vel felis. Phasellus dapibus
+                metus vel semper imperdiet. Pellentesque sodales, tortor porta volutpat dapibus, mi diam iaculis sem, id
+                tincidunt ipsum metus ut lorem. Cras semper lobortis magna ut commodo. Pellentesque libero purus, congue
+                vel
+                ligula vel, viverra vestibulum felis. Sed et mi at dolor viverra laoreet. Fusce fringilla aliquam
+                luctus.
+                Donec vitae rutrum eros. Nullam id augue eu quam elementum sagittis. Proin arcu nisl, mollis in
+                tincidunt
+                eu, interdum sit amet turpis. Ut id velit non lectus vehicula egestas vitae vel ligula.
+            </p>
+            <p>
+                Sed arcu ipsum, hendrerit eget mi ac, tristique tempus sem. Ut hendrerit tortor urna, id aliquam orci
+                porttitor nec. Praesent felis justo, dictum quis metus id, fermentum pellentesque sapien. Praesent
+                pharetra
+                ex vel erat ultricies aliquam. Morbi vestibulum nunc in metus finibus mollis. Donec semper libero eu
+                tempus
+                sagittis. Aliquam ornare elementum elementum. Quisque ullamcorper placerat diam. Sed sodales mauris vel
+                velit efficitur eleifend. Praesent ac elit quis lectus viverra maximus nec fringilla risus. Proin congue
+                molestie metus, euismod auctor justo laoreet id. Vivamus semper dolor vitae ante aliquet, in feugiat
+                nulla
+                imperdiet. Vivamus non elementum purus. Curabitur viverra commodo enim nec ornare.
+            </p>
+        </div>
+        <div class="pages" id="contact">
+            <h2>contact</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nibh justo, varius eu felis a, mattis
+                bibendum magna. Aenean rutrum nisi hendrerit auctor maximus. Proin pharetra, enim et eleifend facilisis,
+                velit diam suscipit ex, id porttitor dolor lectus a neque. Nam non lobortis urna. Morbi eu orci
+                tristique,
+                vehicula metus nec, gravida massa. Curabitur et est congue, ullamcorper ex sed, hendrerit nunc. Quisque
+                porta erat eget ligula scelerisque, vel maximus lectus eleifend. Nullam pharetra, diam ac interdum
+                tempor,
+                felis nisi vulputate purus, quis iaculis orci urna ac massa. Proin non commodo risus, nec porttitor
+                quam.
+                Aenean eget dictum lectus. Integer sed tincidunt sapien, at interdum nunc. Phasellus quam risus, tempor
+                vel
+                ultrices sit amet, ultrices et orci. Nullam tempor vulputate dolor, sed gravida mauris finibus eu.
+            </p>
+            <p>
+                Integer commodo dolor non odio placerat convallis. Etiam nec venenatis lorem. Mauris sollicitudin arcu
+                pretium ullamcorper rutrum. Praesent gravida leo vulputate, volutpat neque at, blandit ex. Aliquam
+                posuere,
+                magna sit amet varius porttitor, erat purus pretium tellus, non mollis massa massa at nisl. Suspendisse
+                fermentum sed justo nec faucibus. Suspendisse potenti. Nulla facilisi. In gravida congue lacinia.
+                Pellentesque feugiat purus quis maximus eleifend. Fusce porta tortor nisi, et tincidunt purus tempor
+                vel.
+                Nunc in ante a diam tempus consectetur id et nulla. Integer sollicitudin ligula quis turpis aliquet,
+                eget
+                sodales est egestas. Sed a magna odio. Aenean id dolor et nunc fringilla tincidunt.
+            </p>
+            <p>
+                Pellentesque facilisis malesuada eros id dictum. Quisque vitae vehicula nibh. Curabitur in cursus arcu.
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam
+                cursus
+                eu metus id malesuada. Nunc mattis quis felis quis congue. Mauris vehicula turpis mi, sed commodo dolor
+                pulvinar sit amet. Maecenas pharetra mauris vitae mi molestie, in mattis enim volutpat. Nullam rhoncus
+                magna
+                lacus, et condimentum sapien venenatis a. Maecenas fermentum maximus consectetur. Vivamus orci arcu,
+                rutrum
+                vel augue sit amet, blandit tempus sem. Fusce a tempus tortor. Etiam facilisis dolor risus. Nunc ut
+                massa
+                ex. Quisque tempus nisl quis velit consectetur luctus. Sed at lacus mattis, finibus quam a, interdum
+                turpis.
+            </p>
+            <p>
+                Pellentesque et lectus elementum, egestas sapien non, dictum tortor. Proin ac mi in arcu laoreet
+                vehicula at
+                et odio. Phasellus orci nibh, ultrices non convallis sit amet, condimentum vel felis. Phasellus dapibus
+                metus vel semper imperdiet. Pellentesque sodales, tortor porta volutpat dapibus, mi diam iaculis sem, id
+                tincidunt ipsum metus ut lorem. Cras semper lobortis magna ut commodo. Pellentesque libero purus, congue
+                vel
+                ligula vel, viverra vestibulum felis. Sed et mi at dolor viverra laoreet. Fusce fringilla aliquam
+                luctus.
+                Donec vitae rutrum eros. Nullam id augue eu quam elementum sagittis. Proin arcu nisl, mollis in
+                tincidunt
+                eu, interdum sit amet turpis. Ut id velit non lectus vehicula egestas vitae vel ligula.
+            </p>
+            <p>
+                Sed arcu ipsum, hendrerit eget mi ac, tristique tempus sem. Ut hendrerit tortor urna, id aliquam orci
+                porttitor nec. Praesent felis justo, dictum quis metus id, fermentum pellentesque sapien. Praesent
+                pharetra
+                ex vel erat ultricies aliquam. Morbi vestibulum nunc in metus finibus mollis. Donec semper libero eu
+                tempus
+                sagittis. Aliquam ornare elementum elementum. Quisque ullamcorper placerat diam. Sed sodales mauris vel
+                velit efficitur eleifend. Praesent ac elit quis lectus viverra maximus nec fringilla risus. Proin congue
+                molestie metus, euismod auctor justo laoreet id. Vivamus semper dolor vitae ante aliquet, in feugiat
+                nulla
+                imperdiet. Vivamus non elementum purus. Curabitur viverra commodo enim nec ornare.
+            </p>
+        </div>
+        <div class="gallery" id="gallery">
+            <div class="responsive">
+                <div class="gallery">
+                    <a target="_blank" href="img_5terre.jpg">
+                        <img src="img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                </div>
+            </div>
+
+
+            <div class="responsive">
+                <div class="gallery">
+                    <a target="_blank" href="img_forest.jpg">
+                        <img src="img_forest.jpg" alt="Forest" width="600" height="400">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                </div>
+            </div>
+
+            <div class="responsive">
+                <div class="gallery">
+                    <a target="_blank" href="img_lights.jpg">
+                        <img src="img_lights.jpg" alt="Northern Lights" width="600" height="400">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                </div>
+            </div>
+
+            <div class="responsive">
+                <div class="gallery">
+                    <a target="_blank" href="img_mountains.jpg">
+                        <img src="img_mountains.jpg" alt="Mountains" width="600" height="400">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="pages" id="about">
+            <h2>about</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nibh justo, varius eu felis a, mattis
+                bibendum magna. Aenean rutrum nisi hendrerit auctor maximus. Proin pharetra, enim et eleifend facilisis,
+                velit diam suscipit ex, id porttitor dolor lectus a neque. Nam non lobortis urna. Morbi eu orci
+                tristique,
+                vehicula metus nec, gravida massa. Curabitur et est congue, ullamcorper ex sed, hendrerit nunc. Quisque
+                porta erat eget ligula scelerisque, vel maximus lectus eleifend. Nullam pharetra, diam ac interdum
+                tempor,
+                felis nisi vulputate purus, quis iaculis orci urna ac massa. Proin non commodo risus, nec porttitor
+                quam.
+                Aenean eget dictum lectus. Integer sed tincidunt sapien, at interdum nunc. Phasellus quam risus,
+                temporvel
+                ultrices sit amet, ultrices et orci. Nullam tempor vulputate dolor, sed gravida mauris finibus eu.
+            </p>
+            <p>
+                Integer commodo dolor non odio placerat convallis. Etiam nec venenatis lorem. Mauris sollicitudin arcu
+                pretium ullamcorper rutrum. Praesent gravida leo vulputate, volutpat neque at, blandit ex. Aliquam
+                posuere,
+                magna sit amet varius porttitor, erat purus pretium tellus, non mollis massa massa at nisl. Suspendisse
+                fermentum sed justo nec faucibus. Suspendisse potenti. Nulla facilisi. In gravida congue lacinia.
+                Pellentesque feugiat purus quis maximus eleifend. Fusce porta tortor nisi, et tincidunt purus tempor
+                vel.
+                Nunc in ante a diam tempus consectetur id et nulla. Integer sollicitudin ligula quis turpis aliquet,
+                eget
+                sodales est egestas. Sed a magna odio. Aenean id dolor et nunc fringilla tincidunt.
+            </p>
+            <p>
+                Pellentesque facilisis malesuada eros id dictum. Quisque vitae vehicula nibh. Curabitur in cursus arcu.
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam
+                cursus
+                eu metus id malesuada. Nunc mattis quis felis quis congue. Mauris vehicula turpis mi, sed commodo dolor
+                pulvinar sit amet. Maecenas pharetra mauris vitae mi molestie, in mattis enim volutpat. Nullam rhoncus
+                magna
+                lacus, et condimentum sapien venenatis a. Maecenas fermentum maximus consectetur. Vivamus orci arcu,
+                rutrum
+                vel augue sit amet, blandit tempus sem. Fusce a tempus tortor. Etiam facilisis dolor risus. Nunc ut
+                massa
+                ex. Quisque tempus nisl quis velit consectetur luctus. Sed at lacus mattis, finibus quam a, interdum
+                turpis.
+            </p>
+            <p>
+                Pellentesque et lectus elementum, egestas sapien non, dictum tortor. Proin ac mi in arcu laoreet
+                vehicula at
+                et odio. Phasellus orci nibh, ultrices non convallis sit amet, condimentum vel felis. Phasellus dapibus
+                metus vel semper imperdiet. Pellentesque sodales, tortor porta volutpat dapibus, mi diam iaculis sem, id
+                tincidunt ipsum metus ut lorem. Cras semper lobortis magna ut commodo. Pellentesque libero purus, congue
+                vel
+                ligula vel, viverra vestibulum felis. Sed et mi at dolor viverra laoreet. Fusce fringilla aliquam
+                luctus.
+                Donec vitae rutrum eros. Nullam id augue eu quam elementum sagittis. Proin arcu nisl, mollis in
+                tincidunt
+                eu, interdum sit amet turpis. Ut id velit non lectus vehicula egestas vitae vel ligula.
+            </p>
+            <p>
+                Sed arcu ipsum, hendrerit eget mi ac, tristique tempus sem. Ut hendrerit tortor urna, id aliquam orci
+                porttitor nec. Praesent felis justo, dictum quis metus id, fermentum pellentesque sapien. Praesent
+                pharetra
+                ex vel erat ultricies aliquam. Morbi vestibulum nunc in metus finibus mollis. Donec semper libero eu
+                tempus
+                sagittis. Aliquam ornare elementum elementum. Quisque ullamcorper placerat diam. Sed sodales mauris vel
+                velit efficitur eleifend. Praesent ac elit quis lectus viverra maximus nec fringilla risus. Proin congue
+                molestie metus, euismod auctor justo laoreet id. Vivamus semper dolor vitae ante aliquet, in feugiat
+                nulla
+                imperdiet. Vivamus non elementum purus. Curabitur viverra commodo enim nec ornare.
+            </p>
+        </div>
+    </div>
 </body>
 
 </html>
