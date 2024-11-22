@@ -30,7 +30,22 @@ body {
 
 .main {
     margin-left: 200px;
+    margin-right: 250px;
     /* Same as the width of the sidenav */
+}
+
+@media screen and (max-width: 1200px) {
+    .main {
+        margin-right: 100px;
+    }
+    .floatR{
+        width: 75%;
+        height: 75%;
+    }
+    .floatL{
+        width: 75%;
+        height: 75%;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -44,6 +59,15 @@ body {
 
     .main {
         margin-left: 100px;
+        margin-right: 0px;
+    }
+    .floatR{
+        width: 50%;
+        height: 50%;
+    }
+    .floatL{
+        width: 50%;
+        height: 50%;
     }
 }
 
@@ -88,10 +112,28 @@ div.desc {
     .responsive {
         width: 100%;
     }
+    .floatR{
+        float: none;
+        width: 100%;
+        height: 100%;
+    }
+    .floatL{
+        float: none;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .clearfix:after {
     content: "";
     display: table;
     clear: both;
+}
+
+.floatR{
+    float: right;
+}
+
+.floatL{
+    float: left;
 }
