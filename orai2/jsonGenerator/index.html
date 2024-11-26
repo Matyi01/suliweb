@@ -7,23 +7,33 @@
     <title>JSON Generate</title>
 </head>
 
-<bod onload="init()">
-    Token:
-    rrtexooh7iwi9wuy0h0atmtht0f0mx4vwc4snasq
-
-    Data:
-    https://api.json-generator.com/templates/Mq2sLT2T0YXs/data
+<body onload="init()">
+    <p>
+        Token <br>
+        rrtexooh7iwi9wuy0h0atmtht0f0mx4vwc4snasq <br>
+        un6m5dz2imxae872aj4azks30ji6v43dil8q8klz
+    </p>
+    <p>
+        Data: <br>
+        https://api.json-generator.com/templates/Mq2sLT2T0YXs/data <br>
+        https://api.json-generator.com/templates/2HEtiS7DtL3-/data <br>
+        https://api.json-generator.com/templates/Mq2sLT2T0YXs/data
+    </p>
     <script>
-        function init(){
-
+        let url = "https://api.json-generator.com/templates/Mq2sLT2T0YXs/data";
+        let token = "un6m5dz2imxae872aj4azks30ji6v43dil8q8klz";
+        function init() {
+            letoltes();
         }
 
-        function letoltes(){
-            let xhr = new XMLHttpRequest;
-            xhr.onlolad = function(){
+        function letoltes() {
+            let xhr = new XMLHttpRequest();
 
+            xhr.onload = function () {
+                console.log(this.response);
             }
-            xhr.open("GET", "https://api.json-generator.com/templates/Mq2sLT2T0YXs/data=rrtexooh7iwi9wuy0h0atmtht0f0mx4vwc4snasq");
+            xhr.open("GET", url + "?access_token=" + token);
+            xhr.send();
         }
     </script>
 </body>
