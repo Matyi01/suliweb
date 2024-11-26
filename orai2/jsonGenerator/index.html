@@ -5,20 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON Generate</title>
+    <style>
+        .card{
+            width: 500px;
+            height: 600px;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: aliceblue;
+            margin: auto;
+            font-size: large;
+        }
+        .dataDiv{
+            padding: 5px;
+            
+        }
+        .data{
+            margin-left: 60px;
+
+        }
+    </style>
 </head>
 
 <body onload="init()">
-    <p>
+    <!--
+        <p>
         Token <br>
         rrtexooh7iwi9wuy0h0atmtht0f0mx4vwc4snasq <br>
         un6m5dz2imxae872aj4azks30ji6v43dil8q8klz
     </p>
     <p>
-        Data: <br>
+        Url: <br>
         https://api.json-generator.com/templates/Mq2sLT2T0YXs/data <br>
         https://api.json-generator.com/templates/2HEtiS7DtL3-/data <br>
         https://api.json-generator.com/templates/Mq2sLT2T0YXs/data
     </p>
+    -->
+
+
     <script>
         let url = "https://api.json-generator.com/templates/Mq2sLT2T0YXs/data";
         let token = "un6m5dz2imxae872aj4azks30ji6v43dil8q8klz";
@@ -30,10 +54,66 @@
             let xhr = new XMLHttpRequest();
 
             xhr.onload = function () {
-                console.log(this.response);
+                const adatok = JSON.parse(this.responseText);
+                console.log(adatok);
+                cardKeszit(adatok);
+
             }
             xhr.open("GET", url + "?access_token=" + token);
             xhr.send();
+        }
+
+        function cardKeszit(data) {
+            let body = document.getElementsByTagName("body")[0];
+            let card = document.createElement("div");
+            card.classList.add("card");
+
+            let nameDiv = document.createElement("div");
+            nameDiv.innerHTML = "Név: ";
+            nameDiv.classList.add("dataDiv");
+            let name = document.createElement("span");
+            name.innerHTML = data[0].profile.name;
+            name.classList.add("data");
+            nameDiv.appendChild(name);
+            card.appendChild(nameDiv);
+
+            let emailDiv = document.createElement("div");
+            emailDiv.innerHTML = "Email: ";
+            emailDiv.classList.add("dataDiv");
+            let email = document.createElement("span");
+            email.innerHTML = data[0].email;
+            email.classList.add("data");
+            emailDiv.appendChild(email);
+            card.appendChild(emailDiv);
+
+            let aboutDiv = document.createElement("div");
+            aboutDiv.innerHTML = "Leírás: ";
+            aboutDiv.classList.add("dataDiv");
+            let about = document.createElement("span");
+            about.innerHTML = data[0].profile.about;
+            about.classList.add("data");
+            aboutDiv.appendChild(about);
+            card.appendChild(aboutDiv);
+
+            let addressDiv = document.createElement("div");
+            addressDiv.innerHTML = "Cím: ";
+            addressDiv.classList.add("dataDiv");
+            let address = document.createElement("span");
+            address.innerHTML = data[0].profile.address;
+            address.classList.add("data");
+            addressDiv.appendChild(address);
+            card.appendChild(addressDiv);
+
+            let companyDiv = document.createElement("div");
+            companyDiv.innerHTML = "Cég: ";
+            companyDiv.classList.add("dataDiv");
+            let company = document.createElement("span");
+            company.innerHTML = data[0].profile.company;
+            company.classList.add("data");
+            companyDiv.appendChild(company);
+            card.appendChild(companyDiv);
+
+            body.appendChild(card);
         }
     </script>
 </body>
