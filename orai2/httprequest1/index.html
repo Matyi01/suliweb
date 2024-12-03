@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload="init()">
+    <script>
+        function init() {
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                let adatok = JSON.parse(this.responseText);
+                let image = document.createElement("img");
+                image.src = adatok.results[0].picture.large;
+                document.getElementsByTagName("body")[0].appendChild(image);
+            }
+            xhr.open("get", "https://randomuser.me/api/");
+            xhr.send();
+
+            fetch("https://randomuser.me/api/")
+                .then(x => x.text())
+                .then(y => {
+                    let adatok = JSON.parse(y);
+                    let image = document.createElement("img");
+                    image.src = adatok.results[0].picture.large;
+                    document.getElementsByTagName("body")[0].appendChild(image);
+                });
+        }
+    </script>
+</body>
+
+</html>
