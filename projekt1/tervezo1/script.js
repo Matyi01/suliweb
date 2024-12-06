@@ -2,7 +2,8 @@ class szekClass {
     constructor(posx, posy) {
         this.posx = posx;
         this.posy = posy;
-        this.size = 20;
+        this.width = 20;
+        this.height = 20;
     }
 }
 
@@ -53,8 +54,8 @@ function init() {
     function handleMouseClick(e) {
         //if (aktivSzek != 0){
         for (let i = 0; i < szekek.length; i++) {
-            if (szekek[i].posx > parseInt(e.offsetX) - 20 && szekek[i].posx < parseInt(e.offsetX)
-                && szekek[i].posy > parseInt(e.offsetY) - 20 && szekek[i].posy < parseInt(e.offsetY)) {
+            if (szekek[i].posx > parseInt(e.offsetX) - szekek[i].width && szekek[i].posx < parseInt(e.offsetX)
+                && szekek[i].posy > parseInt(e.offsetY) - szekek[i].height && szekek[i].posy < parseInt(e.offsetY)) {
                 console.log("asd");
                 aktivSzek = i;
                 return;
