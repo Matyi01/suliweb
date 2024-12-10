@@ -7,7 +7,22 @@ class szekClass {
     }
 }
 
+var szekek = [new szekClass(0, 0),
+new szekClass(220, 200),
+new szekClass(260, 200),
+new szekClass(300, 200),
+new szekClass(340, 200)
+];
+
+var aktivSzek = 0;
+
+let selectSzamlalo = 0;
+
 function init() {
+    mozgat();
+}
+
+function mozgat() {
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     /*
@@ -16,13 +31,6 @@ function init() {
     ctx.stroke();
     */
 
-    var szekek = [new szekClass(0, 0),
-    new szekClass(220, 200),
-    new szekClass(260, 200),
-    new szekClass(300, 200),
-    new szekClass(340, 200),
-    ];
-    var aktivSzek = 0;
     szekek.forEach(function (szek) { draw(szek.posx, szek.posy); });
 
     // listen for all mousedown events on the canvas
@@ -56,7 +64,6 @@ function init() {
         for (let i = 0; i < szekek.length; i++) {
             if (szekek[i].posx > parseInt(e.offsetX) - szekek[i].width && szekek[i].posx < parseInt(e.offsetX)
                 && szekek[i].posy > parseInt(e.offsetY) - szekek[i].height && szekek[i].posy < parseInt(e.offsetY)) {
-                console.log("asd");
                 aktivSzek = i;
                 return;
             }
@@ -65,7 +72,6 @@ function init() {
 
         aktivSzek = 0;
     }
-
 }
 
 function draw(x, y) {
@@ -81,3 +87,91 @@ function draw(x, y) {
     }
 }
 
+function szek1() {
+    let tempSzek = new szekClass(100, 100);
+    szekek.push(tempSzek);
+}
+
+function areaSelect() {
+    selectSzamlalo++;
+    if (selectSzamlalo % 2 == 1) {
+        let kezdX = 0;
+        let kezdY = 0;
+        let mozog = false;
+
+        let xDb = 0;
+        let yDb = 0;
+
+        function handleMouseClick(e) {
+            if (!mozog) {
+                kezdX = parseInt(e.offsetX);
+                kezdY = parseInt(e.offsetY);
+            }
+            else {
+                xDb = Math.floor((parseInt(e.offsetX) - kezdX) / 30);
+                yDb = Math.floor((parseInt(e.offsetY) - kezdY) / 40);
+                console.log(xDb);
+                console.log(yDb);
+
+                if (xDb > 0 && yDb > 0) {
+                    for (let i = 0; i < xDb; i++) {
+                        for (let j = 0; j < yDb; j++) {
+                            let tempSzek = new szekClass(kezdX + i * 30, kezdY + j * 40)
+                            szekek.push(tempSzek);
+                        }
+                    }
+                }
+                else if (xDb < 0 && yDb > 0) {
+                    for (let i = 0; i > xDb; i--) {
+                        for (let j = 0; j < yDb; j++) {
+                            let tempSzek = new szekClass(kezdX + i * 30, kezdY + j * 40)
+                            szekek.push(tempSzek);
+                        }
+                    }
+                }
+                else if (xDb > 0 && yDb < 0) {
+                    for (let i = 0; i < xDb; i++) {
+                        for (let j = 0; j > yDb; j--) {
+                            let tempSzek = new szekClass(kezdX + i * 30, kezdY + j * 40)
+                            szekek.push(tempSzek);
+                        }
+                    }
+                } else if (xDb < 0 && yDb < 0) {
+                    for (let i = 0; i > xDb; i--) {
+                        for (let j = 0; j > yDb; j--) {
+                            let tempSzek = new szekClass(kezdX + i * 30, kezdY + j * 40)
+                            szekek.push(tempSzek);
+                        }
+                    }
+                }
+            }
+            mozog = !mozog;
+        }
+
+        function handleMouseMove(e) {
+            if (mozog) {
+                ctx.clearRect(0, 0, c.width, c.height); //tötöl
+
+                szekek.forEach(function (szek) { draw(szek.posx, szek.posy); }); //székeket berajzolja
+
+
+
+                ctx.beginPath();
+                ctx.strokeStyle = "black";
+                ctx.strokeRect(kezdX, kezdY, parseInt(e.offsetX) - kezdX, parseInt(e.offsetY) - kezdY);
+                ctx.stroke();
+            }
+        }
+
+
+        aktivSzek = 0;
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        c.onmousemove = function (e) { handleMouseMove(e); };
+        c.onclick = function (e) { handleMouseClick(e); };
+    }
+    else {
+        mozgat();
+    }
+
+}
