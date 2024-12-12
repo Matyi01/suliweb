@@ -75,6 +75,8 @@ function mozgat() {
 }
 
 function draw(x, y) {
+    document.getElementById("szekDb").innerHTML = szekek.length - 1;
+
     if (x != 0 && y != 0) {
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
@@ -95,6 +97,8 @@ function szek1() {
 function areaSelect() {
     selectSzamlalo++;
     if (selectSzamlalo % 2 == 1) {
+        document.getElementById("areaSelect").style.backgroundColor = "lightgrey";
+
         let kezdX = 0;
         let kezdY = 0;
         let mozog = false;
@@ -110,8 +114,6 @@ function areaSelect() {
             else {
                 xDb = Math.floor((parseInt(e.offsetX) - kezdX) / 30);
                 yDb = Math.floor((parseInt(e.offsetY) - kezdY) / 40);
-                console.log(xDb);
-                console.log(yDb);
 
                 if (xDb > 0 && yDb > 0) {
                     for (let i = 0; i < xDb; i++) {
@@ -144,6 +146,9 @@ function areaSelect() {
                         }
                     }
                 }
+                ctx.clearRect(0, 0, c.width, c.height); //tötöl
+
+                szekek.forEach(function (szek) { draw(szek.posx, szek.posy); }); //székeket berajzolja
             }
             mozog = !mozog;
         }
@@ -171,7 +176,30 @@ function areaSelect() {
         c.onclick = function (e) { handleMouseClick(e); };
     }
     else {
+        document.getElementById("areaSelect").style.backgroundColor = "white";
+
         mozgat();
     }
+}
 
+let szek1TorolAktiv = false;
+function szek1Torol() {
+    var c = document.getElementById("myCanvas");
+    if (!szek1TorolAktiv) {
+        document.getElementById("szek1Torol").style.backgroundColor = "lightgrey";
+        c.onclick = function (e) { handleMouseClick(e); };
+    }
+    else {
+        document.getElementById("szek1Torol").style.backgroundColor = "white";
+        mozgat();
+    }
+    szek1TorolAktiv = !szek1TorolAktiv;
+    function handleMouseClick(e) {
+        for (let i = 0; i < szekek.length; i++) {
+            if (szekek[i].posx > parseInt(e.offsetX) - szekek[i].width && szekek[i].posx < parseInt(e.offsetX)
+                && szekek[i].posy > parseInt(e.offsetY) - szekek[i].height && szekek[i].posy < parseInt(e.offsetY)) {
+                szekek.splice(i, 1);
+            }
+        }
+    }
 }
