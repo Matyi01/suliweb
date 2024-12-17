@@ -11,3 +11,7 @@ body {
 input {
     background-color: white;
 }
+
+#myCanvas{
+    background-color: antiquewhite;
+}

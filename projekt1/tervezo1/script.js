@@ -60,16 +60,15 @@ function mozgat() {
     }
 
     function handleMouseClick(e) {
-        //if (aktivSzek != 0){
-        for (let i = 0; i < szekek.length; i++) {
-            if (szekek[i].posx > parseInt(e.offsetX) - szekek[i].width && szekek[i].posx < parseInt(e.offsetX)
-                && szekek[i].posy > parseInt(e.offsetY) - szekek[i].height && szekek[i].posy < parseInt(e.offsetY)) {
-                aktivSzek = i;
-                return;
+        if (aktivSzek == 0) {
+            for (let i = 0; i < szekek.length; i++) {
+                if (szekek[i].posx > parseInt(e.offsetX) - szekek[i].width && szekek[i].posx < parseInt(e.offsetX)
+                    && szekek[i].posy > parseInt(e.offsetY) - szekek[i].height && szekek[i].posy < parseInt(e.offsetY)) {
+                    aktivSzek = i;
+                    return;
+                }
             }
         }
-        //}
-
         aktivSzek = 0;
     }
 }
