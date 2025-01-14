@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #negyzet {
+            background-color: green;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        p {
+            color: white;
+            line-height: 1.5;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body onload="init()">
+    <div id="negyzet">
+        <p id="szam">a</p>
+    </div>
+    <script>
+        function init() {
+
+            function kicsinyit(i) {
+                szam.innerHTML = i;
+                negyzet.style.width = negyzet.style.width - 10 + "px";
+                negyzet.style.height = negyzet.style.height - 10 + "px";
+            }
+            function nagyit(i) {
+                szam.innerHTML = i;
+                negyzet.style.width = negyzet.style.width + 10 + "px";
+                negyzet.style.height = negyzet.style.height + 10 + "px";
+            }
+
+
+            let negyzet = document.getElementById("negyzet");
+            let szam = document.getElementById("szam");
+            negyzet.style.width = "100px";
+            negyzet.style.height = "100px";
+
+
+            while (true) {
+                console.log("a")
+                for (let i = 1; i < 100; i++) {
+                    console.log("b")
+                    setInterval(nagyit(i),100)
+                }
+                for (let i = 100; i > 0; i--) {
+                    console.log("c")
+                    setInterval(kicsinyit(i),100)
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
