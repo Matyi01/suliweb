@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td{
+            border: 1px solid black;
+            box-sizing: border-box;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body onload="tablakeszit(10,10)">
+
+    <script>
+        function tablakeszit(sor, oszlop) {
+            let tabla = jQuery("<table>");
+            for (let i = 1; i <= sor; i++) {
+                let tablasor = jQuery("<tr>")
+                for (let j = 1; j <= oszlop; j++) {
+                    let tablacella = jQuery("<td>")
+                    tablacella.html(i*j);
+                    tablacella.click(function(){
+                        $(this).html("");
+                    });
+                    tablasor.append(tablacella);
+                }
+                tabla.append(tablasor);
+            }
+            $("body").append(tabla);
+        }
+    </script>
+</body>
+
+</html>
