@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        td{
+        td {
             border: 1px solid black;
             box-sizing: border-box;
             width: 50px;
             height: 50px;
             text-align: center;
         }
+
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
@@ -26,12 +27,26 @@
                 let tablasor = jQuery("<tr>")
                 for (let j = 1; j <= oszlop; j++) {
                     let tablacella = jQuery("<td>")
-                    tablacella.html(i*j);
-                    tablacella.click(function(){
-                        $(this).html("");
+                    tablacella.addClass(j);
+                    tablacella.html(i * j);
+                    tablacella.click(function () {
+                        if ($(this).css("opacity") == 0.01) {
+                            $(this).fadeTo("slow", 1);
+                        }
+                        else {
+                            $(this).fadeTo("slow", 0.01);
+                        }
                     });
                     tablasor.append(tablacella);
                 }
+                let gombcella = jQuery("<td>");
+                let gomb = jQuery("<button>");
+                gomb.on("click", function(){
+                    $(this).parent().parent().fadeTo("slow", 0.01);
+                });
+                gomb.html("kuka");
+                gombcella.append(gomb);
+                tablasor.append(gombcella);
                 tabla.append(tablasor);
             }
             $("body").append(tabla);
