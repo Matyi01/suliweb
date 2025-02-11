@@ -1,0 +1,26 @@
+.card {
+    display: inline-block;
+    margin: 2rem;
+}
+
+.card-text {
+    overflow: auto;
+    font-size: larger;
+}
+
+.card-img-top {
+    height: 18rem;
+    max-width: 18rem;
+    object-fit: contain;
+}
+
+.card-container {
+    display: flex;
+    height: 25rem;
+    flex-direction: column;
+}
+
+.card-price {
+    display: flex;
+    justify-content: center;
+}
