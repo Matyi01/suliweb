@@ -3,6 +3,9 @@ function kartyakeszit(e) {
     card.addClass("card");
     card.css("width", "18rem")
     card.attr("id", "card");
+    card.click(function () {
+        togglePopup();
+    });
 
     let img = jQuery("<img>");
     img.addClass("card-img-top");
@@ -28,6 +31,13 @@ function kartyakeszit(e) {
     cardtext.attr("id", "cardtext");
     cardtext.html(e.description);
 
+    let cardrating = jQuery("<i>");
+    cardrating.attr("data-star", e.rating.rate);
+
+    let cardratingcount = jQuery("<div>");
+    cardratingcount.html("(" + e.rating.count + ")");
+    cardratingcount.addClass("cardratingcount");
+
     let cardprice = jQuery("<h2>");
     cardprice.addClass("card-price");
     cardprice.attr("id", "cardprice");
@@ -37,10 +47,13 @@ function kartyakeszit(e) {
     cardcontainer.append(cardtitle);
     cardcontainer.append(cardtext);
     cardbody.append(cardcontainer);
+    cardbody.append(cardrating);
+    cardbody.append(cardratingcount);
     cardbody.append(cardprice);
     card.append(cardbody);
     $("body").append(card);
 }
+
 $.ajax({
     url: 'https://fakestoreapi.com/products',
     dataType: 'json',
@@ -51,3 +64,8 @@ $.ajax({
         }
     }
 });
+
+// Function to show and hide the popup
+function togglePopup() {
+    $(".content").toggle();
+}
