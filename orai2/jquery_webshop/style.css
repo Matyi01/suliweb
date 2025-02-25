@@ -30,31 +30,36 @@
     top: -0.2rem;
 }
 
+
 .content {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
-    height: 200px;
+    width: 750px;
+    height: fit-content;
     text-align: center;
-    background-color: #e8eae6;
+    background-color: white;
     box-sizing: border-box;
-    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 25px;
     z-index: 100;
     display: none;
     /*to hide popup initially*/
 }
 
-.close-btn {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    background-color: black;
-    color: white;
-    border-radius: 50%;
-    padding: 4px;
-    cursor: pointer;
+#popupimg{
+    height: 18rem;
+    max-width: 18rem;
+    object-fit: contain;
+    margin-top: 1rem;
+    float: right;
+}
+
+#popuptext{
+    width: 400px;
+    float: left;
 }
 
 [data-star] {

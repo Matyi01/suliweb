@@ -5,6 +5,7 @@ function kartyakeszit(e) {
     card.attr("id", "card");
     card.click(function () {
         togglePopup();
+        makepopup(e);
     });
 
     let img = jQuery("<img>");
@@ -68,4 +69,10 @@ $.ajax({
 // Function to show and hide the popup
 function togglePopup() {
     $(".content").toggle();
+}
+
+function makepopup(e){
+    $("#popuptitle").html(e.title);
+    $("#popuptext").text(e.description);
+    $("#popupimg").attr("src", e.image);
 }

@@ -18,14 +18,10 @@
 
     <!-- div containing the popup -->
     <div class="content">
-        <div onclick="togglePopup()" class="close-btn">
-            &times
-        </div>
-        <h3>Popup</h3>
-
-        <p>
-
-        </p>
+        <button type="button" class="float-start btn-close" aria-label="Close" onclick="togglePopup()"></button>
+        <h3 id="popuptitle"></h3>
+        <p id="popuptext" class="fs-5"></p>
+        <img id="popupimg">
     </div>
 </body>
 
