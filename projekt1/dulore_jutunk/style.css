@@ -3,6 +3,11 @@ body {
     font-size: 3rem;
 }
 
+h1 {
+    font-size: 5rem;
+    margin: 5rem;
+}
+
 #main {
     width: fit-content;
     height: fit-content;
@@ -13,4 +18,89 @@ body {
 #start {
     margin-top: 2rem;
     font-size: 3rem;
+}
+
+#game {
+    display: none;
+}
+
+.kartya {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+}
+
+#kartyak {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#game {
+    height: 100vh;
+}
+
+#alja {
+    position: absolute;
+    width: 700px;
+    height: 200px;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+}
+
+#bal {
+    position: absolute;
+    width: 700px;
+    height: 200px;
+    top: 50%;
+    left: -250px;
+    transform: translate(0, -50%);
+    transform: rotate(90deg);
+}
+
+#jobb {}
+
+div {
+    border: 1px solid black;
+
+}
+
+.circle-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.circle-row {
+    display: flex;
+    gap: 5px;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.pink {
+    background-color: pink;
 }
