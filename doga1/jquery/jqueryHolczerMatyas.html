@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dolgozat</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        #doboz {
+            position: fixed;
+            top: 50px;
+            right: 5%;
+            width: 250px;
+            height: auto;
+            padding: 5px;
+            border: 0.5px solid lightgrey;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row sticky-top bg-white" id="fejlec">
+            <div class="col-1 border">
+                Ár
+            </div>
+            <div class="col-2 border">
+                Dátum
+            </div>
+            <div class="col-1 border">
+                Km óra
+            </div>
+            <div class="col-1 border">
+                Kút
+            </div>
+            <div class="col-1 border">
+                Liter
+            </div>
+            <div class="col-2 border">
+                Fizetett összeg
+            </div>
+            <div class="col-1 border">
+                Megtett út
+            </div>
+
+        </div>
+    </div>
+    <div id="doboz">
+        <div id="db"></div>
+        <div id="litersum"></div>
+        <div id="ftsum"></div>
+        <div id="haviatlagft"></div>
+        <div id="haviatlagut"></div>
+        <div id="legnepszerubb"></div>
+    </div>
+    <script>
+        function adatkeszit(e, elozo) {
+            let sor = jQuery("<div>");
+            sor.addClass("row");
+
+            let ar = jQuery("<div>");
+            ar.addClass("col-1");
+            ar.addClass("border");
+            ar.html(e.ar);
+
+            let datum = jQuery("<div>");
+            datum.addClass("col-2");
+            datum.addClass("border");
+            datum.html(e.datum);
+
+            let kmora = jQuery("<div>");
+            kmora.addClass("col-1");
+            kmora.addClass("border");
+            kmora.html(e.kmora);
+
+            let kut = jQuery("<div>");
+            kut.addClass("col-1");
+            kut.addClass("border");
+            kut.html(e.kut);
+
+            let liter = jQuery("<div>");
+            liter.addClass("col-1");
+            liter.addClass("border");
+            liter.html(e.liter);
+
+            let fizetett = jQuery("<div>");
+            fizetett.addClass("col-2");
+            fizetett.addClass("border");
+            fizetett.html((e.ar * e.liter).toFixed(2));
+
+            let megtett = jQuery("<div>");
+            megtett.addClass("col-1")
+            megtett.addClass("border");
+            megtett.html(e.kmora - elozo.kmora);
+            if (e.kmora - elozo.kmora > 1000) {
+                megtett.addClass("bg-danger");
+                megtett.addClass("text-light");
+            }
+
+
+            sor.append(ar);
+            sor.append(datum);
+            sor.append(kmora);
+            sor.append(kut);
+            sor.append(liter);
+            sor.append(fizetett);
+            sor.append(megtett);
+            $("#main").append(sor);
+        }
+
+        function monthDiff(d1, d2) { // Stackoverflow, de értem
+            var months;
+            months = (d2.getFullYear() - d1.getFullYear()) * 12;
+            months -= d1.getMonth();
+            months += d2.getMonth();
+            return months <= 0 ? 0 : months;
+        }
+
+        function mode(array) { // Stackoverflow, de értem
+            if (array.length == 0)
+                return null;
+            var modeMap = {};
+            var maxEl = array[0], maxCount = 1;
+            for (var i = 0; i < array.length; i++) {
+                var el = array[i];
+                if (modeMap[el] == null)
+                    modeMap[el] = 1;
+                else
+                    modeMap[el]++;
+                if (modeMap[el] > maxCount) {
+                    maxEl = el;
+                    maxCount = modeMap[el];
+                }
+            }
+            return maxEl;
+        }
+
+        $.ajax({
+            url: 'uzemanyag.json',
+            dataType: 'json',
+            success: function (data) {
+                let elozo = data.adatok[0];
+                data.adatok.forEach(e => {
+                    adatkeszit(e, elozo);
+                    elozo = e;
+                });
+                $("#db").html("Adatok száma: " + data.adatok.length);
+
+                let litersum = 0;
+                data.adatok.forEach(e => {
+                    litersum += e.liter;
+                });
+                $("#litersum").html("Összes üzemanyag: " + litersum.toFixed(2));
+
+                let ftsum = 0;
+                data.adatok.forEach(e => {
+                    ftsum += e.ar * e.liter;
+                });
+                $("#ftsum").html("Összes költság: " + ftsum.toFixed(2));
+
+                let honap = monthDiff(new Date(data.adatok[0].datum), new Date(data.adatok[data.adatok.length - 1].datum));
+                $("#haviatlagft").html("Havi átlag költség: " + (ftsum / honap).toFixed(2));
+
+                $("#haviatlagut").html("Havi átlag út: " + ((data.adatok[data.adatok.length - 1].kmora - data.adatok[0].kmora) / honap).toFixed(2));
+
+                let kutak = [];
+                data.adatok.forEach(e => {
+                    kutak.push(e.kut);
+                });
+                $("#legnepszerubb").html("Legnépszerűbb kút: " + mode(kutak));
+            }
+        });
+    </script>
+</body>
+
+</html>
