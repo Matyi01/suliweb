@@ -22,6 +22,7 @@ h1 {
 
 #game {
     display: none;
+    height: 100vh;
 }
 
 .kartya {
@@ -42,53 +43,63 @@ h1 {
     transform: translate(-50%, -50%);
 }
 
-#game {
-    height: 100vh;
+#mid {
+    height: 400px;
 }
 
-#alja {
-    position: absolute;
-    width: 700px;
-    height: 200px;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
+.left {
+    height: 25%;
 
 }
 
-#bal {
-    position: absolute;
-    width: 700px;
-    height: 200px;
-    top: 50%;
-    left: -250px;
-    transform: translate(0, -50%);
-    transform: rotate(90deg);
+.right {
+    height: 25%;
 }
 
-#jobb {}
-
-div {
-    border: 1px solid black;
-
+.felso{
+    height: 70px;
+    font-size: 0;
 }
+
+.also{
+    height: 30px;
+    font-size: 20px;
+}
+
+.card-row{
+    height: 33.3%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .circle-group {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    margin: 10px 0;
 }
 
 .circle-row {
     display: flex;
     gap: 5px;
+    justify-content: center;
+    border: 0;
 }
 
 .circle {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     border: 2px solid black;
 }
@@ -103,4 +114,27 @@ div {
 
 .pink {
     background-color: pink;
+}
+
+
+
+.bottle{
+    width: 20px;
+    height: 60px;
+    display: inline-block;
+}
+
+.bottle > .top{
+    margin: auto;
+
+    height: 15px;
+    width: 7.5px;
+    background-color: black;
+}
+
+.bottle > .bottom{
+    height: 45px;
+    border-top-left-radius: 7.5px;
+    border-top-right-radius: 7.5px;
+    border: 1px solid black;
 }
