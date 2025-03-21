@@ -1,6 +1,29 @@
-header{
+header {
     background-image: url(../img/bg.jpg);
     background-position: center;
     background-size: cover;
     height: 600px;
+}
+
+h1 {
+    font-family: Cambria, serif;
+    font-size: 5em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    color: turquoise;
+    background-color: rgba(255, 255, 255, 0.65);
+}
+
+h1 div{
+    font-size: 3rem;
+    font-style: italic;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+@media only screen and(max-width: 768px){
+    h1{
+        font-size: 3em;
+    }
 }
