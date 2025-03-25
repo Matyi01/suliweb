@@ -1,0 +1,155 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+}
+
+h1 {
+    font-size: 5rem;
+    margin: 5rem;
+}
+
+#main {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    text-align: center;
+}
+
+#start {
+    margin-top: 2rem;
+    font-size: 3rem;
+}
+
+#game {
+    display: none;
+    height: 100vh;
+}
+
+.kartya {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+}
+
+#kartyak {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#mid {
+    height: 400px;
+}
+
+.left {
+    height: 25%;
+
+}
+
+.right {
+    height: 25%;
+}
+
+.felso {
+    height: 70px;
+    font-size: 0;
+    display: inline-flex;
+    gap: 5px;
+}
+
+.also {
+    height: 30px;
+    font-size: 20px;
+}
+
+.card-row {
+    height: 33.3%;
+}
+
+
+
+
+
+
+.circle-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.circle-row {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    border: 0;
+}
+
+.circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.pink {
+    background-color: pink;
+}
+
+
+
+.bottle {
+    width: 20px;
+    height: 60px;
+    display: inline-block;
+}
+
+.bottle>.top {
+    margin: auto;
+    height: 15px;
+    width: 7.5px;
+    background-color: black;
+}
+
+.bottle>.bottom {
+    height: 45px;
+    border-top-left-radius: 7.5px;
+    border-top-right-radius: 7.5px;
+    border: 1px solid black;
+}
+
+
+
+
+.grape-cluster {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 33px;
+}
+
+.grape-row {
+    display: flex;
+}
+
+.grape {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin: -2px;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
