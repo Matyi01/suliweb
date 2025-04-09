@@ -22,6 +22,28 @@ h1 div{
     text-transform: none;
 }
 
+#navbar{
+    background-color: rgb(18, 112, 132);
+    color: white;
+}
+
+#lista > li{
+    list-style-image: url("../img/icon.png");
+    line-height: 25px;
+}
+
+h2{
+    font-variant: small-caps;
+}
+
+#reszeikep{
+    box-shadow: 2px 2px 5px black;
+}
+
+td, th{
+    border: 1px solid black;
+}
+
 @media only screen and(max-width: 768px){
     h1{
         font-size: 3em;
