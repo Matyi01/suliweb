@@ -47,32 +47,59 @@
         </nav>
     </div>
     <div class="container">
-        <table id="tablazat">
-            <tr>
-                <th colspan="2">Megnevezés</th>
-                <th>Ár</th>
-            </tr>
-            <tr>
-                <td rowspan="2">Hőlégballonos sétarepülő jegy</td>
-                <td>Felnőtt</td>
-                <td>40.000 Ft/fő</td>
-            </tr>
-            <tr>
-                <td>Gyerek (10-14 év)</td>
-                <td>28.000 Ft/fő</td>
-            </tr>
-            <tr>
-                <td>Privát/romantikus repülés</td>
-                <td></td>
-                <td>70.000 Ft/2 fő</td>
-            </tr>
-        </table>
-        <form>
-            <label for="fname">First name:</label><br>
-            <input type="text" id="fname" name="fname"><br>
-            <label for="lname">Last name:</label><br>
-            <input type="text" id="lname" name="lname">
-          </form>
+        <div class="row">
+            <table class="table table-bordered border-black table-striped">
+                <thead>
+                    <tr>
+                        <th colspan="2">Megnevezés</th>
+                        <th>Ár</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th rowspan="2">Hőlégballonos sétarepülő jegy</th>
+                        <td>Felnőtt</td>
+                        <td>40.000 Ft/fő</td>
+                    </tr>
+                    <tr>
+                        <td>Gyerek (10-14 év)</td>
+                        <td>28.000 Ft/fő</td>
+                    </tr>
+                    <tr>
+                        <th>Privát/romantikus repülés</th>
+                        <td></td>
+                        <td>70.000 Ft/2 fő</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h2>Hőlégballonos sétarepülő árkalkulátor</h2>
+                <form>
+                    <div class="mb-3 input-group">
+                        <input type="text" class="form-control" id="gyerek" placeholder="Gyermekek száma">
+                        <span class="input-group-text">fő</span>
+                    </div>
+                    <div class="mb-3 input-group">
+                        <input type="text" class="form-control" id="felnott" placeholder="Felnőttek száma">
+                        <span class="input-group-text">fő</span>
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-primary" id="gomb" onclick="katt()">Számoljunk együtt</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+    <div class="container" id="result">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 alert alert-info"></div>
+            <div class="col-3"></div>
+        </div>
     </div>
 
     <script src="../js/script.js"></script>

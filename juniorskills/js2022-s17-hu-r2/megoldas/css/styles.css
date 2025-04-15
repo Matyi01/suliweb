@@ -40,8 +40,31 @@ h2{
     box-shadow: 2px 2px 5px black;
 }
 
-td, th{
-    border: 1px solid black;
+th, td{
+    text-align: center;
+    vertical-align: middle;
+}
+
+th{
+    font-weight: bold;
+}
+
+tbody th{
+    background-color: rgba(18, 112, 132, 0.2) !important;
+}
+
+input{
+    text-align: end;
+}
+
+#gomb{
+    border: 0px;
+    background-color: rgb(18, 112, 132);
+    color: white;
+}
+
+#gomb:hover, #gomb:focus{
+    color: white;
 }
 
 @media only screen and(max-width: 768px){
