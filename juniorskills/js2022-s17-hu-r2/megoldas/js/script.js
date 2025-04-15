@@ -5,6 +5,7 @@ function katt() {
 
     if (!(!isNaN(gyerek) && gyerek >= 0 && !isNaN(felnott) && felnott >= 0)) {
         alert("A megadott érték nem egész szám! A létszám legyen legalább 0");
+        document.getElementById("alert").classList.add("d-none");
         return;
     }
     let ertek = felnott * 40000 + gyerek * 28000;
@@ -15,5 +16,10 @@ function katt() {
     </div>
     */
 
-    document.getElementById("result").innerHTML(ertek);
+    document.getElementById("alert").classList.remove("d-none");
+    document.getElementById("result").innerHTML = ertek;
+}
+
+function becsuk(){
+    document.getElementById("alert").classList.add("d-none");
 }
