@@ -3,7 +3,7 @@ const newUser = {
     job: 'Teacher'
 };
 
-fetch('https://reqres.in/api/uers/55', {
+fetch('https://reqres.in/api/users/55', {
     method: 'PUT',
     headers: {
         'Content-Type': 'application/json'
