@@ -20,6 +20,16 @@ class Kutya {
         this.datum = datum;
     }
 }
+const kutyaNevek = [];
 function init(){
     console.log("cs");
+    fetch("KutyaNevek.csv").then(x => x.text()).then(szoveg => {
+        const sorok = szoveg.split("\r\n");
+        sorok.shift();
+        sorok.forEach(e => {
+            const vag = e.split(";");
+            kutyaNevek.push(new kutyaNev(parseInt(vag[0]), vag[1]));
+        });
+    });
+
 }
