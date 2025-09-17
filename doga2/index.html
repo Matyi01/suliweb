@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dologzat</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+        input{
+            margin: 5px;
+            font-size: 20px;
+            border-radius: 5px;
+            height: 35px;
+        }
+        form{
+            align-items: center;
+        }
+        li{
+            border: 1px solid black;
+            width: fit-content;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <label for="be">Kérek egy szót: </label>
+        <input type="text" name="be" id="be"><br>
+        <input type="button" onclick="ok()" value="Ok"><br>
+        <input type="button" onclick="sort()" value="abc">
+        <input type="button" onclick="revsort()" value="cba">
+        <p>Lista elemek kattintásra tölrődnek</p>
+    </form>
+    <h1 id="h"></h1>
+    <ul id="lista">
+    </ul>
+    <script>
+        let lista = [];
+        function randkiir() {
+            if (lista.length != 0){
+                document.getElementById("h").innerHTML = lista[Math.floor(Math.random() * lista.length)];
+            }
+        }
+        setInterval(randkiir, 1000)
+        function ok() {
+            let be = document.getElementById("be").value;
+            if (/^[a-zA-Z]+$/.test(be)) {
+                lista.push(be);
+                let li = document.createElement("li");
+                li.innerHTML = be;
+                li.onclick = function () { li.remove(); }
+                document.getElementById("lista").appendChild(li)
+            }
+            else {
+                alert("Hiba! Speciális karakterek");
+            }
+        }
+        function sort() {
+            let templista = lista.sort();
+            document.getElementById("lista").innerHTML = "";
+            templista.forEach(e => {
+                let li = document.createElement("li");
+                li.innerHTML = e;
+                li.onclick = function () { li.remove(); }
+                document.getElementById("lista").appendChild(li)
+            });
+        }
+        function revsort() {
+            let templista = lista.sort().reverse();
+            document.getElementById("lista").innerHTML = "";
+            templista.forEach(e => {
+                let li = document.createElement("li");
+                li.innerHTML = e;
+                li.onclick = function () { li.remove(); }
+                document.getElementById("lista").appendChild(li)
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gyak4</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</head>
+
+<body onload="init()">
+    10 tartalmi rész és azok között lehessen lapozni
+
+    <div id="tartalom">
+        <div class="container" id="1">
+            elso oldal
+        </div>
+        <div class="container" id="2">
+            masodik oldal
+        </div>
+        <div class="container" id="3">
+            harmadik oldal
+        </div>
+        <div class="container" id="4">
+            negyedik oldal
+        </div>
+        <div class="container" id="5">
+            ötödik oldal
+        </div>
+        <div class="container" id="6">
+            hatodik oldal
+        </div>
+        <div class="container" id="7">
+            hetedik oldal
+        </div>
+        <div class="container" id="8">
+            nyolcadik oldal
+        </div>
+
+    </div>
+
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <div class="page-link" onclick="megnyit(0)">1</div>
+            </li>
+            <li class="page-item">
+                <div class="page-link" onclick="megnyit(1)">2</div>
+            </li>
+            <li class="page-item">
+                <div class="page-link" onclick="megnyit(2)">3</div>
+            </li>
+            <li class="page-item">
+                <div class="page-link" onclick="megnyit(3)">4</div>
+            </li>
+            <li class="page-item">
+                <div class="page-link" onclick="megnyit(4)">5</div>
+            </li>
+            <li class="page-item">
+                <div class="page-link" onclick="megnyit(5)">6</div>
+            </li>
+            <li class="page-item">
+                <div class="page-link" onclick="megnyit(6)">7</div>
+            </li>
+            <li class="page-item">
+                <div class="page-link" onclick="megnyit(7)">8</div>
+            </li>
+        </ul>
+    </nav>
+
+
+    <script>
+        function init(){
+            let belseje = document.getElementById("tartalom").children;
+
+            for (let i = 0; i < belseje.length; i++) {
+                belseje[i].style.display = "none";
+            }
+        }
+
+        function megnyit(szam) {
+
+            let belseje = document.getElementById("tartalom").children;
+
+            console.log(belseje);
+
+            for (let i = 0; i < belseje.length; i++) {
+                belseje[i].style.display = "none";
+            }
+
+            belseje[szam].style.display = "block";
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
