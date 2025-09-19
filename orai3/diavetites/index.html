@@ -114,7 +114,6 @@
         }
 
         function menuKeszit() {
-
             let menu = document.getElementsByClassName("pagination")[0];
             menu.innerHTML = "";
             menu.appendChild(menupont("Előző", -1, false))
@@ -123,7 +122,6 @@
                 menu.appendChild(menupont(i, i, aktualisTartalom === i));
             }
             menu.appendChild(menupont("Következő", 0, false));
-            
         }
         function menupont(szoveg, tartalomid, aktivmenu) {
             let elem = document.createElement("li");
