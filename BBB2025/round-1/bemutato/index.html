@@ -20,6 +20,7 @@
             border-radius: 15px;
             padding: 20px;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -58,34 +59,34 @@
         </div>
         <div class="row">
             <div class="col-3">
-                <img src="ady-logo.png" alt="Papp Péter képe" class="img-fluid p-3" style="max-height: 300px;">
+                <p id="bemutat1" style="height: 300px;">
+                    <img src="ady-logo.png" alt="Papp Péter képe" class="img-fluid" style="height: 300px;">
+                </p>
+                <input type="button" class="btn btn-light" value="Papp Péter bemutatkozása" onclick="bemutat1()">
             </div>
             <div class="col-3">
-                <img src="ady-logo.png" alt="Takács Bence képe" class="img-fluid p-3" style="max-height: 300px;">
+                <p id="bemutat2" style="height: 300px;">
+                    <img src="ady-logo.png" alt="Takács Bence képe" class="img-fluid" style="height: 300px;">
+                </p>
+                <input type="button" class="btn btn-light" value="Takács Bence bemutatkozása" onclick="bemutat2()">
             </div>
             <div class="col-3">
-                <img src="ady-logo.png" alt="Konyhási Máté képe" class="img-fluid p-3" style="max-height: 300px;">
+                <p id="bemutat3" style="height: 300px;">
+                    <img src="ady-logo.png" alt="Konyhási Máté képe" class="img-fluid" style="height: 300px;">
+                </p>
+                <input type="button" class="btn btn-light" value="Konyhási Máté bemutatkozása" onclick="bemutat3()">
             </div>
             <div class="col-3">
-                <img src="ady-logo.png" alt="Holczer Mátyás képe" class="img-fluid p-3" style="max-height: 300px;">
+                <p id="bemutat4" style="height: 300px;">
+                    <img src="ady-logo.png" alt="Holczer Mátyás képe" class="img-fluid" style="height: 300px;">
+                </p>
+                <input type="button" class="btn btn-light" value="Holczer Mátyás bemutatkozása" onclick="bemutat4()">
             </div>
         </div>
         <div class="row">
-            <div class="col-3">
-                <input type="button" class="btn btn-light" value="Papp Péter bemutatkozása" onclick="bemutat1()">
-                <p id="bemutat1"></p>
-            </div>
-            <div class="col-3">
-                <input type="button" class="btn btn-light" value="Takács Bence bemutatkozása" onclick="bemutat2()">
-                <p id="bemutat2"></p>
-            </div>
-            <div class="col-3">
-                <input type="button" class="btn btn-light" value="Konyhási Máté bemutatkozása" onclick="bemutat3()">
-                <p id="bemutat3"></p>
-            </div>
-            <div class="col-3">
-                <input type="button" class="btn btn-light" value="Holczer Mátyás bemutatkozása" onclick="bemutat4()">
-                <p id="bemutat4"></p>
+            <div class="col-12 mt-4">
+                <input type="button" class="btn btn-light" value="Kép mutatása" onclick="kepmutat()">
+                <div id="kep"></div>
             </div>
         </div>
     </div>
@@ -106,34 +107,44 @@
         }
 
         function bemutat1() {
-            if (document.getElementById("bemutat1").innerHTML == "") {
-                document.getElementById("bemutat1").innerHTML = "Papp Péter vagyok, a Nagyatádi Ady Endre Gimnázium és Technikum informatikatanára. 10 éve tanítok programozást és webfejlesztést. Szenvedélyem a technológia és az oktatás, és mindig arra törekszem, hogy diákjaim a legjobb tudásukat adják.";
+            if (document.getElementById("bemutat1").innerHTML == "Papp Péter vagyok, a Nagyatádi Ady Endre Gimnázium és Technikum informatikatanára. 10 éve tanítok programozást és webfejlesztést. Szenvedélyem a technológia és az oktatás, és mindig arra törekszem, hogy diákjaim a legjobb tudásukat adják.") {
+                document.getElementById("bemutat1").innerHTML = '<img src="ady-logo.png" alt="Papp Péter képe" class="img-fluid" style="max-height: 300px;">';
             } else {
-                document.getElementById("bemutat1").innerHTML = "";
+                document.getElementById("bemutat1").innerHTML = "Papp Péter vagyok, a Nagyatádi Ady Endre Gimnázium és Technikum informatikatanára. 10 éve tanítok programozást és webfejlesztést. Szenvedélyem a technológia és az oktatás, és mindig arra törekszem, hogy diákjaim a legjobb tudásukat adják.";
             }
         }
         function bemutat2() {
-            if (document.getElementById("bemutat2").innerHTML == "") {
-                document.getElementById("bemutat2").innerHTML = "Takács Bence vagyok, a 12/B osztály tanulója. Érdekel a programozás és a webfejlesztés, és szívesen tanulok új technológiákat. Szabadidőmben szeretek videojátékokkal játszani és sportolni.";
+            if (document.getElementById("bemutat2").innerHTML == "Takács Bence vagyok, a 12/B osztály tanulója. Érdekel a programozás és a webfejlesztés, és szívesen tanulok új technológiákat. Szabadidőmben szeretek videojátékokkal játszani és sportolni.") {
+                document.getElementById("bemutat2").innerHTML = '<img src="ady-logo.png" alt="Takács Bence képe" class="img-fluid" style="max-height: 300px;">';
             } else {
-                document.getElementById("bemutat2").innerHTML = "";
+                document.getElementById("bemutat2").innerHTML = "Takács Bence vagyok, a 12/B osztály tanulója. Érdekel a programozás és a webfejlesztés, és szívesen tanulok új technológiákat. Szabadidőmben szeretek videojátékokkal játszani és sportolni.";
             }
         }
         function bemutat3() {
-            if (document.getElementById("bemutat3").innerHTML == "") {
-                document.getElementById("bemutat3").innerHTML = "Konyhási Máté vagyok, a 13/C osztály tanulója. Szenvedélyem a számítástechnika és a programozás. Célom, hogy a jövőben sikeres fejlesztő legyek, és hozzájáruljak innovatív projektekhez.";
+            if (document.getElementById("bemutat3").innerHTML == "Konyhási Máté vagyok, a 13/C osztály tanulója. Szenvedélyem a számítástechnika és a programozás. Célom, hogy a jövőben sikeres fejlesztő legyek, és hozzájáruljak innovatív projektekhez.") {
+                document.getElementById("bemutat3").innerHTML = '<img src="ady-logo.png" alt="Konyhási Máté képe" class="img-fluid" style="max-height: 300px;">';
             } else {
-                document.getElementById("bemutat3").innerHTML = "";
+                document.getElementById("bemutat3").innerHTML = "Konyhási Máté vagyok, a 13/C osztály tanulója. Szenvedélyem a számítástechnika és a programozás. Célom, hogy a jövőben sikeres fejlesztő legyek, és hozzájáruljak innovatív projektekhez.";
             }
         }
         function bemutat4() {
-            if (document.getElementById("bemutat4").innerHTML == "") {
-                document.getElementById("bemutat4").innerHTML = "Holczer Mátyás vagyok, a 13/C osztály tanulója. Érdekel a webfejlesztés és a digitális technológiák világa. Szeretek új dolgokat tanulni és kreatív megoldásokat találni a problémákra.";
+            if (document.getElementById("bemutat4").innerHTML == "Holczer Mátyás vagyok, a 13/C osztály tanulója. Érdekel a webfejlesztés és a digitális technológiák világa. Szeretek új dolgokat tanulni és kreatív megoldásokat találni a problémákra.") {
+                document.getElementById("bemutat4").innerHTML = '<img src="ady-logo.png" alt="Konyhási Máté képe" class="img-fluid" style="max-height: 300px;">';
             } else {
-                document.getElementById("bemutat4").innerHTML = "";
+                document.getElementById("bemutat4").innerHTML = "Holczer Mátyás vagyok, a 13/C osztály tanulója. Érdekel a webfejlesztés és a digitális technológiák világa. Szeretek új dolgokat tanulni és kreatív megoldásokat találni a problémákra.";
             }
         }
-
+        function kepmutat() {
+            if (document.getElementById("kep").innerHTML == "") {
+                document.getElementById("kep").innerHTML = '<img src="img1.jpeg" alt="Első kép" class="img-fluid p-3" style="max-height: 300px;">';
+            } else if (document.getElementById("kep").innerHTML == '<img src="img1.jpeg" alt="Első kép" class="img-fluid p-3" style="max-height: 300px;">') {
+                document.getElementById("kep").innerHTML = '<img src="img2.jpg" alt="Második kép" class="img-fluid p-3" style="max-height: 300px;">';
+            } else if (document.getElementById("kep").innerHTML == '<img src="img2.jpg" alt="Második kép" class="img-fluid p-3" style="max-height: 300px;">') {
+                document.getElementById("kep").innerHTML = '<img src="img3.jpg" alt="Harmadik kép" class="img-fluid p-3" style="max-height: 300px;">';
+            } else if (document.getElementById("kep").innerHTML == '<img src="img3.jpg" alt="Harmadik kép" class="img-fluid p-3" style="max-height: 300px;">') {
+                document.getElementById("kep").innerHTML = '<img src="img1.jpeg" alt="Első kép" class="img-fluid p-3" style="max-height: 300px;">'
+            }
+        }
 
 
     </script>
