@@ -1,0 +1,246 @@
+<!--
+1) A feladatok, amik rátok várnak:
+    a) Az oldal betöltésekor generálódjon egy 12x12-es pálya, ahol a 7 űrhajó véletlenszerűen helyezkedik el. Amire figyelni kell:
+        i) Egyik űrhajó sem lóghat le a pályáról,
+        ii) Az űrhajók nem lehetnek szomszédosak (sem élben, sem áltóban),
+        iii) Mind a 7 típusból pontosan egy lehet, de a forgatás megengedett.
+    b) A felhasználó a pálya mezőire kattintva küldi ki a szondákat.
+        i) A szonda jelezze, ha az adott mezőn van űrhajó.
+    c) Ha a mezőn nincs űrhajó, akkor egy számot írjon oda, ami megmondja, hogy milyen közel van a legközelebbi űrhajó.
+        i) Csak a távolságot kell kiírni, az irányt nem tudja a szonda megmondani.
+        ii) A távolságot csak élszomszédos lépésekkel vizsgáljuk, nem átlósan.
+    d) A játéknak akkor van vége, ha a játékos minden űrhajó minden mezőjét megtalálta, vagyis mindegyikre lőtt szondát.
+    e) A játék folyamatosan jelezze ki a lépések számát.
+    f) Legyen egy Time Attack játékmód is, ahol a lépések száma korlátozott (pl. 20, de célszerű tesztelés után egy megfelelő értékre állítani)
+        i) Minden egyes űrhajó teljes felfedezése adjon valamennyi (pl. 5) extra lépést.
+        ii) Ezt a játékmódot a játékos el is tudja veszteni, ha kifut a lépésekből mielőtt mindent megtalálna.
+-->
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBB2025</title>
+    
+    <script src="script.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        #game {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        #board {
+            display: grid;
+            grid-template-columns: repeat(12, 30px);
+            grid-template-rows: repeat(12, 30px);
+            gap: 2px;
+            margin-top: 20px;
+        }
+        .cell {
+            width: 30px;
+            height: 30px;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .cell.hit {
+            background-color: #ff6666;
+            color: white;
+        }
+        .cell.miss {
+            background-color: #6666ff;
+            color: white;
+        }
+        #info {
+            margin-bottom: 10px;
+        }
+        #steps {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        #message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        button {
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        label {
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        input[type="checkbox"] {
+            transform: scale(1.5);
+            margin-left: 10px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Űrhajók</h1>
+    <div id="game">
+        <div id="info">
+            <div id="steps">Lépések: 0</div>
+            <button id="resetButton" onclick="startGame()">Új játék</button>
+            <label for="timeAttack">Time Attack mód</label>
+            <input type="checkbox" id="timeAttack" onchange="toggleTimeAttack()">
+            <div id="message"></div>
+        </div>
+        <div id="board"></div>
+    </div>
+    <script>
+        function startGame() {
+            // Játék inicializálása
+            initBoard();
+            placeShips();
+            resetSteps();
+            clearMessage();
+        }
+        function toggleTimeAttack() {
+            const isTimeAttack = document.getElementById('timeAttack').checked;
+            if (isTimeAttack) {
+                setSteps(20); // Kezdeti lépések száma Time Attack módban
+            } else {
+                resetSteps();
+            }
+        }
+        // Az oldal betöltésekor indítsuk el a játékot
+        window.onload = startGame;
+        function clearMessage() {
+            document.getElementById('message').innerText = '';
+        }
+        function setMessage(msg) {
+            document.getElementById('message').innerText = msg;
+        }
+        function resetSteps() {
+            document.getElementById('steps').innerText = 'Lépések: 0';
+        }
+        function setSteps(num) {
+            document.getElementById('steps').innerText = 'Lépések: ' + num;
+        }
+        function updateSteps(num) {
+            const stepsDiv = document.getElementById('steps');
+            let currentSteps = parseInt(stepsDiv.innerText.split(': ')[1]);
+            currentSteps += num;
+            stepsDiv.innerText = 'Lépések: ' + currentSteps;
+            return currentSteps;
+        }
+        function initBoard() {
+            const board = document.getElementById('board');
+            board.innerHTML = '';
+            for (let i = 0; i < 12; i++) {
+                for (let j = 0; j < 12; j++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.dataset.row = i;
+                    cell.dataset.col = j;
+                    cell.onclick = () => handleCellClick(i, j);
+                    board.appendChild(cell);
+                }
+            }
+        }
+        function handleCellClick(row, col) {
+            // Kezeljük a cellára kattintást
+            const isTimeAttack = document.getElementById('timeAttack').checked;
+            let currentSteps = updateSteps(-1);
+            if (isTimeAttack && currentSteps < 0) {
+                setMessage('Vesztettél! Elfogytak a lépések.');
+                return;
+            }
+            const cell = document.querySelector(`.cell[data-row='${row}'][data-col='${col}']`);
+            if (cell.classList.contains('hit') || cell.classList.contains('miss')) {
+                setMessage('Erre a mezőre már lőttél!');
+                return;
+            }
+            if (isShipAt(row, col)) {
+                cell.classList.add('hit');
+                setMessage('Talált!');
+                if (checkAllShipsFound()) {
+                    setMessage('Nyertél! Minden űrhajót megtaláltál.');
+                } else if (isTimeAttack) {
+                    updateSteps(5); // Extra lépések űrhajó teljes felfedezésekor
+                }
+            } else {
+                cell.classList.add('miss');
+                const distance = getNearestShipDistance(row, col);
+                cell.innerText = distance;
+                setMessage('Nem talált!');
+            }
+        }
+        function isShipAt(row, col) {
+            // Ellenőrizzük, hogy van-e űrhajó a megadott helyen
+            return shipPositions.some(pos => pos.some(cell => cell[0] === row && cell[1] === col));
+        }
+        function getNearestShipDistance(row, col) {
+            // Számoljuk ki a legközelebbi űrhajó távolságát
+            let minDistance = Infinity;
+            shipPositions.forEach(ship => {
+                ship.forEach(cell => {
+                    const distance = Math.abs(cell[0] - row) + Math.abs(cell[1] - col);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                    }
+                });
+            });
+            return minDistance;
+        }
+        function checkAllShipsFound() {
+            // Ellenőrizzük, hogy minden űrhajó teljesen megtalált-e
+            return shipPositions.every(ship => ship.every(cell => {
+                const cellDiv = document.querySelector(`.cell[data-row='${cell[0]}'][data-col='${cell[1]}']`);
+                return cellDiv.classList.contains('hit');
+            }));
+        }
+        let shipPositions = [];
+        function placeShips() {
+            // Helyezzük el az űrhajókat véletlenszerűen a pályán
+            shipPositions = [];
+            const shipSizes = [5, 4, 3, 3, 2, 2, 1]; // Példa hajóméretek
+            shipSizes.forEach(size => {
+                let placed = false;
+                while (!placed) {
+                    const orientation = Math.random() < 0.5 ? 'H' : 'V';
+                    const row = Math.floor(Math.random() * 12);
+                    const col = Math.floor(Math.random() * 12);
+                    const newShip = [];
+                    for (let i = 0; i < size; i++) {
+                        const r = orientation === 'H' ? row : row + i;
+                        const c = orientation === 'H' ? col + i : col;
+                        if (r >= 12 || c >= 12 || isShipAt(r, c) || isAdjacentToShip(r, c)) {
+                            break;
+                        }
+                        newShip.push([r, c]);
+                    }
+                    if (newShip.length === size) {
+                        shipPositions.push(newShip);
+                        placed = true;
+                    }
+                }
+            });
+        }
+        function isAdjacentToShip(row, col) {
+            // Ellenőrizzük, hogy a megadott hely szomszédos-e egy űrhajóval
+            return shipPositions.some(ship => ship.some(cell => {
+                return Math.abs(cell[0] - row) <= 1 && Math.abs(cell[1] - col) <= 1;
+            }));
+        }
+
+    </script>
+</body>
+
+</html>
