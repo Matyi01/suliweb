@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="hu">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Teccikérteni - Űrhajófelderítő</title>
+    <style>
+        :root {
+            --bg: #0b1220;
+            --card: #0f1724;
+            --accent: #48a9ff;
+            --hit: #ff5c5c;
+            --miss: #d1e3ff
+        }
+
+        body {
+            font-family: Inter, Segoe UI, Arial;
+            background: linear-gradient(180deg, #071028 0%, #081428 100%);
+            color: #e6eef8;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px
+        }
+
+        .wrap {
+            width: 1100px;
+            max-width: 100%;
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 18px
+        }
+
+        .panel {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .6)
+        }
+
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: 18px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 36px);
+            grid-auto-rows: 36px;
+            gap: 4px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            padding: 12px;
+            border-radius: 8px
+        }
+
+        .cell {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 600
+        }
+
+        .cell:hover {
+            outline: 2px solid rgba(72, 169, 255, 0.12)
+        }
+
+        .cell.revealed {
+            cursor: default
+        }
+
+        .cell.hit {
+            background: linear-gradient(180deg, #ff9b9b, #ff5c5c);
+            color: #2b0a0a
+        }
+
+        .cell.miss {
+            background: transparent;
+            color: var(--miss);
+            font-weight: 700
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .row {
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        button,
+        select,
+        input {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 8px 10px;
+            border-radius: 8px;
+            color: inherit;
+            cursor: pointer
+        }
+
+        .stat {
+            font-size: 14px
+        }
+
+        .small {
+            font-size: 13px;
+            color: #9fb8d9
+        }
+
+        .footer {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #9fb8d9
+        }
+
+        .ship-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px
+        }
+
+        .ship-pill {
+            padding: 6px 8px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            font-size: 13px
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity .3s ease
+        }
+
+        .modal.show {
+            visibility: visible;
+            opacity: 1
+        }
+
+        .modal-content {
+            background: var(--card);
+            padding: 24px 32px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6)
+        }
+
+        .modal h2 {
+            margin-bottom: 12px;
+            font-size: 20px
+        }
+
+        .modal p {
+            margin-bottom: 16px;
+            font-size: 15px
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="panel">
+            <h1>Teccikérteni - Űrhajófelderítő</h1>
+            <div class="small">Kattints a mezőkre, hogy szondát küldj. A távolság Manhattan (csak élszomszédos lépések).
+            </div>
+
+            <div style="margin-top:12px" class="controls">
+                <div class="row">
+                    <div class="stat">Lépések: <span id="moves">0</span></div>
+                    <div style="width:12px"></div>
+                    <div class="stat">Felderített mezők: <span id="found">0</span>/<span id="totalCells">0</span></div>
+                </div>
+
+                <div class="row">
+                    <label class="small">Játékmód:</label>
+                    <select id="mode">
+                        <option value="normal">Normál (korlátlan lépések)</option>
+                        <option value="time">Time Attack (lépésszám korlátozott)</option>
+                    </select>
+                    <input id="timeSteps" type="number" min="5" value="20" style="width:90px" />
+                    <button id="restart">Új játék</button>
+                    <button id="showSolution">Megoldás megmutatása</button>
+                </div>
+
+                <div class="row">
+                    <div class="small">Extra: minden teljesen felfedezett űrhajó +5 lépés Time Attackben.</div>
+                </div>
+
+                <div class="row ship-list" id="shipPills"></div>
+                <div class="footer">Megjegyzés: a forgatott tetrominók közül mind a 7 típus pontosan egyszer van jelen.
+                    A színek csak illusztratívak.</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="grid" id="grid"></div>
+        </div>
+    </div>
+
+    <div id="endModal" class="modal">
+        <div class="modal-content">
+            <h2 id="endTitle"></h2>
+            <p id="endMessage"></p>
+            <button onclick="closeEndModal()">Bezárás</button>
+        </div>
+    </div>
+
+    <script>
+        const TETROMINOS = {
+            I: [[0, 0], [1, 0], [-1, 0], [2, 0]],
+            O: [[0, 0], [0, 1], [1, 0], [1, 1]],
+            T: [[0, 0], [-1, 0], [1, 0], [0, 1]],
+            S: [[0, 0], [1, 0], [0, 1], [-1, 1]],
+            Z: [[0, 0], [-1, 0], [0, 1], [1, 1]],
+            J: [[0, 0], [-1, 0], [1, 0], [1, 1]],
+            L: [[0, 0], [-1, 0], [1, 0], [-1, 1]]
+        };
+
+        const ROWS = 12, COLS = 12;
+        let board, ships, moves, found, totalShipCells, mode, timeSteps, remainingSteps;
+
+        const gridEl = document.getElementById('grid');
+        const movesEl = document.getElementById('moves');
+        const foundEl = document.getElementById('found');
+        const totalCellsEl = document.getElementById('totalCells');
+        const modeSel = document.getElementById('mode');
+        const timeInput = document.getElementById('timeSteps');
+        const restartBtn = document.getElementById('restart');
+        const showSolBtn = document.getElementById('showSolution');
+        const shipPills = document.getElementById('shipPills');
+        const endModal = document.getElementById('endModal');
+        const endTitle = document.getElementById('endTitle');
+        const endMessage = document.getElementById('endMessage');
+
+        function openEndModal(title, msg) {
+            endTitle.textContent = title;
+            endMessage.textContent = msg;
+            endModal.classList.add('show');
+        }
+        function closeEndModal() { endModal.classList.remove('show'); }
+
+        function createBoard() {
+            board = Array.from({ length: ROWS }, () => Array.from({ length: COLS }, () => ({ hasShip: false, revealed: false, shipId: null })));
+        }
+        function rotate(coords, k) { let res = coords.map(c => [c[0], c[1]]); for (let t = 0; t < k; t++) { res = res.map(([x, y]) => [-y, x]); } return res; }
+        function canPlaceAt(cells) {
+            for (const [r, c] of cells) {
+                if (r < 0 || r >= ROWS || c < 0 || c >= COLS) return false;
+                if (board[r][c].hasShip) return false;
+                for (let dr = -1; dr <= 1; dr++)for (let dc = -1; dc <= 1; dc++) {
+                    const rr = r + dr, cc = c + dc; if (rr < 0 || rr >= ROWS || cc < 0 || cc >= COLS) continue; if (board[rr][cc].hasShip) return false;
+                }
+            } return true;
+        }
+        function placeShipsRandomly() {
+            ships = []; createBoard();
+            const types = Object.keys(TETROMINOS).sort(() => Math.random() - 0.5);
+            for (const type of types) {
+                let placed = false; let attempts = 0;
+                while (!placed && attempts < 1000) {
+                    attempts++;
+                    const rot = Math.floor(Math.random() * 4);
+                    const coords = rotate(TETROMINOS[type], rot);
+                    const norm = coords.map(([x, y]) => [y, x]);
+                    const minr = Math.min(...norm.map(c => c[0])), maxr = Math.max(...norm.map(c => c[0]));
+                    const minc = Math.min(...norm.map(c => c[1])), maxc = Math.max(...norm.map(c => c[1]));
+                    const baseR = Math.floor(Math.random() * (ROWS - (maxr - minr))) - minr;
+                    const baseC = Math.floor(Math.random() * (COLS - (maxc - minc))) - minc;
+                    const cells = norm.map(([dr, dc]) => [baseR + dr, baseC + dc]);
+                    if (canPlaceAt(cells)) {
+                        const id = ships.length; ships.push({ type, cells, foundCells: 0, bonusGiven: false });
+                        for (const [r, c] of cells) { board[r][c].hasShip = true; board[r][c].shipId = id; }
+                        placed = true;
+                    }
+                } if (!placed) return false;
+            } return true;
+        }
+        function buildUI() { gridEl.innerHTML = ''; for (let r = 0; r < ROWS; r++) { for (let c = 0; c < COLS; c++) { const btn = document.createElement('div'); btn.className = 'cell'; btn.dataset.r = r; btn.dataset.c = c; btn.addEventListener('click', onCellClick); gridEl.appendChild(btn); } } }
+        function updateStats() { movesEl.textContent = moves + (mode === 'time' ? ` (maradt: ${remainingSteps})` : ''); foundEl.textContent = found; totalCellsEl.textContent = totalShipCells; }
+        function onCellClick(ev) {
+            const el = ev.currentTarget; const r = +el.dataset.r, c = +el.dataset.c; if (board[r][c].revealed) return; if (mode === 'time') { if (remainingSteps <= 0) return; remainingSteps--; } moves++; board[r][c].revealed = true; el.classList.add('revealed'); if (board[r][c].hasShip) { el.classList.add('hit'); el.textContent = '●'; found++; const ship = ships[board[r][c].shipId]; ship.foundCells++; if (mode === 'time' && !ship.bonusGiven && ship.foundCells === ship.cells.length) { remainingSteps += 5; ship.bonusGiven = true; } }
+            else { el.classList.add('miss'); let minD = Infinity; for (const sh of ships) { for (const [sr, sc] of sh.cells) { const d = Math.abs(sr - r) + Math.abs(sc - c); if (d < minD) minD = d; } } el.textContent = minD.toString(); }
+            updateStats(); checkEnd();
+        }
+        function checkEnd() { if (found === totalShipCells) { setTimeout(() => openEndModal('Gratulálok!', 'Minden űrhajót feltártál. Lépések: ' + moves + (mode === 'time' ? `, maradt: ${remainingSteps}` : '')), 100); } else if (mode === 'time' && remainingSteps <= 0) { setTimeout(() => openEndModal('Vesztettél!', 'Elfogytak a lépések. Felfedezett mezők: ' + found + '/' + totalShipCells), 100); } }
+        function renderShipPills() { shipPills.innerHTML = ''; for (const sh of ships) { const pill = document.createElement('div'); pill.className = 'ship-pill'; pill.textContent = `${sh.type} — ${sh.cells.length} mező`; shipPills.appendChild(pill); } }
+        function showSolution() { for (let r = 0; r < ROWS; r++) { for (let c = 0; c < COLS; c++) { const idx = r * COLS + c; const el = gridEl.children[idx]; if (board[r][c].hasShip) { el.classList.add('hit'); el.textContent = '●'; } } } }
+        function newGame() { moves = 0; found = 0; ships = []; createBoard(); let ok = false; for (let t = 0; t < 100 && !ok; t++) { ok = placeShipsRandomly(); } if (!ok) openEndModal('Hiba', 'Sikertelen hajóelhelyezés, próbáld újra.'); totalShipCells = ships.reduce((s, sh) => s + sh.cells.length, 0); for (let i = 0; i < ROWS * COLS; i++) { const el = gridEl.children[i]; el.className = 'cell'; el.textContent = ''; } renderShipPills(); mode = modeSel.value; timeSteps = Math.max(5, parseInt(timeInput.value) || 20); remainingSteps = (mode === 'time') ? timeSteps : null; updateStats(); }
+        modeSel.addEventListener('change', () => { mode = modeSel.value; remainingSteps = (mode === 'time') ? Math.max(5, parseInt(timeInput.value) || 20) : null; updateStats(); });
+        timeInput.addEventListener('change', () => { timeSteps = Math.max(5, parseInt(timeInput.value) || 20); if (mode === 'time') remainingSteps = timeSteps; updateStats(); });
+        restartBtn.addEventListener('click', () => newGame()); showSolBtn.addEventListener('click', () => showSolution());
+        buildUI(); newGame();
+    </script>
+</body>
+
+</html>
