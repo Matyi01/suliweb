@@ -20,7 +20,7 @@
             </div>
             <div class="col-4">
                 <div id="controls" class="m-2 text-center">
-                    <button id="reset-button" class="btn btn-secondary">Reset Game</button>
+                    <button id="reset-button" class="btn btn-secondary" onclick="reset()">Reset Game</button>
                 </div>
             </div>
             <div class="col-4">
@@ -32,15 +32,20 @@
         <div class="row">
             <div class="col-8">
                 <div id="game-container" class="mb-4">
-                    <canvas id="game-canvas" width="800" height="800" style="border:1px solid #000000;" onclick="canvasClick(event)"></canvas>
+                    <canvas id="game-canvas" width="800" height="800" style="border:1px solid #000000;"
+                        onclick="canvasClick(event)" onmousemove="egerMozgas(event)"></canvas>
                 </div>
             </div>
             <div class="col-4">
                 <div id="functions" class="mb-4">
                     <h2>Funkciók</h2>
                     <ul>
-                        <li>+vas kattintásra (10 vas) <input type="button" value="+" class="btn btn-secondary" onclick="eroPlus()"></li>
-                        <li>+kattintás hatósugár</li>
+                        <li class="m-2">Erő: <span id="ero"></span> (ár: 10 vas, max 10) <input type="button" value="+"
+                                class="btn btn-secondary" onclick="eroPlus()"></li>
+                        <li class="m-2">Hatósugár: <span id="sugar"></span> (ár: 20 vas, max 20) <input type="button" value="+"
+                                class="btn btn-secondary" onclick="sugarPlus()"></li>
+                        <li class="m-2">Bánya: <span id="banya"></span> db (ár: 200 vas, max 20) <input type="button" value="+"
+                                class="btn btn-secondary" onclick="banyaPlus()"></li>
                     </ul>
                 </div>
             </div>

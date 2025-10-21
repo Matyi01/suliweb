@@ -9,6 +9,13 @@ class aszteroida {
 	}
 }
 
+class banya {
+	constructor(posx, posy) {
+		this.posx = posx;
+		this.posy = posy;
+	}
+}
+
 function toRadian(angle) {
 	return angle * Math.PI / 180;
 }
@@ -23,14 +30,22 @@ function randomGreyHex() {
 }
 
 var minSpeed = 2;
-var maxSpeed = 6;
+var maxSpeed = 4;
 
 var minSize = 21;
-var maxSize = 29;
+var maxSize = 39;
 
 var aszteroidak = [];
 
+let banyak = [];
+
+let banyaLerak = false;
+
 let ero = 1;
+let sugar = 1;
+
+let egerx = 0;
+let egery = 0;
 
 function aszteroidaMozgas(aszteroidaObj, canvasWidth, canvasHeight) {
 	var xMinimum = aszteroidaObj.meret;
@@ -81,6 +96,11 @@ function aszteroidaMozgas(aszteroidaObj, canvasWidth, canvasHeight) {
 	}
 }
 
+function egerMozgas(event) {
+	egerx = event.offsetX;
+	egery = event.offsetY;
+}
+
 function updateObjects() {
 	var c = document.getElementById("game-canvas");
 	var ctx = c.getContext("2d");
@@ -107,9 +127,56 @@ function refreshCanvas() {
 		ctx.fillStyle = "white";
 		ctx.fillText(aszteroidak[i].meret - 20, aszteroidak[i].posx - aszteroidak[i].meret / 3.2, aszteroidak[i].posy + aszteroidak[i].meret / 3);
 	}
+	for (let j = 0; j < banyak.length; j++) {
+		ctx.beginPath();
+		ctx.rect(banyak[j].posx - 15, banyak[j].posy - 15, 30, 30);
+		ctx.fillStyle = "brown";
+		ctx.fill();
+		ctx.strokeStyle = "black";
+		ctx.lineWidth = 2;
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.arc(banyak[j].posx, banyak[j].posy, 100, 0, 2 * Math.PI);
+		ctx.strokeStyle = "black";
+		ctx.lineWidth = 1;
+		ctx.stroke();
+	}
+	if (banyaLerak) {
+		ctx.beginPath();
+		ctx.rect(egerx - 15, egery - 15, 30, 30);
+		ctx.fillStyle = "brown";
+		ctx.fill();
+		ctx.strokeStyle = "black";
+		ctx.lineWidth = 2;
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.arc(egerx, egery, 100, 0, 2 * Math.PI);
+		ctx.strokeStyle = "black";
+		ctx.lineWidth = 1;
+		ctx.stroke();
+
+
+
+
+	}
+
+
+
+	if (!banyaLerak) {
+		ctx.beginPath();
+		ctx.arc(egerx, egery, sugar * 10, 0, 2 * Math.PI);
+		ctx.strokeStyle = "black";
+		ctx.lineWidth = 1;
+		ctx.stroke();
+	}
+
+
+	requestAnimationFrame(refreshCanvas);
+
 }
 
-var myVar = setInterval(refreshCanvas, 30);
+//var myVar = setInterval(refreshCanvas, 30);
+
 
 function init() {
 	for (var i = 0; i < 20; i++) {
@@ -121,32 +188,47 @@ function init() {
 		let meret = randomInt(minSize, maxSize);
 		aszteroidak.push(new aszteroida(posx, posy, szin, irany, sebesseg, meret));
 	}
+	document.getElementById("ero").innerText = ero;
+	document.getElementById("sugar").innerText = sugar;
+	requestAnimationFrame(refreshCanvas);
 }
 
 function canvasClick(event) {
 	let x = event.offsetX;
 	let y = event.offsetY;
-	for (let i = 0; i < aszteroidak.length; i++) {
-		if (Math.sqrt((x - aszteroidak[i].posx) ** 2 + (y - aszteroidak[i].posy) ** 2) <= aszteroidak[i].meret) {
-			if (aszteroidak[i].meret > 20) {
-				let scoreElem = document.getElementById("score");
-				let currentScore = parseInt(scoreElem.innerText);
-				if (aszteroidak[i].meret - ero < 20) {
-					currentScore += (aszteroidak[i].meret - 20);
+	if (!banyaLerak) {
+		for (let i = 0; i < aszteroidak.length; i++) {
+			if (Math.sqrt((x - aszteroidak[i].posx) ** 2 + (y - aszteroidak[i].posy) ** 2) <= aszteroidak[i].meret + sugar * 10) {
+				if (aszteroidak[i].meret > 20) {
+					let scoreElem = document.getElementById("score");
+					let currentScore = parseInt(scoreElem.innerText);
+					if (aszteroidak[i].meret - ero < 20) {
+						currentScore += (aszteroidak[i].meret - 20);
+					}
+					else {
+						currentScore += ero;
+					}
+					scoreElem.innerText = currentScore;
+					aszteroidak[i].meret -= ero;
+					if (aszteroidak[i].meret < 20) {
+						aszteroidak[i].meret = 20;
+					}
 				}
-				else {
-					currentScore += ero;
-				}
-				scoreElem.innerText = currentScore;
-				aszteroidak[i].meret -= ero;
-				if (aszteroidak[i].meret < 20) {
-					aszteroidak[i].meret = 20;
-				}
-				break;
 			}
-
 		}
 	}
+	else {
+		let scoreElem = document.getElementById("score");
+		let currentScore = parseInt(scoreElem.innerText);
+		if (banyak.length < 20 && currentScore >= 200) {
+			banyak.push(new banya(x, y));
+			currentScore -= 200;
+			scoreElem.innerText = currentScore;
+			document.getElementById("sugar").innerText = sugar;
+		}
+		banyaLerak = false;
+	}
+
 }
 
 function eroPlus() {
@@ -156,7 +238,32 @@ function eroPlus() {
 		ero += 1;
 		currentScore -= 10;
 		scoreElem.innerText = currentScore;
+		document.getElementById("ero").innerText = ero;
 	}
 }
 
+function sugarPlus() {
+	let scoreElem = document.getElementById("score");
+	let currentScore = parseInt(scoreElem.innerText);
+	if (sugar < 20 && currentScore >= 20) {
+		sugar += 1;
+		currentScore -= 20;
+		scoreElem.innerText = currentScore;
+		document.getElementById("sugar").innerText = sugar;
+	}
+}
 
+function banyaPlus() {
+	if (!banyaLerak && banyak.length < 20 && parseInt(document.getElementById("score").innerText) >= 200) {
+		banyaLerak = true;
+	}
+	else {
+		banyaLerak = false;
+	}
+}
+
+function reset() {
+	ero = 1;
+	document.getElementById("score").innerText = "0";
+	sugar = 1;
+}
