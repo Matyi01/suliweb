@@ -44,6 +44,8 @@ let banyaLerak = false;
 let ero = 1;
 let sugar = 1;
 
+let banyaEro = 1;
+
 let egerx = 0;
 let egery = 0;
 
@@ -154,14 +156,7 @@ function refreshCanvas() {
 		ctx.strokeStyle = "black";
 		ctx.lineWidth = 1;
 		ctx.stroke();
-
-
-
-
 	}
-
-
-
 	if (!banyaLerak) {
 		ctx.beginPath();
 		ctx.arc(egerx, egery, sugar * 10, 0, 2 * Math.PI);
@@ -169,6 +164,30 @@ function refreshCanvas() {
 		ctx.lineWidth = 1;
 		ctx.stroke();
 	}
+
+	for (let j = 0; j < banyak.length; j++) {
+		for (let i = 0; i < aszteroidak.length; i++) {
+			if (Math.sqrt((banyak[j].posx - aszteroidak[i].posx) ** 2 + (banyak[j].posy - aszteroidak[i].posy) ** 2) <= 100 + aszteroidak[i].meret) {
+				if (aszteroidak[i].meret > 20) {
+					let scoreElem = document.getElementById("score");
+					let currentScore = parseInt(scoreElem.innerText);
+					if (aszteroidak[i].meret - banyaEro < 20) {
+						currentScore += (aszteroidak[i].meret - 20);
+					}
+					else {
+						currentScore += banyaEro;
+					}
+					scoreElem.innerText = currentScore;
+					aszteroidak[i].meret -= banyaEro;
+					if (aszteroidak[i].meret < 20) {
+						aszteroidak[i].meret = 20;
+					}
+				}
+			}
+		}
+	}
+
+
 
 
 	requestAnimationFrame(refreshCanvas);
