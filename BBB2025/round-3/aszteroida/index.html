@@ -2,56 +2,64 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aszteroida bányászat</title>
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <script src="bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aszteroida bányászat</title>
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<script src="bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js"></script>
 </head>
 
 <body onload="init()">
 
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-4">
-                <h1 class="mb-4">Aszteroida bányászat</h1>
-            </div>
-            <div class="col-4">
-                <div id="controls" class="m-2 text-center">
-                    <button id="reset-button" class="btn btn-secondary" onclick="reset()">Reset Game</button>
-                </div>
-            </div>
-            <div class="col-4">
-                <div id="scoreboard" class="mt-4">
-                    <h3>Vas: <span id="score">0</span></h3>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-8">
-                <div id="game-container" class="mb-4">
-                    <canvas id="game-canvas" width="800" height="800" style="border:1px solid #000000;"
-                        onclick="canvasClick(event)" onmousemove="egerMozgas(event)"></canvas>
-                </div>
-            </div>
-            <div class="col-4">
-                <div id="functions" class="mb-4">
-                    <h2>Funkciók</h2>
-                    <ul>
-                        <li class="m-2">Erő: <span id="ero"></span> (ár: 10 vas, max 10) <input type="button" value="+"
-                                class="btn btn-secondary" onclick="eroPlus()"></li>
-                        <li class="m-2">Hatósugár: <span id="sugar"></span> (ár: 20 vas, max 20) <input type="button" value="+"
-                                class="btn btn-secondary" onclick="sugarPlus()"></li>
-                        <li class="m-2">Bánya: <span id="banya"></span> db (ár: 200 vas, max 20) <input type="button" value="+"
-                                class="btn btn-secondary" onclick="banyaPlus()"></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+	<div class="container mt-3">
+		<div class="row pt-2 mb-2">
+			<div class="col-4">
+				<h1>Aszteroida bányászat</h1>
+			</div>
+			<div class="col-4 mt-2 text-center">
+				<h3>Teccikérteni</h3>
+			</div>
+			<div class="col-4">
+				<div id="scoreboard" class="mt-1">
+					<h2>Vas: <span id="score">0</span></h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-8">
+				<div id="game-container" class="mb-4">
+					<canvas id="game-canvas" width="800" height="800" style="border:1px solid #000000;"
+						onclick="canvasClick(event)" onmousemove="egerMozgas(event)" onmouseenter="rajtaVan(1)"
+						onmouseleave="rajtaVan(0)"></canvas>
+				</div>
+			</div>
+			<div class="col-4">
+				<div id="functions" class="mb-4">
+					<h2>Funkciók</h2>
+					<p class="m-2"><button class="btn btn-light plus" onclick="eroPlus()">+</button>
+						Erő:<span id="ero"></span> (ár: 10 vas, max 10)
+					</p>
+					<p class="m-2"><button class="btn btn-light plus" onclick="sugarPlus()">+</button>
+						Hatósugár: <span id="sugar"></span> (ár: 20 vas, max 20)</p>
+					<p class="m-2"><button class="btn btn-light plus" onclick="banyaPlus()">+</button>
+						Bánya: <span id="banya"></span> db (ár: 100 vas, max 20)</p>
+					<p class="m-2"><button class="btn btn-light plus" onclick="banyaEroPlus()">+</button>
+						Bánya erő: <span id="banyaEro"></span> (ár: 250 vas, max 10)</p>
+					<p class="m-2"><button class="btn btn-light plus" onclick="banyaSpeedPlus()">+</button>
+						Bánya sebesség: <span id="banyaSpeed"></span> (ár: 500 vas, max 9)</p>
+					<p class="m-2"><button class="btn btn-light plus" onclick="magnesPlus()">+</button>
+						Aszteroida mágnes: <span id="magnes"></span> (ár: 1000 vas, max 10)</p>
+				</div>
+				<div id="controls" class="m-2 text-center ">
+					<button class="btn btn-light" onclick="reset()">Újraindítás</button>
+					<button class="btn btn-light" onclick="test()">Tesztelés</button>
+				</div>
+			</div>
+		</div>
 
-    </div>
+	</div>
 
 </body>
 
