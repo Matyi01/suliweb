@@ -320,25 +320,32 @@ function magnesPlus() {
 	//több aszteroida
 
 
-		let scoreElem = document.getElementById("score");
+	let scoreElem = document.getElementById("score");
 	let currentScore = parseInt(scoreElem.innerText);
-	if (banyaSpeed > 100 && currentScore >= 1000) {
-		banyaSpeed -= 100;
-		clearInterval(ismetles);
-		ismetles = setInterval(banyaszat, banyaSpeed)
+	if (aszteroidak.length < 70 && currentScore >= 1000) {
+		for (var i = 0; i < 5; i++) {
+			let posx = randomInt(0, 800);
+			let posy = randomInt(0, 800);
+			let szin = randomGreyHex();
+			let irany = toRadian(randomInt(0, 360));
+			let sebesseg = randomInt(minSpeed, maxSpeed);
+			let meret = randomInt(minSize, maxSize);
+			aszteroidak.push(new aszteroida(posx, posy, szin, irany, sebesseg, meret));
+		}
 		currentScore -= 1000;
 		scoreElem.innerText = currentScore;
-		document.getElementById("banyaSpeed").innerText = banyaSpeed;
+		document.getElementById("magnes").innerText = (aszteroidak.length - 20) / 5;
 	}
+}
 
-	for (var i = 0; i < 5; i++) {
-		let posx = randomInt(0, 800);
-		let posy = randomInt(0, 800);
-		let szin = randomGreyHex();
-		let irany = toRadian(randomInt(0, 360));
-		let sebesseg = randomInt(minSpeed, maxSpeed);
-		let meret = randomInt(minSize, maxSize);
-		aszteroidak.push(new aszteroida(posx, posy, szin, irany, sebesseg, meret));
+function bazis(){
+	let scoreElem = document.getElementById("score");
+	let currentScore = parseInt(scoreElem.innerText);
+	if(currentScore >= 50000){
+		alert("Megnyerted a játékot!");
+		currentScore -= 50000;
+		scoreElem.innerText = currentScore;
+		reset();
 	}
 }
 
@@ -348,12 +355,14 @@ function reset() {
 	banyaEro = 1;
 	banyaSpeed = 1000;
 	banyak = [];
+	aszteroidak = aszteroidak.splice(0, 20);
 	document.getElementById("ero").innerText = ero;
 	document.getElementById("sugar").innerText = sugar;
 	document.getElementById("score").innerText = 0;
 	document.getElementById("banya").innerText = banyak.length;
 	document.getElementById("banyaEro").innerText = banyaEro;
 	document.getElementById("banyaSpeed").innerText = banyaSpeed;
+	document.getElementById("magnes").innerText = 0;
 }
 
 function rajtaVan(e) {
