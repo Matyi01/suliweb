@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vizeskancsók</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <script src="../bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container p-4 mt-3">
+        <div class="row">
+            <div class="col-12 ">
+                <h1>Vizeskancsók</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="oszlop float-end">
+                    <div class="hatter">
+                        <div class="kancso" id="kancso9">
+                            <div class="kancso-resz" id="9/9"></div>
+                            <div class="kancso-resz" id="8/9"></div>
+                            <div class="kancso-resz" id="7/9"></div>
+                            <div class="kancso-resz" id="6/9"></div>
+                            <div class="kancso-resz" id="5/9"></div>
+                            <div class="kancso-resz" id="4/9"></div>
+                            <div class="kancso-resz" id="3/9"></div>
+                            <div class="kancso-resz" id="2/9"></div>
+                            <div class="kancso-resz" id="1/9"></div>
+                        </div>
+                    </div>
+
+                    <button onclick="kancso9Megtolt()" class="m-2">Megtölt</button>
+                    <button onclick="kancso9Atont()" class="m-2">Átönt</button>
+                    <button onclick="kancso9Kiont()" class="m-2">Kiönt</button>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="oszlop float-start">
+                    <div class="hatter">
+                        <div class="kancso" id="kancso4">
+                            <div class="kancso-resz" id="4/4"></div>
+                            <div class="kancso-resz" id="3/4"></div>
+                            <div class="kancso-resz" id="2/4"></div>
+                            <div class="kancso-resz" id="1/4"></div>
+                        </div>
+                    </div>
+
+                    <button onclick="kancso4Megtolt()" class="m-2">Megtölt</button>
+                    <button onclick="kancso4Atont()" class="m-2">Átönt</button>
+                    <button onclick="kancso4Kiont()" class="m-2">Kiönt</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

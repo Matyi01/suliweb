@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Alma Keresés</title>
+    <style>
+        table { border-collapse: collapse; }
+        .cella { border: 1px solid gray; width: 50px; height: 50px; text-align: center; }
+        .alma { background-color: red; background-image: url('./kép_2025-10-29_201815903-removebg-preview.png'); background-repeat: no-repeat; background-size: cover; }
+        .utvonal { background-color: lightblue !important; }
+        .kezdo { background-color: green !important; }
+    </style>
+</head>
+<body>
+    <div id="score"></div>
+    <button onclick="kereses()">Útvonal keresése</button>
+    <table id="jatek"></table>
+
+    <script>
+        const nrow = 5, ncell = 5;
+        let almak = 0;
+        const tabla = Array.from({length: nrow}, () => Array(ncell).fill(0));
+        const tableElem = document.getElementById("jatek");
+
+        for (let i = 0; i < nrow; i++) {
+            const newRow = tableElem.insertRow();
+            for (let j = 0; j < ncell; j++) {
+                const cella = newRow.insertCell();
+                cella.id = `${i}-${j}`;
+                cella.className = "cella";
+                cella.onclick = () => lerak(cella);
+            }
+        }
+
+        function lerak(cella) {
+            if (almak < 5 && cella.id != "0-0") {
+                tabla[cella.parentNode.rowIndex][cella.cellIndex] = 1;
+                cella.classList.add("alma");
+                almak++;
+            }
+        }
+
+       function kereses() {
+    document.querySelectorAll(".utvonal, .kezdo").forEach(c => c.classList.remove("utvonal", "kezdo"));
+
+    const startX = 0, startY = 0;
+    let maxAlma = 0, bestPath = [];
+
+    for (let próbál = 0; próbál < 1000; próbál++) {
+        let x = startX, y = startY;
+        let path = [[x, y]];
+        let almaCount = tabla[x][y];  
+        const visited = new Set([`${x}-${y}`]); 
+        for (let lép = 0; lép < 15; lép++) {
+            const irányok = [[1,0],[-1,0],[0,1],[0,-1]];
+            const [dx, dy] = irányok[Math.floor(Math.random() * 4)];
+            const nx = x + dx, ny = y + dy;
+
+            if (nx >= 0 && nx < nrow && ny >= 0 && ny < ncell) {
+                x = nx; y = ny;
+                path.push([x, y]);
+                const kulcs = `${x}-${y}`;
+                if (!visited.has(kulcs) && tabla[x][y] === 1) {
+                    almaCount++;
+                }
+                visited.add(kulcs);
+            }
+        }
+
+        if (almaCount > maxAlma) {
+            maxAlma = almaCount;
+            bestPath = path;
+        }
+    }
+
+    bestPath.forEach(([r,c]) => document.getElementById(`${r}-${c}`).classList.add("utvonal"));
+    document.getElementById("0-0").classList.add("kezdo");
+   document.getElementById("score").innerHTML ="Összeszedett almák száma: "+ maxAlma;
+}
+    </script>
+</body>
+</html>

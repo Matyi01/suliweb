@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aszteroida kereső</title>
+	<link rel="stylesheet" href="../bootstrap.min.css">
+	<script src="../bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js"></script>
+</head>
+
+<body onload="init()">
+	<div class="container p-4 mt-3">
+		<div class="row mb-3">
+			<div class="col-8">
+				<h1>Emelkedő számok</h1>
+			</div>
+			<div class="col-4">
+				<div id="scoreboard" class="mt-1">
+					<h2>Réz: <span id="score">0</span></h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div id="game-container" class="">
+					<canvas id="game-canvas" width="800" height="800" style="border:1px solid #000000;"
+						onclick="canvasClick(event)" onmousemove="egerMozgas(event)" onmouseenter="rajtaVan(1)"
+						onmouseleave="rajtaVan(0)"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+body {
+    background-image: url("../bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 15px;
+}
+
+.hatter {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    width: fit-content;
+}

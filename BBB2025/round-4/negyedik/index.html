@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotséta</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <script src="../bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container p-4 mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h1>Robotséta</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <div id="palya"></div>
+
+                <div>
+                    <button onclick="valaszt('jobb')" class="btn btn-light m-2">Jobbra forduló</button>
+                    <button onclick="valaszt('bal')" class="btn btn-light m-2">Balra forduló</button>
+                    <button onclick="valaszt('viszza')" class="btn btn-light m-2">Visszaforduló</button>
+                    <button onclick="valaszt('torol')" class="btn btn-light m-2">Törlés</button>
+                </div>
+
+                <div>
+                    <button onclick="start()" class="btn btn-light m-2">Start</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
