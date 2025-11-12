@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -27,6 +27,82 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-12">
+                <div id="cardCarousel" class="carousel-wrapper">
+                    <div class="carousel-track">
+
+                        <!-- Kártyák -->
+                        <div class="carousel-card">
+                            <div class="card">
+                                <div class="card-body bg-light">
+                                    <h5 class="card-title">Card 1</h5>
+                                    <p class="card-text">Első kártya tartalma.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-card">
+                            <div class="card">
+                                <div class="card-body bg-light">
+                                    <h5 class="card-title">Card 2</h5>
+                                    <p class="card-text">Második kártya tartalma.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-card">
+                            <div class="card">
+                                <div class="card-body bg-light">
+                                    <h5 class="card-title">Card 3</h5>
+                                    <p class="card-text">Harmadik kártya tartalma.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-card">
+                            <div class="card">
+                                <div class="card-body bg-light">
+                                    <h5 class="card-title">Card 4</h5>
+                                    <p class="card-text">Negyedik kártya tartalma.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-card">
+                            <div class="card">
+                                <div class="card-body bg-light">
+                                    <h5 class="card-title">Card 5</h5>
+                                    <p class="card-text">Ötödik kártya tartalma.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-card">
+                            <div class="card">
+                                <div class="card-body bg-light text-center display-5">
+                                    <b>+</b>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Gombok -->
+                    <button id="prevBtn" class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button id="nextBtn" class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!--
+
             <div class="col-4">
                 <div class="card">
                     <div class="card-body bg-light">
@@ -52,6 +128,8 @@
                     </div>
                 </div>
             </div>
+
+            -->
         </div>
         <div class="row">
             <div class="col-12">
@@ -119,6 +197,8 @@
             </div>
         </div>
     </div>
+
+    <script src="script.js"></script>
 
 </body>
 

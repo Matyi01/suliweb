@@ -1,0 +1,25 @@
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s ease;
+}
+
+.carousel-card {
+    flex: 0 0 calc(100% / 3);
+    /* mindig 3 látszik */
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+}
+
+.card {
+    height: 100%;
+}
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
