@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lekerdezes</title>
+    <title>második</title>
 </head>
 
 <body>
@@ -35,7 +35,50 @@
 
             console.log(adatok)
 
-            }
+
+            let valasztomb = [];
+
+            adatok.data.questions.forEach(e => {
+
+                let matrix = [];
+
+                e.params.positions.forEach(pos1 => {
+                    temp = [];
+
+                    e.params.positions.forEach(pos2 => {
+                        let tav = Math.ceil(Math.sqrt((pos1.x - pos2.x) * (pos1.x - pos2.x) + (pos1.y - pos2.y) * (pos1.y - pos2.y)))
+
+                        temp.push(tav)
+
+                        //matrix[pos1][pos2] = tav;
+                    })
+                    matrix.push(temp)
+                })
+
+                console.log(matrix)
+
+                valasztomb.push({ id: e.ID, answer: matrix });
+            });
+            console.log(valasztomb)
+
+            const url = "https://bitkozpont.mik.uni-pannon.hu/2025/answer.php";
+            fetch(url, {
+                method: "POST",
+                body: JSON.stringify({
+                    id: adatok.data.ID,
+                    teamcode: "f1e1ae76b73a8b7aa51b",
+                    original_data: adatok.data,
+                    original_hash: adatok.hash,
+                    answer_data: valasztomb
+                }),
+            })
+                .then((response) => response.json())
+                .then(function (adatok) {
+                    console.log(adatok)
+                });
+
+
+        }
 
 
     </script>
