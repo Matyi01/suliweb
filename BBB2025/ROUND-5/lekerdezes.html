@@ -1,41 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-
-        fetch("https://bitkozpont.mik.uni-pannon.hu/2025/", {
-            method: "post",
-            body: JSON.stringify({
-                id: "all",
-                teamcode: "f1e1ae76b73a8b7aa51b"
-            })
+      const url = "https://bitkozpont.mik.uni-pannon.hu/2025/gettasks.php";
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify({ id: "1", teamcode: "f1e1ae76b73a8b7aa51b" }),
+      })
+        .then((response) => response.json())
+        .then((feladatok) => console.log(feladatok));
+      /*
+      var xhttp = new XMLHttpRequest();
+      xhttp.open(
+        "POST",
+        " https://bitkozpont.mik.uni-pannon.hu/2025/gettasks.php",
+        true
+      );
+      xhttp.send(
+        JSON.stringify({
+          id: "1",
+          teamcode: "f1e1ae76b73a8b7aa51b",
         })
-            .then((response) => {
-                console.log(response)
-            });
-
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", " https://bitkozpont.mik.uni-pannon.hu/2025/gettasks.php", true);
-        xhttp.send(JSON.stringify({
-            id: "all",
-            teamcode: "f1e1ae76b73a8b7aa51b"
-        }));
-        xhttp.onreadystatechange = function () {
-            console.log(xhttp.responseText);
-        }
+      );
+      xhttp.onreadystatechange = function () {
+        console.log(xhttp.responseText);
+      };
+      */
     </script>
-</body>
-
+  </body>
 </html>
-
-
 
 https://bitkozpont.mik.uni-pannon.hu/2025/
