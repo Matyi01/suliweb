@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lekerdezes</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        let adatok = {};
+
+        const url = "https://bitkozpont.mik.uni-pannon.hu/2025/gettasks.php";
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify({
+                id: "2",
+                teamcode: "f1e1ae76b73a8b7aa51b"
+            }),
+        })
+            .then((response) => response.json())
+            .then(function (json) {
+                adatok = json;
+
+                elso();
+
+            });
+
+
+        function elso() {
+
+            console.log(adatok)
+
+            }
+
+
+    </script>
+</body>
+
+</html>
