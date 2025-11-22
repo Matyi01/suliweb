@@ -41,25 +41,17 @@
             adatok.data.questions.forEach(e => {
 
                 let matrix = [];
-
                 e.params.positions.forEach(pos1 => {
                     temp = [];
 
                     e.params.positions.forEach(pos2 => {
                         let tav = Math.ceil(Math.sqrt((pos1.x - pos2.x) * (pos1.x - pos2.x) + (pos1.y - pos2.y) * (pos1.y - pos2.y)))
-
                         temp.push(tav)
-
-                        //matrix[pos1][pos2] = tav;
                     })
                     matrix.push(temp)
                 })
-
-                console.log(matrix)
-
                 valasztomb.push({ id: e.ID, answer: matrix });
             });
-            console.log(valasztomb)
 
             const url = "https://bitkozpont.mik.uni-pannon.hu/2025/answer.php";
             fetch(url, {
