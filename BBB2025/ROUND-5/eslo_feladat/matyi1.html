@@ -1,4 +1,5 @@
-!<!DOCTYPE html>
+!
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,16 +12,63 @@
 
 
     <script>
+
+        let adatok = {};
+
         const url = "https://bitkozpont.mik.uni-pannon.hu/2025/gettasks.php";
         fetch(url, {
             method: "POST",
-            body: JSON.stringify({ id: "1", teamcode: "f1e1ae76b73a8b7aa51b" }),
+            body: JSON.stringify({
+                id: "1",
+                teamcode: "f1e1ae76b73a8b7aa51b"
+            }),
         })
             .then((response) => response.json())
-            .then((feladatok) => 
-                    document.getElementById("elso").href = "https://bitkozpont.mik.uni-pannon.hu/2025/" + feladatok.data.description
+            .then(function (json) {
+                adatok = json;
 
-            );
+                elso();
+
+            });
+
+
+        function elso() {
+
+            console.log(adatok)
+
+            
+            let valasztomb = [];
+
+            adatok.data.questions.forEach(e => {
+                let szam1 = e.params.number1;
+                let szam2 = e.params.number2;
+                let valasz = szam1 + szam2;
+                console.log(szam1, szam2)
+                console.log(valasz)
+
+                valasztomb.push("{ id: " + e.ID + " answer: " + valasz + "}");
+            });
+
+            const url = "https://bitkozpont.mik.uni-pannon.hu/2025/answer.php";
+            fetch(url, {
+                method: "POST",
+                body: JSON.stringify({
+                    id: adatok.data.ID,
+                    teamcode: "f1e1ae76b73a8b7aa51b",
+                    original_data: adatok.data,
+                    original_hash: adatok.hash,
+                    answer_data: valasztomb
+                }),
+            })
+                .then((response) => response.json())
+                .then(function (adatok) {
+                    console.log(adatok)
+                });
+            
+
+        }
+
+
     </script>
 </body>
 
