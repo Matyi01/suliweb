@@ -73,7 +73,7 @@
                 //bázis helyének indexe
                 let baseindex = 0;
                 for (let i = 0; i < e.params.positions.length; i++) {
-                    if (pos.type == "Base") {
+                    if (e.params.positions[i].type == "Base") {
                         baseindex = i;
                     }
                 }
@@ -88,9 +88,12 @@
                 while (!kesz) {
                     let minInArray = Math.min(...matrix[index]);
 
+                    let minIndex = matrix[index].indexOf(minInArray);
+                    console.log("minindex: " + minIndex + " tav: " + minInArray);
 
 
 
+                    kesz = true;
                 }
 
 
