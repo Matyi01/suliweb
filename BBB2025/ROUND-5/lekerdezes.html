@@ -1,46 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>lekerdezes</title>
-  </head>
+</head>
 
-  <body>
-    <pre id="kiir"></pre>
+<body>
+
+    első feladat: <a id="elso">asd</a>
+
+
+
 
     <script>
-      /*
-        fetch("https://bitkozpont.mik.uni-pannon.hu/2025/gettasks.php", {
-            method: "post",
-            body: JSON.stringify({
-                id: "all",
-                teamcode: "f1e1ae76b73a8b7aa51b"
-            })
+        const url = "https://bitkozpont.mik.uni-pannon.hu/2025/gettasks.php";
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify({ id: "1", teamcode: "f1e1ae76b73a8b7aa51b" }),
         })
-            .then((response) => {
-                console.log(response)
-            });
-*/
+            .then((response) => response.json())
+            .then((feladatok) => 
+                    document.getElementById("elso").href = "https://bitkozpont.mik.uni-pannon.hu/2025/" + feladatok.data.description
 
-      var xhttp = new XMLHttpRequest();
-      xhttp.open(
-        "POST",
-        " https://bitkozpont.mik.uni-pannon.hu/2025/gettasks.php",
-        true
-      );
-      xhttp.send(
-        JSON.stringify({
-          id: "all",
-          teamcode: "f1e1ae76b73a8b7aa51b",
-        })
-      );
-      xhttp.onreadystatechange = function () {
-        console.log(xhttp);
-        document.getElementById("kiir").innerText = xhttp.responseText;
-      };
+            );
     </script>
-  </body>
-</html>
+</body>
 
-https://bitkozpont.mik.uni-pannon.hu/2025/
+</html>
