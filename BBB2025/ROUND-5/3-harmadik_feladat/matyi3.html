@@ -35,12 +35,16 @@
 
             console.log(adatok)
 
-/*
+
+
             let valasztomb = [];
 
+            //egy pálya
             adatok.data.questions.forEach(e => {
 
                 let matrix = [];
+
+                let kesz = false;
 
                 e.params.positions.forEach(pos1 => {
                     temp = [];
@@ -48,18 +52,52 @@
                     e.params.positions.forEach(pos2 => {
                         let tav = Math.ceil(Math.sqrt((pos1.x - pos2.x) * (pos1.x - pos2.x) + (pos1.y - pos2.y) * (pos1.y - pos2.y)))
 
-                        temp.push(tav)
+                        temp.push(tav);
 
                         //matrix[pos1][pos2] = tav;
-                    })
+                    });
                     matrix.push(temp)
-                })
+                });
+                //megvan a matrix
+                console.log(matrix);
 
-                console.log(matrix)
+                //bázis helye, itt kezd a hajó
+                let base = {}
+                e.params.positions.forEach(pos => {
+                    if (pos.type == "Base") {
+                        base = pos;
+                    }
+                });
+
+
+                //bázis helyének indexe
+                let baseindex = 0;
+                for (let i = 0; i < e.params.positions.length; i++) {
+                    if (pos.type == "Base") {
+                        baseindex = i;
+                    }
+                }
+
+                //hajó indexe
+                let index = baseindex;
+
+                
+                console.log(base)
+                console.log(e.params.positions)
+
+                while (!kesz) {
+                    let minInArray = Math.min(...matrix[index]);
+
+
+
+
+                }
+
+
 
                 valasztomb.push({ id: e.ID, answer: matrix });
             });
-            console.log(valasztomb)
+            //console.log(valasztomb)
 
             const url = "https://bitkozpont.mik.uni-pannon.hu/2025/answer.php";
             fetch(url, {
@@ -76,7 +114,7 @@
                 .then(function (adatok) {
                     console.log(adatok)
                 });
-*/
+
 
         }
 
