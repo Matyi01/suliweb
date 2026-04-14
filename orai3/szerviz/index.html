@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szervíz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!--
+        responsive weboldal 3 méretben (S, M, L)
+        -auto szerviz számára
+        layout:
+        -1 hasábos hosszú
+        -2 hasábos
+        -3 hasábos
+
+        -fejléc, lábléc (név, dátum, stb)
+        -menü: főoldal, másik oldal
+        képek (fejléc, főoldalba szerelőről, külső kép az épületről) (title, alt)
+        reklám szöveg hogy kitöltse az oldalt
+        harmonikus szinek
+    -->
+
+    <div class="container">
+        <div class="row bg-light rounded-bottom-3">
+            <div class="col-12">
+                <div class="row" id="header">
+                    <div class="col-4 p-5 text-light">
+                        <h1>Szervíz</h1>
+                    </div>
+                    <div class="col-8">
+
+                    </div>
+                </div>
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Főoldal</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Másik oldal</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row p-3">
+                    <div class="col-12 col-md-5 col-lg-4 pb-3 p-md-0 pe-md-2">
+                        <img src="stock-photo-good-looking-mechanic-giving-thumbs-up-and-smiling-265939445.jpg" alt=""
+                            title="" class="img-fluid rounded-3">
+                    </div>
+                    <div class="col-12 col-md-7 col-lg-8 bg-light rounded-3 p-3">
+                        <h3>
+                            Lorem ipsum dolor sit amet
+                        </h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus fringilla nisi purus, eu
+                            pellentesque purus vehicula eu. Vestibulum venenatis convallis ligula sit amet posuere.
+                            Etiam
+                            posuere, nisi sed tincidunt pellentesque, urna quam tincidunt urna, ac ultricies diam enim
+                            id
+                            orci. Curabitur gravida pulvinar nisl, quis scelerisque enim vestibulum eget. Sed porta in
+                            est
+                            sit amet varius. Nam odio massa, sollicitudin at pellentesque vitae, mattis non ex. Nunc
+                            tristique augue quis metus maximus faucibus. Sed bibendum lectus molestie mi sollicitudin
+                            tempus. Nullam molestie fermentum justo, eget sodales arcu interdum nec. Pellentesque
+                            fringilla
+                            convallis lorem et hendrerit. Ut sit amet eros nisi. In ornare, mi at semper consequat,
+                            velit
+                            quam commodo augue, eu consequat enim turpis eget lorem.
+                        </p>
+                        <p>
+                            Aliquam mauris metus, sodales at mi a, congue rutrum nunc. Sed dapibus tempus iaculis.
+                            Praesent
+                            luctus convallis leo, sed efficitur erat mattis ac. Donec laoreet condimentum metus
+                            vulputate
+                            porta. Vivamus urna arcu, posuere sed dui ac, interdum egestas felis. Aenean venenatis
+                            turpis
+                            est, et mattis lectus sodales at. Phasellus vel tincidunt ante. Nam lacinia nulla sit amet
+                            enim
+                            ultrices porta. Etiam in felis non erat ullamcorper dictum ut tincidunt elit. Vivamus a diam
+                            a
+                            tellus mattis sagittis. Praesent placerat fringilla dui, a tincidunt libero congue eget.
+                            Vivamus
+                            vehicula nisi lorem, ut suscipit purus pulvinar quis. Vestibulum ante ipsum primis in
+                            faucibus
+                            orci luctus et ultrices posuere cubilia curae; Curabitur non eros sem.
+                        </p>
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col-12 col-md-7 col-lg-8 rounded-3 bg-light p-3">
+                        <h3>
+                            Sed nec enim vel arcu
+                        </h3>
+                        <p>
+                            Sed nec enim vel arcu ultrices pretium. Quisque nisi mauris, placerat non dui quis, varius
+                            aliquet tortor. Sed eget sapien ac est molestie placerat. Aliquam dictum, ante et egestas
+                            convallis, lectus nibh dictum odio, at lacinia ex turpis vel dui. Morbi euismod sapien eu
+                            nisl
+                            blandit scelerisque. Praesent finibus egestas ipsum, nec consequat nisi laoreet ac. Aenean
+                            ut
+                            pellentesque ligula. In semper et eros non vestibulum. Duis lacinia sapien purus, vel
+                            commodo
+                            neque rutrum at. Sed a purus nec urna laoreet congue eget vel augue. Etiam et consectetur
+                            erat.
+                        </p>
+                        <p>
+                            Suspendisse iaculis felis ut tortor molestie laoreet. In quis porta tellus. Donec non tempor
+                            mauris. Nullam id laoreet urna, mollis faucibus sem. Sed in urna neque. Vestibulum dapibus
+                            urna
+                            nec eros tempus, vel semper justo egestas. Vivamus laoreet a nisi eget imperdiet. Nunc
+                            ornare
+                            lacus nec lorem luctus dapibus. Phasellus sit amet consequat diam. Pellentesque tempor a
+                            eros
+                            sed fringilla. In vestibulum imperdiet egestas.
+                        </p>
+
+                    </div>
+                    <div class="col-12 col-md-5 col-lg-4  pt-3 p-md-0 ps-md-2">
+                        <img src="wittenheim-france-april-20th-2022-600nw-2368943837.webp" alt="" title=""
+                            class="img-fluid rounded-3">
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col-12 bg-light rounded-3 p-3">
+                        <h3>
+                            Vestibulum ut massa ac dolor
+                        </h3>
+                        <p>
+                            Vestibulum ut massa ac dolor accumsan condimentum a pellentesque mauris. Nullam molestie
+                            eros at
+                            ullamcorper porttitor. Sed non ipsum sagittis, luctus purus placerat, condimentum ipsum.
+                            Proin
+                            consequat, eros non condimentum pulvinar, dui orci sodales tortor, varius ornare augue dui
+                            non
+                            sapien. Nullam eu maximus eros. Maecenas scelerisque eu urna eu faucibus. Curabitur sit amet
+                            purus sit amet quam maximus fringilla. Duis id consequat massa. Nulla rutrum justo ligula,
+                            feugiat cursus augue tincidunt vitae. Maecenas iaculis nunc vel viverra imperdiet. Aenean
+                            ornare
+                            dolor a placerat ultrices. Nam placerat luctus tellus a pharetra. Ut semper ligula nec lorem
+                            varius, sed pretium orci hendrerit. Quisque sagittis dictum odio sed condimentum. Donec
+                            venenatis enim ac porttitor elementum. Vivamus id feugiat felis, mattis laoreet tellus.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded-top-3">
+            <div class="col-12 p-4">
+                <p>Készítette: <i>Holczer Mátyás<i>, 2026. 04. 14.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

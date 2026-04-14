@@ -1,0 +1,12 @@
+body {
+    background: #7194c7;
+    background: linear-gradient(0deg, rgba(113, 148, 199, 1) 0%, rgba(166, 234, 247, 1) 100%);
+}
+
+#header {
+    background-image: url("realistic-elegant-luxury-car-banner-template_755228-225.avif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 67%;
+}
